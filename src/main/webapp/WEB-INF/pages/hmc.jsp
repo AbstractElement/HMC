@@ -70,7 +70,7 @@
                         </li>
                         <li class="breadcrumb-item current">
                             <a onclick="window.location.reload(true);">
-                                <h1 class="h2 department-h1"><spring:message code="common.hmc"/></h1>
+                                <h1 class="h2 department-h1"><spring:message code="common.dh"/></h1>
                             </a>
                         </li>
                     </ul>
@@ -91,41 +91,33 @@
 <!-- ========================================= SIDEBAR ========================================= -->
 <div class="col-xs-12 col-sm-3 no-margin sidebar narrow">
     <!-- ========================================= PRODUCT FILTER ========================================= -->
-    <div class="widget">
-        <h2 style="font-size: 28px; line-height: 52px; color: #3d3d3d"><spring:message code="productFilters"/></h2>
+        <div class="widget">
+            <h2 style="font-size: 28px; line-height: 52px; color: #3d3d3d"><spring:message code="productFilters"/></h2>
 
-        <div class="body bordered" id="filterForm">
+            <div class="body bordered" id="filterForm">
+                <!-- brands -->
+                <hr>
 
-            <!-- brands -->
-        
 
- 
 
-     
+                <hr>
 
-            <hr>
 
-  
 
-            <hr>
+                <hr>
 
-           
+                <div class="filter-button">
+                    <a id="filterSubmit" onclick="submitFilter()">
+                        <spring:message code="hmc.filter"/></a>
+                </div>
 
-            <hr>
-
-            <div class="filter-button">
-                <a id="filterSubmit" onclick="submitFilter()"><spring:message code="hmc.filter"/></a>
             </div>
 
+            <div class="reset-filter">
+                <a onclick="resetFilter()"><spring:message code="hmc.resetFilter"/></a>
+            </div>
+            <br><br>
         </div>
-
-        <div class="reset-filter">
-            <a onclick="resetFilter()"><spring:message code="hmc.resetFilter"/></a>
-        </div>
-
-        <br><br>
-
-    </div>
     <!-- ========================================= PRODUCT FILTER : END ========================================= -->
 </div>
 <!-- ========================================= SIDEBAR : END ========================================= -->
@@ -215,11 +207,11 @@
                                     <div class="prices" >
 
                                     
-                                             <sec:authorize access="hasRole('ROLE_ADMIN')">
+                                             <%--<sec:authorize access="hasRole('ROLE_ADMIN')">--%>
                                              <div class="price-current pull-right">$<span
                                                     class="price${machine.productId}">${machine.price}</span>
                                             </div>
-                                            </sec:authorize>
+                                            <%--</sec:authorize>--%>
                                     <br>
                                 </div>
                                 <div class="hover-area">
@@ -411,7 +403,7 @@
 <script src="http://w.sharethis.com/button/buttons.js"></script>
 <script src="../resources/js/comparison,wishlist,cart,common.jsp"></script>
 <script type="text/javascript">
-    var checkboxesNames = ['brand','location','cnc'];
+    var checkboxesNames = ['brand','model'];
 
     var slidersNames = ['productionYear','price','xMotion','yMotion','zMotion','xTableSize','yTableSize'];
 

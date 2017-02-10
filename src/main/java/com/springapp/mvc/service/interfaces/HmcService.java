@@ -9,9 +9,7 @@ public interface HmcService {
     public List<String[]> listMachineForSiteMap();
     public Hmc getMachine(String productId);
     public List<Hmc> getMachinesList(String[] productIdArr);
-    public List<Hmc> listFiltered(String brands, String yearRange, String priceRange, String locations,
-                                      String cncs, String xMotionRange, String yMotionRange, String zMotionRange,
-                                      String xTableRange, String yTableRange);
+    public List<Hmc> listFiltered(String brands, String model, String priceRange);
     public void editMachine(Hmc machine);
     public List<Hmc> randomListMachine();
     public List<Hmc> newArrivalsList();

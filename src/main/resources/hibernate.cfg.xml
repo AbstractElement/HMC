@@ -12,7 +12,7 @@
         <property name="show_sql">true</property>
 
         <mapping class="com.springapp.mvc.domain.hmc.Hmc"/>
-
+        <mapping class="com.springapp.mvc.domain.User"/>
         <mapping class="com.springapp.mvc.domain.hmc.BrandFilter"/>
 
     </session-factory>

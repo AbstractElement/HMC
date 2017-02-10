@@ -46,7 +46,7 @@
             <a href="/index"><spring:message code="common.home"/></a><br>
             <a href="http://vmccnc.com/contact"><spring:message code="common.contact"/></a><br><br>
 
-            <h2><a onclick="goToHmc()"><spring:message code="common.hmc"/></a></h2>
+            <h2><a onclick="goToHmc()"><spring:message code="common.dh"/></a></h2>
             <c:forEach items="${shortMachineList}" var="machine">
                 <a href="/hmc${machine[0]}">${machine[1]} - ${machine[2]}</a><br>
             </c:forEach>

@@ -60,7 +60,7 @@
                                 <a href="/"><spring:message code="common.home"/></a>
                             </li>
                             <li class="breadcrumb-item gray">
-                                <a onclick="goToHmc()"><spring:message code="common.hmc"/></a>
+                                <a onclick="goToHmc()"><spring:message code="common.dh"/></a>
                             </li>
                             <li class="breadcrumb-item gray">
                                 <a onclick="goToCart()"><spring:message code="cart.shoppingCart"/></a>

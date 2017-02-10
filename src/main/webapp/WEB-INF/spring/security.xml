@@ -46,12 +46,12 @@ http://www.springframework.org/schema/security/spring-security-4.0.xsd">
     </http>
 
     <authentication-manager>
-        <!--<authentication-provider user-service-ref="customUserDetailsService"/>-->
-        <authentication-provider>
-            <user-service>
-                <user name="admin" password="admin" authorities="ROLE_ADMIN" />
-            </user-service>
-        </authentication-provider>
+        <authentication-provider user-service-ref="customUserDetailsService"/>
+        <!--<authentication-provider>-->
+            <!--<user-service>-->
+                <!--<user name="admin" password="admin" authorities="ROLE_ADMIN" />-->
+            <!--</user-service>-->
+        <!--</authentication-provider>-->
     </authentication-manager>
 
     <beans:bean id="customUserDetailsService" class="com.springapp.mvc.service.implementions.CustomUserDetailsService" />

@@ -84,23 +84,21 @@ public class MachineController {
     @RequestMapping(value = "/hmc", method = RequestMethod.GET, params = {"perPage"})
     public void hmcFiltered(@RequestParam(value = "perPage") String perPage,
                             @RequestParam(value = "brand", required = false) String brands,
-                            @RequestParam(value = "location", required = false) String locations,
-                            @RequestParam(value = "cnc", required = false) String cncs,
-                            @RequestParam(value = "productionYear", required = false) String yearRange,
+//                            @RequestParam(value = "location", required = false) String locations,
+                            @RequestParam(value = "model", required = false) String model,
+//                            @RequestParam(value = "productionYear", required = false) String yearRange,
                             @RequestParam(value = "price", required = false) String priceRange,
-                            @RequestParam(value = "xMotion", required = false) String xMotionRange,
-                            @RequestParam(value = "yMotion", required = false) String yMotionRange,
-                            @RequestParam(value = "zMotion", required = false) String zMotionRange,
-                            @RequestParam(value = "xTableSize", required = false) String xTableSizeRange,
-                            @RequestParam(value = "yTableSize", required = false) String yTableSizeRange,
+//                            @RequestParam(value = "xMotion", required = false) String xMotionRange,
+//                            @RequestParam(value = "yMotion", required = false) String yMotionRange,
+//                            @RequestParam(value = "zMotion", required = false) String zMotionRange,
+//                            @RequestParam(value = "xTableSize", required = false) String xTableSizeRange,
+//                            @RequestParam(value = "yTableSize", required = false) String yTableSizeRange,
                             Map<String, Object> map) {
         List<Hmc> machineList;
-        if (brands == null && locations == null && cncs == null && yearRange == null && priceRange == null && xMotionRange == null
-                && yMotionRange == null && zMotionRange == null && xTableSizeRange == null && yTableSizeRange == null) {
+        if (brands == null && model == null && priceRange == null ) {
             machineList = hmcService.listMachine();
         } else {
-            machineList = hmcService.listFiltered(brands, yearRange, priceRange, locations, cncs, xMotionRange,
-                    yMotionRange, zMotionRange, xTableSizeRange, yTableSizeRange);
+            machineList = hmcService.listFiltered(brands, model, priceRange);
         }
         map.put("machineList", machineList);
         putPagesInfo(map, perPage, machineList.size());

@@ -111,7 +111,7 @@
 	                	<div class="col-xs-12 col-sm-4">
 	                    	<div class="title">
                                 <a href="/hmc${machine.productId}">
-                                    ${machine.machineTypeEn}<br><span class="model${machine.productId}">${machine.model}</span>
+                                    ${machine.type}<br><span class="model${machine.productId}">${machine.model}</span>
                                 </a>
 	                    	</div><!-- /.title -->
                             <span class="brand${machine.productId}">${machine.brand}</span>

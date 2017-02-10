@@ -14,7 +14,7 @@
     <meta name="keywords" content='<spring:message code="common.keywords"/>'>
     <meta name="description" content='<spring:message code="common.description"/>'>
 
-    <title><spring:message code="common.hmcTitle"/></title>
+    <title><spring:message code="common.dh"/></title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="resources/css/bootstrap.min.css" type="text/css" media="screen"/>
@@ -219,11 +219,11 @@
                         <li class="dropdown menu-item">
                             <a onclick="goToHmc()">
                                 <h1 class="h2 no-margin" style="font-size: 15px; line-height: 26px; letter-spacing: normal; text-transform: none;">
-                                    <spring:message code="common.hmc"/>
+                                    <spring:message code="common.dh"/>
                                 </h1>
                             </a>
-                            <a href="http://vmccnc.com/vmc" target="_blank"><spring:message code="common.vmc"/></a>
-                            <a href="/lathe" target="_blank"><spring:message code="common.lathe"/></a>
+                            <%--<a href="http://vmccnc.com/vmc" target="_blank"><spring:message code="common.vmc"/></a>--%>
+                            <%--<a href="/lathe" target="_blank"><spring:message code="common.lathe"/></a>--%>
                         </li>
                     </ul>
                 </nav>

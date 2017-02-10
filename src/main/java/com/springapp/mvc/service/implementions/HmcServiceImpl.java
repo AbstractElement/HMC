@@ -32,21 +32,18 @@ public class HmcServiceImpl implements HmcService {
     }
 
     @Transactional
-    public List<Hmc> listFiltered(String brands, String yearRange, String priceRange,
-                                      String locations, String cncs, String xMotionRange, String yMotionRange,
-                                      String zMotionRange, String xTableSizeRange, String yTableSizeRange) {
+    public List<Hmc> listFiltered(String brands, String model, String priceRange) {
         String[] brandArr = (brands != null) ? brands.split(",") : null;
-        int[] yearRangeArr = (yearRange != null) ? getRangeArr(yearRange) : null;
+        String[] modelArr = (model != null) ? model.split(",") : null;
         int[] priceRangeArr = (priceRange != null) ? getRangeArr(priceRange) : null;
-        String[] locationArr = (locations != null) ? locations.split(",") : null;
-        String[] cncArr = (cncs != null) ? cncs.split(",") : null;
-        int[] xMotionRangeArr = (xMotionRange != null) ? getRangeArr(xMotionRange) : null;
-        int[] yMotionRangeArr = (yMotionRange != null) ? getRangeArr(yMotionRange) : null;
-        int[] zMotionRangeArr = (zMotionRange != null) ? getRangeArr(zMotionRange) : null;
-        int[] xTableSizeRangeArr = (xTableSizeRange != null) ? getRangeArr(xTableSizeRange) : null;
-        int[] yTableSizeRangeArr = (yTableSizeRange != null) ? getRangeArr(yTableSizeRange) : null;
-        return hmcDAO.listFiltered(brandArr, yearRangeArr, priceRangeArr, locationArr,
-                cncArr, xMotionRangeArr, yMotionRangeArr, zMotionRangeArr, xTableSizeRangeArr, yTableSizeRangeArr);
+//        String[] locationArr = (locations != null) ? locations.split(",") : null;
+//        String[] cncArr = (cncs != null) ? cncs.split(",") : null;
+//        int[] xMotionRangeArr = (xMotionRange != null) ? getRangeArr(xMotionRange) : null;
+//        int[] yMotionRangeArr = (yMotionRange != null) ? getRangeArr(yMotionRange) : null;
+//        int[] zMotionRangeArr = (zMotionRange != null) ? getRangeArr(zMotionRange) : null;
+//        int[] xTableSizeRangeArr = (xTableSizeRange != null) ? getRangeArr(xTableSizeRange) : null;
+//        int[] yTableSizeRangeArr = (yTableSizeRange != null) ? getRangeArr(yTableSizeRange) : null;
+        return hmcDAO.listFiltered(brandArr, modelArr, priceRangeArr);
     }
 
     private int[] getRangeArr(String range) {
