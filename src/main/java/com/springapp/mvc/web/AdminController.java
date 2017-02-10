@@ -37,7 +37,7 @@ public class AdminController {
     private WorkWithFilesService workWithFilesService;
 
 
-    @RequestMapping(value="/", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public String admin(HttpServletRequest request) {
         if(request.isUserInRole("ROLE_ADMIN")){
             return "redirect:/admin/hmc";
