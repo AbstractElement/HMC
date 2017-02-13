@@ -41,7 +41,7 @@ public class HmcDAOImpl implements HmcDAO {
     }
 
     @SuppressWarnings("unchecked")
-    public List<Hmc> listFiltered(String[] brandArr, String[] model, int[] priceRangeArr) {
+    public List<Hmc> listFiltered(String[] brandArr, String[] model, String[] priceRangeArr) {
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Hmc.class);
         if (brandArr != null) {
             criteria.add(Restrictions.in("brand", brandArr));
@@ -50,7 +50,13 @@ public class HmcDAOImpl implements HmcDAO {
             criteria.add(Restrictions.in("model", model));
         }
         if (priceRangeArr != null) {
-            criteria.add(Restrictions.between("price", priceRangeArr[0], priceRangeArr[1]));
+            if (!priceRangeArr[0].equals("") && !priceRangeArr[1].equals(""))
+                criteria.add(Restrictions.between("price", Double.parseDouble(priceRangeArr[0]),
+                        Double.parseDouble(priceRangeArr[1])));
+            else if(!priceRangeArr[0].equals(""))
+                criteria.add(Restrictions.ge("price", Double.parseDouble(priceRangeArr[0])));
+            else if(!priceRangeArr[1].equals(""))
+                criteria.add(Restrictions.le("price", Double.parseDouble(priceRangeArr[1])));
         }
 //        if (locationArr != null) {
 //            criteria.add(Restrictions.in("machineLocationEn", locationArr));

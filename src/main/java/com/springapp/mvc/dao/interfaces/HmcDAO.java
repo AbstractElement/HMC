@@ -9,7 +9,7 @@ public interface HmcDAO {
     public List<String[]> listMachineForSiteMap();
     public Hmc getMachine(String productId);
     public void addMachine(Hmc machine);
-    public List<Hmc> listFiltered(String[] brandArr, String[] model, int[] priceRangeArr);
+    public List<Hmc> listFiltered(String[] brandArr, String[] model, String[] priceRangeArr);
     public void editMachine(Hmc machine);
     public List<Hmc> randomListMachine();
     public List<Hmc> newArrivalsList();

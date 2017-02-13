@@ -121,6 +121,14 @@
                                 </li>
                             </c:forEach>
                         </ul>
+                        <!--model-->
+                        <h2>Price</h2>
+                        <ul>
+                            <li>
+                                <input class="le-input" name="priceFrom" type="text" placeholder="from" size="5">
+                                <input class="le-input" name="priceTo" type="text" placeholder="to" size="5">
+                            </li>
+                        </ul>
                     </div>
                     <div class="filter-button">
                         <input type="submit" id="filterSubmit" value="Filter">

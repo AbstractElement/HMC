@@ -32,10 +32,10 @@ public class HmcServiceImpl implements HmcService {
     }
 
     @Transactional
-    public List<Hmc> listFiltered(String brands, String model, String priceRange) {
+    public List<Hmc> listFiltered(String brands, String model, String priceFrom, String priceTo) {
         String[] brandArr = (brands != null) ? brands.split(",") : null;
         String[] modelArr = (model != null) ? model.split(",") : null;
-        int[] priceRangeArr = (priceRange != null) ? getRangeArr(priceRange) : null;
+        String[] priceRangeArr = {priceFrom, priceTo};
         return hmcDAO.listFiltered(brandArr, modelArr, priceRangeArr);
     }
 

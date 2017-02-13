@@ -91,7 +91,8 @@ public class MachineController {
 //                            @RequestParam(value = "location", required = false) String locations,
                             @RequestParam(value = "model", required = false) String model,
 //                            @RequestParam(value = "productionYear", required = false) String yearRange,
-                            @RequestParam(value = "price", required = false) String priceRange,
+                            @RequestParam(value = "priceFrom", required = false) String priceFrom,
+                            @RequestParam(value = "priceTo", required = false) String priceTo,
 //                            @RequestParam(value = "xMotion", required = false) String xMotionRange,
 //                            @RequestParam(value = "yMotion", required = false) String yMotionRange,
 //                            @RequestParam(value = "zMotion", required = false) String zMotionRange,
@@ -99,10 +100,10 @@ public class MachineController {
 //                            @RequestParam(value = "yTableSize", required = false) String yTableSizeRange,
                             Map<String, Object> map) {
         List<Hmc> machineList;
-        if (brands == null && model == null && priceRange == null )
+        if (brands == null && model == null && priceFrom == null && priceTo == null)
             machineList = hmcService.listMachine();
         else
-            machineList = hmcService.listFiltered(brands, model, priceRange);
+            machineList = hmcService.listFiltered(brands, model, priceFrom, priceTo);
         List<BrandFilter> machineBrands = brandFilterService.listBrand();
         map.put("machineBrands", machineBrands);
         map.put("machineList", machineList);
