@@ -115,7 +115,6 @@ public class AdminController {
         map.put("imageList", workWithFilesService.listImage(path));
     }
 
-
     @RequestMapping(value = "/gallery/upload", method = RequestMethod.POST)
     public String adminUploadImages(@RequestParam("imageCollection") MultipartFile[] images, HttpServletRequest request){
         if (images != null && images.length > 0) {
@@ -124,11 +123,7 @@ public class AdminController {
         }
         return "redirect:/admin/gallery";
     }
-    
-    
-  
-    
-    
+
     @RequestMapping(value = "/gallery/remove", method = RequestMethod.GET)
     public String removeImage(@RequestParam("image") String image, HttpServletRequest request) {
         String path = request.getServletContext().getRealPath("") + "/resources/images/products";
