@@ -185,8 +185,8 @@
             var brand = $('.brand'+productId).first().text();
             cartItemArr.push(productId+","+price+",1,"+photo+","+model+","+brand);
             localStorage.cartItemStr = cartItemArr.join(";");
-            localStorage.cartTotal = (parseInt(localStorage.cartTotal) + parseInt(price)).toString();
-            localStorage.cartCount = (parseInt(localStorage.cartCount) + 1).toString();
+            localStorage.cartTotal = (parseFloat(localStorage.cartTotal) + parseFloat(price)).toString();
+            localStorage.cartCount = (parseFloat(localStorage.cartCount) + 1).toString();
             styleCartButton(productId);
             styleCartValue();
             loadBasketDropdown();
@@ -206,8 +206,8 @@
             localStorage.cartItemStr = (arr.length != 0) ? arr.join(";") : "";
             var price = item.split(',')[1];
             var count = item.split(',')[2];
-            localStorage.cartTotal = (parseInt(localStorage.cartTotal) - price * count).toString();
-            localStorage.cartCount = (parseInt(localStorage.cartCount) - count).toString();
+            localStorage.cartTotal = (parseFloat(localStorage.cartTotal) - price * count).toString();
+            localStorage.cartCount = (parseFloat(localStorage.cartCount) - count).toString();
             styleCartButton(productId);
             styleCartValue();
             loadBasketDropdown();
@@ -234,7 +234,7 @@
             for(var i=0; !changed && i<arr.length; ++i) {
                 if(arr[i].split(',')[0] == productId) {
                     var item = arr[i].split(',');
-                    price = parseInt(item[1]);
+                    price = parseFloat(item[1]);
                     count = item[2];
                     --count;
                     if(count < 1) {
@@ -248,8 +248,8 @@
                 }
             }
             localStorage.cartItemStr = (arr.length != 0) ? arr.join(";") : "";
-            localStorage.cartTotal = (parseInt(localStorage.cartTotal) - price).toString();
-            localStorage.cartCount = (parseInt(localStorage.cartCount) - 1).toString();
+            localStorage.cartTotal = (parseFloat(localStorage.cartTotal) - price).toString();
+            localStorage.cartCount = (parseFloat(localStorage.cartCount) - 1).toString();
             styleCartValue();
             if(count < 1) {
                 goToCart();
@@ -263,7 +263,7 @@
             for(var i=0; !changed && i<arr.length; ++i) {
                 if(arr[i].split(',')[0] == productId) {
                     var item = arr[i].split(',');
-                    price = parseInt(item[1]);
+                    price = parseFloat(item[1]);
                     var count = item[2];
                     ++count;
                     arr[i] = item[0]+','+item[1]+','+count+','+item[3]+','+item[4]+','+item[5];
@@ -271,8 +271,8 @@
                 }
             }
             localStorage.cartItemStr = (arr.length != 0) ? arr.join(";") : "";
-            localStorage.cartTotal = (parseInt(localStorage.cartTotal) + price).toString();
-            localStorage.cartCount = (parseInt(localStorage.cartCount) + 1).toString();
+            localStorage.cartTotal = (parseFloat(localStorage.cartTotal) + price).toString();
+            localStorage.cartCount = (parseFloat(localStorage.cartCount) + 1).toString();
             styleCartValue();
         }
 
@@ -286,7 +286,7 @@
                         $("#li" + (i + 1) + " img").attr("src", "../resources/images/products/" + machine[3]);
                         $("#li" + (i + 1) + " img").attr("alt", machine[4]);
                         $("#li" + (i + 1) + " .title").html(machine[4] + '<br>' + machine[5]);
-                        $("#li" + (i + 1) + " .price").text("$" + machine[1] + ".00");
+                        $("#li" + (i + 1) + " .price").text("$" + machine[1]);
                         $("#li" + (i + 1) + " .close-btn").click(function () {
                             removeFromCart(machine[0]);
                         });
