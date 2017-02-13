@@ -106,7 +106,7 @@ public class MachineController {
             machineList = hmcService.listFiltered(brands, model, priceFrom, priceTo);
         List<BrandFilter> machineBrands = brandFilterService.listBrand();
         map.put("machineBrands", machineBrands);
-        map.put("machineList", machineList);
+        map.put("machineFiltered", machineList);
         putPagesInfo(map, perPage, machineList.size());
         return "/hmc";
     }

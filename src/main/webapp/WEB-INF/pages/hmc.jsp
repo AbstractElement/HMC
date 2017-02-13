@@ -97,20 +97,24 @@
             <div class="body bordered" id="filterForm">
                 <form:form action="/hmc/filter" method="get">
                     <div class="category-filter">
+
                         <!-- brands -->
                         <h2>Brand</h2>
                         <c:if test="${!empty machineBrands}">
                             <ul>
                                 <c:forEach items="${machineBrands}" var="brands">
                                     <li>
-                                        <input class="le-checkbox" name="brand" type="checkbox" value="${brands.brand}">
+                                        <input class="le-checkbox" name="brand" type="checkbox" value="${brands.brand}"
+                                               <c:forEach items="${machineFiltered}" var="machine">
+                                                   <c:if test="${brands.brand == machine.brand}">checked</c:if>
+                                               </c:forEach>/>
                                         <label>${brands.brand}</label>
                                     </li>
                                 </c:forEach>
                             </ul>
                         </c:if>
-
                         <hr>
+
                         <!--model-->
                         <h2>Model</h2>
                         <ul>
