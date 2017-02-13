@@ -1,9 +1,11 @@
 package com.springapp.mvc.service.implementions;
 
 //import com.springapp.mvc.dao.interfaces.CommonDao;
+import com.springapp.mvc.dao.interfaces.BrandFilterDAO;
 import com.springapp.mvc.dao.interfaces.HmcDAO;
 
 
+import com.springapp.mvc.domain.hmc.BrandFilter;
 import com.springapp.mvc.domain.hmc.Hmc;
 
 
@@ -33,7 +35,8 @@ public class WorkWithFilesServiceImpl implements WorkWithFilesService {
     @Autowired
     private HmcDAO hmcDAO;
     
-
+    @Autowired
+    private BrandFilterDAO brandFilterDAO;
 
 //    @Autowired
 //    private LatheDAO latheDAO;
@@ -49,8 +52,7 @@ public class WorkWithFilesServiceImpl implements WorkWithFilesService {
             machines[i] = hmcDAO.getMachine(productsArr[i].split(",")[0]);
         }
 
-        String pathPdf = null;
-//                GeneratePdfUtil.createPDF(path, products, machines, company, director, showPrice);
+        String pathPdf = GeneratePdfUtil.createPDF(path, products, machines, company, director, showPrice);
 
         File file = new File(pathPdf);
         byte[] contents = new byte[(int) file.length()];
@@ -68,8 +70,7 @@ public class WorkWithFilesServiceImpl implements WorkWithFilesService {
     public ResponseEntity<byte[]> getPDFOfferSingle(String path, String productId, String company, String director, boolean showPrice) throws Exception {
         Hmc machine = hmcDAO.getMachine(productId);
 
-        String pathPdf = null;
-//                GeneratePdfUtil.createPDFSingle(path, machine, company, director, showPrice);
+        String pathPdf = GeneratePdfUtil.createPDFSingle(path, machine, company, director, showPrice);
 
         File file = new File(pathPdf);
         byte[] contents = new byte[(int) file.length()];
@@ -90,6 +91,7 @@ public class WorkWithFilesServiceImpl implements WorkWithFilesService {
                 File uploadFile = UploadMultipartFileUtil.uploadFile(path, machines[i]);
                 Hmc machine = ParserExcelUtil.readHmc(uploadFile);
                 hmcDAO.addMachine(machine);
+                brandFilterDAO.addBrand(machine.getBrand());
                 uploadFile.delete();
                 System.out.println("Successfully uploaded machine: " + machines[i].getOriginalFilename());
             } catch (IOException e) {
@@ -97,12 +99,7 @@ public class WorkWithFilesServiceImpl implements WorkWithFilesService {
             }
         }
     }
-    
-    
 
-
-
-    
 
 //    @Transactional
 //    public void uploadLathes(String path, MultipartFile[] machines) {
@@ -164,8 +161,6 @@ public class WorkWithFilesServiceImpl implements WorkWithFilesService {
         ImageUtil.removeImage(path, image);
     }
 
-
-    
                 // Print in File
      protected void printInFile(String fileName, String str){    // For Check             
          File file = new File("d:\\2\\"+fileName);         

@@ -1,15 +1,10 @@
 package com.springapp.mvc.web;
 
-
 import com.springapp.mvc.domain.hmc.Hmc;
 
 import com.springapp.mvc.domain.User;
 
 import com.springapp.mvc.service.interfaces.*;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -26,6 +21,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+
+    @Autowired
+    private BrandFilterService brandFilterService;
 
     @Autowired
     private HmcService hmcService;
@@ -98,6 +96,7 @@ public class AdminController {
     @RequestMapping(value = "/hmc/edit", method = RequestMethod.POST)
     public String editMachine(@ModelAttribute("machine") Hmc machine){
         hmcService.editMachine(machine);
+        brandFilterService.addBrand(machine.getBrand());
         return "redirect:/admin/hmc";
     }
 

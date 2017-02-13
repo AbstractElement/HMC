@@ -1,5 +1,6 @@
 package com.springapp.mvc.web;
 
+import com.springapp.mvc.domain.hmc.BrandFilter;
 import com.springapp.mvc.domain.hmc.Hmc;
 
 import com.springapp.mvc.service.interfaces.*;
@@ -21,6 +22,9 @@ import java.util.Map;
 public class MachineController {
     @Autowired
     private HmcService hmcService;
+
+    @Autowired
+    private BrandFilterService brandFilterService;
 
     @Autowired
     private WorkWithFilesService workWithFilesService;
@@ -66,8 +70,6 @@ public class MachineController {
         map.put("pagesNum", pagesNum);
     }
 
-
-
     private void putMachinesForBlocks(Map<String, Object> map) {
         map.put("randomMachineList", hmcService.randomListMachine());
         map.put("newArrivalsList", hmcService.newArrivalsList());
@@ -76,13 +78,15 @@ public class MachineController {
     @RequestMapping(value = "/hmc", method = RequestMethod.GET)
     public void hmc(Map<String, Object> map) {
         List<Hmc> machineList = hmcService.listMachine();
+        List<BrandFilter> machineBrands = brandFilterService.listBrand();
         map.put("machineList", machineList);
+        map.put("machineBrands", machineBrands);
         putPagesInfo(map, null, machineList.size());
      
     }
 
-    @RequestMapping(value = "/hmc", method = RequestMethod.GET, params = {"perPage"})
-    public void hmcFiltered(@RequestParam(value = "perPage") String perPage,
+    @RequestMapping(value = "/hmc/filter", method = RequestMethod.GET)
+    public String hmcFiltered(@RequestParam(value = "perPage", required = false) String perPage,
                             @RequestParam(value = "brand", required = false) String brands,
 //                            @RequestParam(value = "location", required = false) String locations,
                             @RequestParam(value = "model", required = false) String model,
@@ -95,14 +99,15 @@ public class MachineController {
 //                            @RequestParam(value = "yTableSize", required = false) String yTableSizeRange,
                             Map<String, Object> map) {
         List<Hmc> machineList;
-        if (brands == null && model == null && priceRange == null ) {
+        if (brands == null && model == null && priceRange == null )
             machineList = hmcService.listMachine();
-        } else {
+        else
             machineList = hmcService.listFiltered(brands, model, priceRange);
-        }
+        List<BrandFilter> machineBrands = brandFilterService.listBrand();
+        map.put("machineBrands", machineBrands);
         map.put("machineList", machineList);
         putPagesInfo(map, perPage, machineList.size());
-     
+        return "/hmc";
     }
 
     @RequestMapping(value = "/hmc{productId}", method = RequestMethod.GET)

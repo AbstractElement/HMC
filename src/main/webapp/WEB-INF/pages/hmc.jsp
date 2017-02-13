@@ -95,22 +95,39 @@
             <h2 style="font-size: 28px; line-height: 52px; color: #3d3d3d"><spring:message code="productFilters"/></h2>
 
             <div class="body bordered" id="filterForm">
-                <!-- brands -->
-                <hr>
+                <form:form action="/hmc/filter" method="get">
+                    <div class="category-filter">
+                        <!-- brands -->
+                        <h2>Brand</h2>
+                        <c:if test="${!empty machineBrands}">
+                            <ul>
+                                <c:forEach items="${machineBrands}" var="brands">
+                                    <li>
+                                        <input class="le-checkbox" name="brand" type="checkbox" value="${brands.brand}">
+                                        <label>${brands.brand}</label>
+                                    </li>
+                                </c:forEach>
+                            </ul>
+                        </c:if>
 
-
-
-                <hr>
-
-
-
-                <hr>
-
-                <div class="filter-button">
-                    <a id="filterSubmit" onclick="submitFilter()">
-                        <spring:message code="hmc.filter"/></a>
-                </div>
-
+                        <hr>
+                        <!--model-->
+                        <h2>Model</h2>
+                        <ul>
+                            <c:forEach items="${machineList}" var="machine">
+                                <li>
+                                    <input class="le-checkbox" name="model" type="checkbox" value="${machine.model}">
+                                    <label>${machine.model}</label>
+                                </li>
+                            </c:forEach>
+                        </ul>
+                    </div>
+                    <div class="filter-button">
+                        <input type="submit" id="filterSubmit" value="Filter">
+                            <%--<a id="filterSubmit" onclick="submitFilter()">--%>
+                            <%--<spring:message code="hmc.filter"/></a>--%>
+                    </div>
+                </form:form>
             </div>
 
             <div class="reset-filter">
