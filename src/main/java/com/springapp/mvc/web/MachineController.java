@@ -1,5 +1,6 @@
 package com.springapp.mvc.web;
 
+import com.springapp.mvc.domain.Order;
 import com.springapp.mvc.domain.hmc.BrandFilter;
 import com.springapp.mvc.domain.hmc.Hmc;
 
@@ -8,10 +9,7 @@ import com.springapp.mvc.util.EmailUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -175,17 +173,19 @@ public class MachineController {
 
     @RequestMapping(value = "/hmc/checkout", method = RequestMethod.GET)
     public void checkout(@RequestParam(required = false) String itemsId, Map<String, Object> map) {
+        map.put("order", new Order());
         if (itemsId != null) {
             map.put("checkoutList", hmcService.getMachinesList(itemsId.split(",")));
         }
     }
 
     @RequestMapping(value = "/hmc/checkout", method = RequestMethod.POST)
-    public void checkoutPost(@RequestParam(required = false) String itemsId, Map<String, Object> map) {
+    public void checkoutPost(@ModelAttribute("order")Order order, Map<String, Object> map) {
         map.put("from", "site");
         map.put("to", "vladis19tr@gmail.com");
         map.put("subject", "New proposal");
         map.put("bcclist", new ArrayList<>());
+        map.put("machineOrder", order);
         emailUtil.sendEmail("machine-order-admin.vm", map);
     }
 

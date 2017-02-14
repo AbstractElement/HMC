@@ -96,7 +96,7 @@
             <c:if test="${!empty proposalList}">
 
                 <h3><spring:message code="proposal.commercialProposalFor"/>:</h3><br>
-                <form:form class="formBox" method="post" id="proposalForm" commandName="email">
+                <form:form class="formBox" method="post" id="proposalForm">
                     <div class="row">
                         <div class="col-xs-6 col-md-4">
                             <label for="company"><spring:message code="proposal.company"/></label>

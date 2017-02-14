@@ -89,18 +89,18 @@
         <div class="col-xs-12 no-margin">
 
             <c:if test="${!empty checkoutList}">
-                <form:form method="post" action="checkout" id="form">
+                <form:form method="post" action="checkout" id="form" commandName="emailPerson">
                     <div class="billing-address">
                         <h2 class="border h1"><spring:message code="checkout.billingAddress"/></h2>
 
                         <div class="row field-row">
                             <div class="col-xs-12 col-sm-6">
                                 <label><spring:message code="checkout.firstName"/>*</label>
-                                <input class="le-input" name="firstName" type="text"/><br>
+                                <form:input path="firstName" class="le-input"  name="firstName" type="text"/><br>
                             </div>
                             <div class="col-xs-12 col-sm-6">
                                 <label><spring:message code="checkout.lastName"/>*</label>
-                                <input class="le-input" name="lastName" type="text"/><br>
+                                <form:input path="lastName" class="le-input" name="lastName" type="text"/><br>
                             </div>
                         </div>
                         <!-- /.field-row -->
@@ -108,7 +108,7 @@
                         <div class="row field-row">
                             <div class="col-xs-12">
                                 <label><spring:message code="checkout.companyName"/></label>
-                                <input class="le-input" name="company" type="text"/><br>
+                                <form:input path="company" class="le-input" name="company" type="text"/><br>
                             </div>
                         </div>
                         <!-- /.field-row -->
@@ -116,7 +116,7 @@
                         <div class="row field-row">
                             <div class="col-xs-12">
                                 <label><spring:message code="checkout.address"/>*</label>
-                                <input class="le-input" name="address" type="text"/><br>
+                                <form:input path="address" class="le-input" name="address" type="text"/><br>
                             </div>
                         </div>
                         <!-- /.field-row -->
@@ -124,16 +124,16 @@
                         <div class="row field-row">
                             <div class="col-xs-12 col-sm-4">
                                 <label><spring:message code="checkout.postcode"/>*</label>
-                                <input class="le-input" name="postcode" type="number"/><br>
+                                <form:input path="postcode" class="le-input" name="postcode" type="number"/><br>
                             </div>
                             <div class="col-xs-12 col-sm-4">
                                 <label id="label-email"><spring:message code="checkout.email"/>*<span style='color:crimson' class="hidden"> <spring:message code="checkout.invalidEmail"/></span></label>
-                                <input class="le-input" name="email" type="text"/>
+                                <form:input path="email" class="le-input" name="email" type="text"/>
                             </div>
 
                             <div class="col-xs-12 col-sm-4">
                                 <label><spring:message code="checkout.phoneNumber"/>*</label>
-                                <input class="le-input" name="phone" type="text"/>
+                                <form:input path="phone" class="le-input" name="phone" type="text"/>
                             </div>
                         </div>
                         <!-- /.field-row -->
@@ -219,45 +219,45 @@
 <script src="../resources/js/scripts.js"></script>
 <script src="http://w.sharethis.com/button/buttons.js"></script>
 <script src="../resources/js/comparison,wishlist,cart,common.jsp"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        var arr = localStorage.cartItemStr.split(';');
-        $.each(arr, function (index, value) {
-            var item = value.split(',');
-            $("#count" + item[0]).html(item[2]);
-        });
-        $("input[name='orderList']").val(localStorage.cartItemStr);
-        $("input[name='total']").val(localStorage.cartTotal);
-        $('#form').submit(function(){
-            var send = true;
-            var inputs = ['firstName','lastName','address','postcode','email','phone'];
-            $.each(inputs, function (index, value) {
-                var input = $("input[name='"+value+"']");
-                if(!input.val()) {
-                    input.addClass('red');
-                    send = false;
-                } else {
-                    input.removeClass('red');
-                    input.val(input.val().trim());
-                    if(value=='email') {
-                        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                        var span = $("#label-email span");
-                        if(!re.test(input.val())){
-                            input.addClass('red');
-                            span.removeClass('hidden');
-                            send = false;
-                        } else {
-                            span.addClass('hidden');
-                        }
-                    }
-                }
-            });
-            $("html, body").animate({ scrollTop: 30 }, "fast");
-            return send;
-        });
-    });
+<%--<script type="text/javascript">--%>
+    <%--$(document).ready(function () {--%>
+        <%--var arr = localStorage.cartItemStr.split(';');--%>
+        <%--$.each(arr, function (index, value) {--%>
+            <%--var item = value.split(',');--%>
+            <%--$("#count" + item[0]).html(item[2]);--%>
+        <%--});--%>
+        <%--$("input[name='orderList']").val(localStorage.cartItemStr);--%>
+        <%--$("input[name='total']").val(localStorage.cartTotal);--%>
+        <%--$('#form').submit(function(){--%>
+            <%--var send = true;--%>
+            <%--var inputs = ['firstName','lastName','address','postcode','email','phone'];--%>
+            <%--$.each(inputs, function (index, value) {--%>
+                <%--var input = $("input[name='"+value+"']");--%>
+                <%--if(!input.val()) {--%>
+                    <%--input.addClass('red');--%>
+                    <%--send = false;--%>
+                <%--} else {--%>
+                    <%--input.removeClass('red');--%>
+                    <%--input.val(input.val().trim());--%>
+                    <%--if(value=='email') {--%>
+                        <%--var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;--%>
+                        <%--var span = $("#label-email span");--%>
+                        <%--if(!re.test(input.val())){--%>
+                            <%--input.addClass('red');--%>
+                            <%--span.removeClass('hidden');--%>
+                            <%--send = false;--%>
+                        <%--} else {--%>
+                            <%--span.addClass('hidden');--%>
+                        <%--}--%>
+                    <%--}--%>
+                <%--}--%>
+            <%--});--%>
+            <%--$("html, body").animate({ scrollTop: 30 }, "fast");--%>
+            <%--return send;--%>
+        <%--});--%>
+    <%--});--%>
 
-</script>
+<%--</script>--%>
 
 </body>
 </html>

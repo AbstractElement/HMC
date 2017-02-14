@@ -1,22 +1,38 @@
 package com.springapp.mvc.domain;
 
+import org.springframework.stereotype.Component;
+
+import java.util.GregorianCalendar;
+
 /**
  * Created by Vladislav on 14.02.2017.
  */
-public class Email {
+
+@Component
+public class Order {
     private String firstName;
-    private String secondName;
-    private String company;
+    private String lastName;
+    private String company = "";
     private String address;
     private String phone;
     private String email;
+    private String postcode;
+    private GregorianCalendar date;
 
-    public String getSecondName() {
-        return secondName;
+    public String getPostcode() {
+        return postcode;
     }
 
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
+    public void setPostcode(String postcode) {
+        this.postcode = postcode;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String secondName) {
+        this.lastName = secondName;
     }
 
     public String getFirstName() {
