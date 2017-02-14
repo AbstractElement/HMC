@@ -16,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/admin")
@@ -68,7 +67,6 @@ public class AdminController {
         userService.setUserRole(num, role);
         return "redirect:/admin/users";
     }
-
     
     @RequestMapping(value="/hmc", method = RequestMethod.GET)
     public void hmc(Map<String,Object> map) {
@@ -76,12 +74,6 @@ public class AdminController {
         map.put("machineList", machineList);
         putPagesInfo(map, machineList.size(), 10);
     }
-
-    @RequestMapping(value="/lathe", method = RequestMethod.GET)
-    public void lathe(Map<String,Object> map) {
-
-    }
-
 
     private void putPagesInfo(Map<String, Object> map, int itemsNum, int itemsPerPage) {
         int pagesNum = itemsNum / itemsPerPage;

@@ -4,6 +4,7 @@ import com.springapp.mvc.domain.hmc.BrandFilter;
 import com.springapp.mvc.domain.hmc.Hmc;
 
 import com.springapp.mvc.service.interfaces.*;
+import com.springapp.mvc.util.EmailUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -31,6 +33,9 @@ public class MachineController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private EmailUtil emailUtil;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView home(Map<String,Object> map) {
@@ -88,16 +93,9 @@ public class MachineController {
     @RequestMapping(value = "/hmc/filter", method = RequestMethod.GET)
     public String hmcFiltered(@RequestParam(value = "perPage", required = false) String perPage,
                             @RequestParam(value = "brand", required = false) String brands,
-//                            @RequestParam(value = "location", required = false) String locations,
                             @RequestParam(value = "model", required = false) String model,
-//                            @RequestParam(value = "productionYear", required = false) String yearRange,
                             @RequestParam(value = "priceFrom", required = false) String priceFrom,
                             @RequestParam(value = "priceTo", required = false) String priceTo,
-//                            @RequestParam(value = "xMotion", required = false) String xMotionRange,
-//                            @RequestParam(value = "yMotion", required = false) String yMotionRange,
-//                            @RequestParam(value = "zMotion", required = false) String zMotionRange,
-//                            @RequestParam(value = "xTableSize", required = false) String xTableSizeRange,
-//                            @RequestParam(value = "yTableSize", required = false) String yTableSizeRange,
                             Map<String, Object> map) {
         List<Hmc> machineList;
         if (brands == null && model == null && priceFrom == null && priceTo == null)
@@ -180,6 +178,15 @@ public class MachineController {
         if (itemsId != null) {
             map.put("checkoutList", hmcService.getMachinesList(itemsId.split(",")));
         }
+    }
+
+    @RequestMapping(value = "/hmc/checkout", method = RequestMethod.POST)
+    public void checkoutPost(@RequestParam(required = false) String itemsId, Map<String, Object> map) {
+        map.put("from", "site");
+        map.put("to", "vladis19tr@gmail.com");
+        map.put("subject", "New proposal");
+        map.put("bcclist", new ArrayList<>());
+        emailUtil.sendEmail("machine-order-admin.vm", map);
     }
 
     @RequestMapping(value = "/hmc/trackYourOrder", method = RequestMethod.GET)

@@ -48,9 +48,8 @@ public class EmailUtil {
                         message.addBcc(bcc);
                     }
                 }
-                String text = VelocityEngineUtils.mergeTemplateIntoString(
-                        velocityEngine, templateName, "UTF-8", model);
 
+                String text = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, templateName, "UTF-8", model);
                 message.setText(text,true);
             }
         };
