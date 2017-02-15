@@ -115,17 +115,17 @@
                         </c:if>
                         <hr>
 
-                        <!--model-->
-                        <h2>Model</h2>
-                        <ul>
-                            <c:forEach items="${machineList}" var="machine">
-                                <li>
-                                    <input class="le-checkbox" name="model" type="checkbox" value="${machine.model}">
-                                    <label>${machine.model}</label>
-                                </li>
-                            </c:forEach>
-                        </ul>
-                        <!--model-->
+                        <%--<!--model-->--%>
+                        <%--<h2>Model</h2>--%>
+                        <%--<ul>--%>
+                            <%--<c:forEach items="${machineList}" var="machine">--%>
+                                <%--<li>--%>
+                                    <%--<input class="le-checkbox" name="model" type="checkbox" value="${machine.model}">--%>
+                                    <%--<label>${machine.model}</label>--%>
+                                <%--</li>--%>
+                            <%--</c:forEach>--%>
+                        <%--</ul>--%>
+                        <!--price-->
                         <h2>Price</h2>
                         <ul>
                             <li>
@@ -133,9 +133,10 @@
                                 <input class="le-input" name="priceTo" type="text" placeholder="to" size="5">
                             </li>
                         </ul>
+                        <hr>
                     </div>
-                    <div class="filter-button">
-                        <input type="submit" id="filterSubmit" value="Filter">
+                    <div class="place-order-button">
+                        <input class="le-button-huge" type="submit" value="Filter">
                             <%--<a id="filterSubmit" onclick="submitFilter()">--%>
                             <%--<spring:message code="hmc.filter"/></a>--%>
                     </div>
@@ -233,18 +234,16 @@
                                         <%--<spring:message code="machine.tableSize"/> X&timesY: ${machine.xTableSize}&times${machine.yTableSize}<spring:message code="machine.mm"/>--%>
                                     </div>
                                 </div>
-                                    <div class="prices" >
-
-                                    
-                                             <%--<sec:authorize access="hasRole('ROLE_ADMIN')">--%>
-                                             <div class="price-current pull-right">$<span
-                                                    class="price${machine.productId}">${machine.price}</span>
-                                            </div>
-                                            <%--</sec:authorize>--%>
+                                    <div class="prices" <c:if test="${pageContext.request.userPrincipal.name == null}">
+                                        style="display: none"</c:if>>
+                                         <div class="price-current pull-right">$<span
+                                                class="price${machine.productId}">${machine.price}</span>
+                                         </div>
                                     <br>
                                 </div>
                                 <div class="hover-area">
-                                    <div class="add-cart-button">
+                                    <div class="add-cart-button" <c:if test="${pageContext.request.userPrincipal.name == null}">
+                                        style="display: none"</c:if>>
                                         <a class="cart${machine.productId} le-button"
                                            onclick="addToCart('${machine.productId}')"><spring:message
                                                 code="common.addToCart"/></a>

@@ -290,7 +290,9 @@
                                         </div>
 
                                         <div class="hover-area">
-                                            <div class="add-cart-button">
+                                            <div class="add-cart-button"
+                                                 <c:if test="${pageContext.request.userPrincipal.name == null}">
+                                                     style="display: none"</c:if>>
                                                 <a class="cart${machine.productId} le-button"
                                                    onclick="addToCart('${machine.productId}')">
                                                     <spring:message code="common.addToCart"/>

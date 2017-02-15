@@ -221,7 +221,8 @@
                     <div class="price-current">$<span class="price${machine.productId}">${machine.price}</span></div>
                 </div>
 
-                <div class="qnt-holder">
+                <div class="qnt-holder" <c:if test="${pageContext.request.userPrincipal.name == null}">
+                    style="display: none"</c:if>>
                     <a class="cart${machine.productId} le-button huge"
                        onclick="addToCart('${machine.productId}')"><spring:message code="common.addToCart"/></a>
                     <a class="cart${machine.productId} le-button huge in-cart hidden"

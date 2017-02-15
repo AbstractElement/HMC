@@ -89,7 +89,7 @@
         <div class="col-xs-12 no-margin">
 
             <c:if test="${!empty checkoutList}">
-                <form:form method="post" action="checkout" id="form" commandName="emailPerson">
+                <form:form method="post" action="checkout" id="form" commandName="order">
                     <div class="billing-address">
                         <h2 class="border h1"><spring:message code="checkout.billingAddress"/></h2>
 
