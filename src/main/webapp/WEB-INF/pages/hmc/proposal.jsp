@@ -220,7 +220,7 @@
             var arrItem = arr[i].split(',');
             products[i] = arrItem[0] + ',' + arrItem[2];
         }
-        form.attr("action", "hmc/proposal?products=" + products.join(';'));
+        form.attr("action", "/hmc/proposal?products=" + products.join(';'));
     }
 
 </script>

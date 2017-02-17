@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
 
@@ -173,20 +174,34 @@ public class MachineController {
 
     @RequestMapping(value = "/hmc/checkout", method = RequestMethod.GET)
     public void checkout(@RequestParam(required = false) String itemsId, Map<String, Object> map) {
-        map.put("order", new Order());
+        Order order = new Order();
         if (itemsId != null) {
+            String[] items = itemsId.split(",");
+            String orderList = "";
+            for (String item : items){
+                Hmc hmc = hmcService.getMachine(item);
+                orderList += hmc.getModel() + ",";
+                orderList += hmc.getProductId() + ",";
+                orderList += hmc.getPrice() + ";";
+            }
+            order.setOrderList(orderList);
+            map.put("order", order);
             map.put("checkoutList", hmcService.getMachinesList(itemsId.split(",")));
         }
     }
 
     @RequestMapping(value = "/hmc/checkout", method = RequestMethod.POST)
-    public void checkoutPost(@ModelAttribute("order")Order order, Map<String, Object> map) {
-        map.put("from", "site");
+    public void checkoutPost(@ModelAttribute("order")Order order,
+                             Map<String, Object> map) {
+        map.put("from", "vladis19tr@gmail.com");
         map.put("to", "vladis19tr@gmail.com");
         map.put("subject", "New proposal");
         map.put("bcclist", new ArrayList<>());
+        order.setDate(new GregorianCalendar().getTime());
         map.put("machineOrder", order);
         emailUtil.sendEmail("machine-order-admin.vm", map);
+        map.put("to", order.getEmail());
+        emailUtil.sendEmail("machine-order-customer.vm", map);
     }
 
     @RequestMapping(value = "/hmc/trackYourOrder", method = RequestMethod.GET)

@@ -249,7 +249,7 @@
                         code="machine.additionalInformation"/></a></li>
             </ul>
 
-            <%--<div class="tab-content">--%>
+            <div class="tab-content">
                 <%--<div class="tab-pane active container-fluid no-padding" id="description">--%>
                     <%--<div class="col-xs-12 col-md-7 no-padding">--%>
                         <%--<c:if test="${machine.video1!=''}">--%>

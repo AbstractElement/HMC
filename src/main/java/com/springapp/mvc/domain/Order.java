@@ -2,6 +2,7 @@ package com.springapp.mvc.domain;
 
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**
@@ -10,6 +11,7 @@ import java.util.GregorianCalendar;
 
 @Component
 public class Order {
+    private int orderId;
     private String firstName;
     private String lastName;
     private String company = "";
@@ -17,7 +19,41 @@ public class Order {
     private String phone;
     private String email;
     private String postcode;
-    private GregorianCalendar date;
+    private Date date;
+    private String total;
+    private String orderList;
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
+    }
+
+    public String getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(String orderList) {
+        this.orderList = orderList;
+    }
+
+    public String getTotal() {
+        return total;
+    }
+
+    public void setTotal(String total) {
+        this.total = total;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
     public String getPostcode() {
         return postcode;

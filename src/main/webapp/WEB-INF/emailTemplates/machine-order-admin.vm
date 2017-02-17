@@ -20,7 +20,7 @@
                 <td style="border:1px solid #59b210; padding:6px">Machine</td>
                 <td style="border:1px solid #59b210; padding:6px">Machine ID</td>
                 <td style="border:1px solid #59b210; padding:6px">Price</td>
-                <td style="border:1px solid #59b210; padding:6px">Quantity</td>
+##                <td style="border:1px solid #59b210; padding:6px">Quantity</td>
             </tr>
             #set( $count = 1 )
             #foreach( $machine in $machineOrder.orderList.split("[;]"))
@@ -33,7 +33,7 @@
                     </td>
                     <td style="border:1px solid #59b210; padding:6px">$m[0]</td>
                     <td style="border:1px solid #59b210; padding:6px">$$m[2]</td>
-                    <td style="border:1px solid #59b210; padding:6px">$m[3]</td>
+##                    <td style="border:1px solid #59b210; padding:6px">$m[3]</td>
                 </tr>
                 #set( $count = $count + 1 )
             #end
@@ -44,7 +44,7 @@
         </table>
         <br>
 
-        Payment: $machineOrder.payment<br><br>
+##        Payment: $machineOrder.payment<br><br>
 
         Date of ordering: $machineOrder.date<br><br>
 

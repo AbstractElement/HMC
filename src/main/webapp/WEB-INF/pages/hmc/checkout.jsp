@@ -179,8 +179,8 @@
                     </section>
                     <!-- /#your-order -->
 
-                    <input type="hidden" name="orderList">
-                    <input type="hidden" name="total">
+                    <form:input type="hidden" name="orderList" path="orderList"/>
+                    <form:input type="hidden" class="total-field" name="total" path="total"/>
 
                     <div class="place-order-button">
                         <button class="le-button huge" type="submit"><spring:message code="checkout.placeOrder"/></button>
@@ -219,45 +219,63 @@
 <script src="../resources/js/scripts.js"></script>
 <script src="http://w.sharethis.com/button/buttons.js"></script>
 <script src="../resources/js/comparison,wishlist,cart,common.jsp"></script>
-<%--<script type="text/javascript">--%>
-    <%--$(document).ready(function () {--%>
-        <%--var arr = localStorage.cartItemStr.split(';');--%>
-        <%--$.each(arr, function (index, value) {--%>
-            <%--var item = value.split(',');--%>
-            <%--$("#count" + item[0]).html(item[2]);--%>
-        <%--});--%>
-        <%--$("input[name='orderList']").val(localStorage.cartItemStr);--%>
-        <%--$("input[name='total']").val(localStorage.cartTotal);--%>
-        <%--$('#form').submit(function(){--%>
-            <%--var send = true;--%>
-            <%--var inputs = ['firstName','lastName','address','postcode','email','phone'];--%>
-            <%--$.each(inputs, function (index, value) {--%>
-                <%--var input = $("input[name='"+value+"']");--%>
-                <%--if(!input.val()) {--%>
-                    <%--input.addClass('red');--%>
-                    <%--send = false;--%>
-                <%--} else {--%>
-                    <%--input.removeClass('red');--%>
-                    <%--input.val(input.val().trim());--%>
-                    <%--if(value=='email') {--%>
-                        <%--var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;--%>
-                        <%--var span = $("#label-email span");--%>
-                        <%--if(!re.test(input.val())){--%>
-                            <%--input.addClass('red');--%>
-                            <%--span.removeClass('hidden');--%>
-                            <%--send = false;--%>
-                        <%--} else {--%>
-                            <%--span.addClass('hidden');--%>
-                        <%--}--%>
-                    <%--}--%>
-                <%--}--%>
-            <%--});--%>
-            <%--$("html, body").animate({ scrollTop: 30 }, "fast");--%>
-            <%--return send;--%>
-        <%--});--%>
-    <%--});--%>
+<script type="text/javascript">
+//    $(document).ready(function () {
+//        var arr = localStorage.cartItemStr.split(';');
+//        $.each(arr, function (index, value) {
+//            var item = value.split(',');
+//            $("#count" + item[0]).html(item[2]);
+//        });
+//        $("input[name='orderList']").val(localStorage.cartItemStr);
+//        $("input[name='total']").val(localStorage.cartTotal);
+//        $('#form').submit(function(){
+//            var send = true;
+//            var inputs = ['firstName','lastName','address','postcode','email','phone'];
+//            $.each(inputs, function (index, value) {
+//                var input = $("input[name='"+value+"']");
+//                if(!input.val()) {
+//                    input.addClass('red');
+//                    send = false;
+//                } else {
+//                    input.removeClass('red');
+//                    input.val(input.val().trim());
+//                    if(value=='email') {
+//                        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+//                        var span = $("#label-email span");
+//                        if(!re.test(input.val())){
+//                            input.addClass('red');
+//                            span.removeClass('hidden');
+//                            send = false;
+//                        } else {
+//                            span.addClass('hidden');
+//                        }
+//                    }
+//                }
+//            });
+//            $("html, body").animate({ scrollTop: 30 }, "fast");
+//            return send;
+//        });
+//    });
 
-<%--</script>--%>
-
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+//        var fullArr = localStorage.cartItemStr.split(';');
+//        if (fullArr != null && fullArr != "") {
+//            var orderTotal = 0;
+//            $(fullArr).each(function (index, value) {
+//                var machine = value.split(',');
+//                var productId = machine[0];
+//                var price = machine[1];
+//                var count = machine[2];
+//                $('#count' + productId).text(count);
+//                $('#total' + productId).text((parseInt(count) * parseInt(price)).toString());
+//                orderTotal += parseInt(price) * parseInt(count);
+//            });
+//            $("#order-total").text(orderTotal.toString());
+//        }
+        $('.total-field').attr("value", localStorage.cartTotal.toString());
+    });
+</script>
 </body>
 </html>
