@@ -1,26 +1,50 @@
-package com.springapp.mvc.domain;
+package com.springapp.mvc.domain.hmc;
 
-import org.springframework.stereotype.Component;
 
+import javax.annotation.Generated;
+import javax.persistence.*;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 /**
  * Created by Vladislav on 14.02.2017.
  */
 
-@Component
+@Entity
+@Table(name="machine_order", schema = "", catalog = "hmc_example")
 public class Order {
+    @Id
+    @Column(name = "orderId")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int orderId;
+
+    @Column(name = "firstName")
     private String firstName;
+
+    @Column(name = "lastName")
     private String lastName;
+
+    @Column(name = "company")
     private String company = "";
+
+    @Column(name = "address")
     private String address;
+
+    @Column(name = "phone")
     private String phone;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "postcode")
     private String postcode;
+
+    @Column(name = "date")
     private Date date;
+
+    @Column(name = "total")
     private String total;
+
+    @Column(name = "orderList")
     private String orderList;
 
     public int getOrderId() {

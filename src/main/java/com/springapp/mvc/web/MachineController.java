@@ -1,6 +1,6 @@
 package com.springapp.mvc.web;
 
-import com.springapp.mvc.domain.Order;
+import com.springapp.mvc.domain.hmc.Order;
 import com.springapp.mvc.domain.hmc.BrandFilter;
 import com.springapp.mvc.domain.hmc.Hmc;
 
@@ -21,6 +21,9 @@ import java.util.Map;
 @Controller
 @RequestMapping()
 public class MachineController {
+    @Autowired
+    private OrderService orderService;
+
     @Autowired
     private HmcService hmcService;
 
@@ -198,6 +201,7 @@ public class MachineController {
         map.put("subject", "New proposal");
         map.put("bcclist", new ArrayList<>());
         order.setDate(new GregorianCalendar().getTime());
+        orderService.addOrder(order);
         map.put("machineOrder", order);
         emailUtil.sendEmail("machine-order-admin.vm", map);
         map.put("to", order.getEmail());

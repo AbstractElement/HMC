@@ -13,6 +13,7 @@
 
         <mapping class="com.springapp.mvc.domain.hmc.Hmc"/>
         <mapping class="com.springapp.mvc.domain.User"/>
+        <mapping class="com.springapp.mvc.domain.hmc.Order"/>
         <mapping class="com.springapp.mvc.domain.hmc.BrandFilter"/>
 
     </session-factory>
