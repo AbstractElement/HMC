@@ -96,11 +96,11 @@
                         <div class="row field-row">
                             <div class="col-xs-12 col-sm-6">
                                 <label><spring:message code="checkout.firstName"/>*</label>
-                                <form:input path="firstName" class="le-input"  name="firstName" type="text"/><br>
+                                <form:input path="firstName" class="le-input" required="true"  name="firstName" type="text"/><br>
                             </div>
                             <div class="col-xs-12 col-sm-6">
                                 <label><spring:message code="checkout.lastName"/>*</label>
-                                <form:input path="lastName" class="le-input" name="lastName" type="text"/><br>
+                                <form:input path="lastName" class="le-input" required="true" name="lastName" type="text"/><br>
                             </div>
                         </div>
                         <!-- /.field-row -->
@@ -116,7 +116,7 @@
                         <div class="row field-row">
                             <div class="col-xs-12">
                                 <label><spring:message code="checkout.address"/>*</label>
-                                <form:input path="address" class="le-input" name="address" type="text"/><br>
+                                <form:input path="address" class="le-input" name="address" required="true" type="text"/><br>
                             </div>
                         </div>
                         <!-- /.field-row -->
@@ -124,16 +124,16 @@
                         <div class="row field-row">
                             <div class="col-xs-12 col-sm-4">
                                 <label><spring:message code="checkout.postcode"/>*</label>
-                                <form:input path="postcode" class="le-input" name="postcode" type="number"/><br>
+                                <form:input path="postcode" class="le-input" name="postcode" required="true" type="number"/><br>
                             </div>
                             <div class="col-xs-12 col-sm-4">
                                 <label id="label-email"><spring:message code="checkout.email"/>*<span style='color:crimson' class="hidden"> <spring:message code="checkout.invalidEmail"/></span></label>
-                                <form:input path="email" class="le-input" name="email" type="text"/>
+                                <form:input path="email" class="le-input" required="true" name="email" type="email"/>
                             </div>
 
                             <div class="col-xs-12 col-sm-4">
                                 <label><spring:message code="checkout.phoneNumber"/>*</label>
-                                <form:input path="phone" class="le-input" name="phone" type="text"/>
+                                <form:input path="phone" class="le-input" name="phone" required="true" type="text"/>
                             </div>
                         </div>
                         <!-- /.field-row -->
