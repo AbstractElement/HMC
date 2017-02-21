@@ -1,7 +1,7 @@
 package com.springapp.mvc.web;
 
 import com.springapp.mvc.domain.hmc.Order;
-import com.springapp.mvc.domain.hmc.BrandFilter;
+import com.springapp.mvc.filters.BrandFilter;
 import com.springapp.mvc.domain.hmc.Hmc;
 
 import com.springapp.mvc.service.interfaces.*;

@@ -1,6 +1,6 @@
 package com.springapp.mvc.service.interfaces;
 
-import com.springapp.mvc.domain.hmc.BrandFilter;
+import com.springapp.mvc.filters.BrandFilter;
 
 import java.util.List;
 

@@ -5,7 +5,6 @@ import com.springapp.mvc.dao.interfaces.BrandFilterDAO;
 import com.springapp.mvc.dao.interfaces.HmcDAO;
 
 
-import com.springapp.mvc.domain.hmc.BrandFilter;
 import com.springapp.mvc.domain.hmc.Hmc;
 
 
@@ -20,14 +19,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.annotation.Resource;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
-import java.util.List;
-import java.util.Map;
 
 @Service
 public class WorkWithFilesServiceImpl implements WorkWithFilesService {

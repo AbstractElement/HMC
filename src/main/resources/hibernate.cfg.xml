@@ -13,8 +13,9 @@
 
         <mapping class="com.springapp.mvc.domain.hmc.Hmc"/>
         <mapping class="com.springapp.mvc.domain.User"/>
+        <mapping class="com.springapp.mvc.domain.robots.Robots"/>
         <mapping class="com.springapp.mvc.domain.hmc.Order"/>
-        <mapping class="com.springapp.mvc.domain.hmc.BrandFilter"/>
+        <mapping class="com.springapp.mvc.filters.BrandFilter"/>
 
     </session-factory>
 </hibernate-configuration>

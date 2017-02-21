@@ -222,7 +222,7 @@
                                     <spring:message code="common.dh"/>
                                 </h1>
                             </a>
-                            <%--<a href="http://vmccnc.com/vmc" target="_blank"><spring:message code="common.vmc"/></a>--%>
+                            <a onclick="goToRobots()" target="_blank"><spring:message code="common.robots"/></a>
                             <%--<a href="/lathe" target="_blank"><spring:message code="common.lathe"/></a>--%>
                         </li>
                     </ul>
