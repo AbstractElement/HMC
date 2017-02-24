@@ -336,7 +336,16 @@
             var arrOfId = getArrOfId(localStorage.cartItemStr);
             goTo("/hmc/cart",arrOfId);
         }
-
+        function goToRobots(){
+            var url = "";
+            var arr = [sessionStorage.slidersUrl, sessionStorage.checkboxesUrl, sessionStorage.perPageUrl];
+            arr = $.grep(arr, function(value){
+                return value != null && value != "";
+            });
+            url = arr.join("&");
+            url = "/robots" + (url != "" ? ("?" + url) : "")
+            window.location.href = url;
+        }
         function goToHmc() {
             var url = "";
             var arr = [sessionStorage.slidersUrl, sessionStorage.checkboxesUrl, sessionStorage.perPageUrl];

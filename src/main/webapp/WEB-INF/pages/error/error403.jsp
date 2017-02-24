@@ -15,7 +15,7 @@
     <meta name="keywords" content="MediaCenter, Template, eCommerce">
     <meta name="robots" content="all">
 
-    <title>HMC. 404 - <spring:message code="error.404"/></title>
+    <title>HMC. 403 - <spring:message code="error.403"/></title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="../resources/css/bootstrap.min.css" type="text/css" media="screen"/>
@@ -39,17 +39,20 @@
 <body>
 
 <div class="wrapper">
-    <%@include file="hmc/insertions/header.jsp" %>
+    <%@include file="../hmc/insertions/header.jsp" %>
         <br><br>
     <div class="container">
         <div class="row">
             <div class="col-md-8 center-block">
                 <div class="info-404 text-center">
-                    <h2 class="primary-color inner-bottom-xs">404</h2>
+                    <h2 class="primary-color inner-bottom-xs">403</h2>
 
-                    <h1 class="lead"><spring:message code="error.full404"/></h1>
+                    <h1 class="lead"><spring:message code="error.full403"/></h1>
 
                     <div class="text-center">
+                        <a href="/admin/adminEntry" class="btn-lg huge"><i class="fa fa-key"></i> <spring:message
+                                code="error.goToAuthorization"/></a><br>
+                        or<br>
                         <a href="/" class="btn-lg huge"><i class="fa fa-home"></i> <spring:message
                                 code="error.goToHomePage"/></a>
                     </div>
@@ -58,7 +61,7 @@
         </div>
     </div>
         <br><br><br>
-    <%@include file="hmc/insertions/footer.jsp" %>
+    <%@include file="../hmc/insertions/footer.jsp" %>
 
     <!-- JavaScripts placed at the end of the document so the pages load faster -->
     <script src="../resources/js/jquery-1.10.2.min.js"></script>
@@ -80,6 +83,5 @@
     <script src="http://w.sharethis.com/button/buttons.js"></script>
     <script src="../resources/js/filters.jsp"></script>
     <script src="../resources/js/comparison,wishlist,cart,common.jsp"></script>
-
 </body>
 </html>

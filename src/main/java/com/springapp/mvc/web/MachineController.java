@@ -1,6 +1,7 @@
 package com.springapp.mvc.web;
 
 import com.springapp.mvc.domain.hmc.Order;
+import com.springapp.mvc.domain.robots.Robots;
 import com.springapp.mvc.filters.BrandFilter;
 import com.springapp.mvc.domain.hmc.Hmc;
 
@@ -9,6 +10,7 @@ import com.springapp.mvc.util.EmailUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,6 +23,9 @@ import java.util.Map;
 @Controller
 @RequestMapping()
 public class MachineController {
+    @Autowired
+    private RobotsService robotsService;
+
     @Autowired
     private OrderService orderService;
 
@@ -89,7 +94,6 @@ public class MachineController {
         map.put("machineList", machineList);
         map.put("machineBrands", machineBrands);
         putPagesInfo(map, null, machineList.size());
-     
     }
 
     @RequestMapping(value = "/hmc/filter", method = RequestMethod.GET)
@@ -116,7 +120,7 @@ public class MachineController {
     public ModelAndView machineItem(@PathVariable("productId") String productId, Map<String, Object> map) {
         Hmc machine = hmcService.getMachine(productId);
         if (machine == null) {
-            return new ModelAndView("error404");
+            return new ModelAndView("error/error404");
         }
         map.put("machine", machine);
         return new ModelAndView("hmc/machine", map);
@@ -218,6 +222,10 @@ public class MachineController {
         map.put("emptyTheCart", emptyTheCart);
     }
 
-  
-
+    @RequestMapping(value = "/robots", method = RequestMethod.GET)
+    public void getRobots(Map<String, Object> map){
+        List<Robots> robotsList = robotsService.listRobots();
+        map.put("robotsList", robotsList);
+        putPagesInfo(map, null, robotsList.size());
+    }
 }

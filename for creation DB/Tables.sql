@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `hmc_example`.`users` (
   UNIQUE INDEX `num_UNIQUE` (`num` ASC))
 ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `hmc`.`machine_order` (
+CREATE TABLE IF NOT EXISTS `hmc_example`.`machine_order` (
   `orderId` VARCHAR(255) NOT NULL AUTO_INCREMENT,
   `firstName` VARCHAR(255) NOT NULL,
   `lastName` VARCHAR(255) NOT NULL,
@@ -67,6 +67,33 @@ CREATE TABLE IF NOT EXISTS `hmc`.`machine_order` (
   UNIQUE INDEX `id_UNIQUE` (`orderId` ASC))
 ENGINE = InnoDB;
 
+CREATE TABLE IF NOT EXISTS `hmc_example`.`robot` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` varchar(145) DEFAULT NULL,
+  `type` varchar(250) DEFAULT NULL,
+  `model` varchar(155) DEFAULT NULL,
+  `manufacturer` varchar(145) DEFAULT NULL,
+  `year` int(11) DEFAULT NULL,
+  `condition` varchar(245) DEFAULT NULL,
+  `location` varchar(145) DEFAULT NULL,
+  `axes` int(11) DEFAULT NULL COMMENT 'axis',
+  `load` int(11) DEFAULT NULL COMMENT 'kg',
+  `reach` int(11) DEFAULT NULL COMMENT 'like radius, mm',
+  `footprint` varchar(145) DEFAULT NULL,
+  `repeatability` int(11) DEFAULT NULL COMMENT '0.08',
+  `weight` int(11) DEFAULT NULL COMMENT 'kg',
+  `price` int(11) DEFAULT NULL,
+  `photo1` varchar(145) DEFAULT NULL,
+  `photo2` varchar(145) DEFAULT NULL,
+  `photo3` varchar(145) DEFAULT NULL,
+  `descriptionen` text,
+  `descriptionru` text,
+  `video1` varchar(145) DEFAULT NULL,
+  `video2` varchar(145) DEFAULT NULL,
+  `video3` varchar(145) DEFAULT NULL,
+  `sold` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 insert into users value (1, '1111', '1111', '1111@11.11', 'ROLE_ADMIN');
 insert into users value (2, '22', '22', '1111@11.11', 'ROLE_ADMIN');

@@ -9,79 +9,58 @@ import javax.persistence.Table;
  * Created by Vladislav on 21.02.2017.
  */
 @Entity
-@Table(name = "robots", catalog = "hmc_example")
+@Table(name = "robot", catalog = "hmc_example")
 public class Robots {
     @Id
-    @Column(name = "")
     private int id;
 
-    @Column(name = "")
+    @Column(name = "product_id")
     private String productId;
 
-    @Column(name = "")
     private String type;
 
-    @Column(name = "")
     private String model;
 
-    @Column(name = "")
     private String manufacturer;
 
-    @Column(name = "")
     private String year;
 
-    @Column(name = "")
     private String condition;
 
-    @Column(name = "")
     private String location;
 
-    @Column(name = "")
     private int axes;
 
-    @Column(name = "")
     private int load;
 
-    @Column(name = "")
     private int reach;
 
-    @Column(name = "")
     private String footprint;
 
-    @Column(name = "")
     private int repeatability;
 
-    @Column(name = "")
     private int weight;
 
-    @Column(name = "")
     private int price;
 
-    @Column(name = "")
     private String photo1;
 
-    @Column(name = "")
     private String photo2;
 
-    @Column(name = "")
     private String photo3;
 
-    @Column(name = "")
+    @Column(name = "descriptionen")
     private String descriptionEn;
 
-    @Column(name = "")
+    @Column(name = "descriptionru")
     private String getDescriptionRu;
 
-    @Column(name = "")
     private String video1;
 
-    @Column(name = "")
     private String video2;
 
-    @Column(name = "")
     private String video3;
 
-    @Column(name = "")
     private String sold;
 
     public int getId() {
