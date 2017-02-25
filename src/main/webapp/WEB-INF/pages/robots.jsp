@@ -55,13 +55,13 @@
 <body>
 
 <div class="wrapper">
-  <%@include file="hmc/insertions/header.jsp" %>
+  <%@include file="insertions/header.jsp" %>
 
   <div id="top-mega-nav">
     <div class="container">
       <nav>
         <ul class="inline">
-          <%@include file="hmc/insertions/shopByDepartment.jsp" %>
+          <%@include file="insertions/shopByDepartment.jsp" %>
 
           <li class="breadcrumb-nav-holder">
             <ul>
@@ -97,8 +97,8 @@
           <div class="body bordered" id="filterForm">
             <form:form action="/hmc/filter" method="get">
               <div class="category-filter">
-                <!-- brands -->
-                <%--<h2>Brand</h2>--%>
+                <!-- manufacturer -->
+                <h2>Manufacturer</h2>
                 <%--<c:if test="${!empty machineBrands}">--%>
                   <%--<ul>--%>
                     <%--<c:forEach items="${machineBrands}" var="brands">--%>
@@ -112,27 +112,26 @@
                     <%--</c:forEach>--%>
                   <%--</ul>--%>
                 <%--</c:if>--%>
-                <%--<hr>--%>
+                <hr>
 
-                  <%--<!--model-->--%>
-                  <%--<h2>Model</h2>--%>
-                  <%--<ul>--%>
-                  <%--<c:forEach items="${machineList}" var="machine">--%>
-                  <%--<li>--%>
-                  <%--<input class="le-checkbox" name="model" type="checkbox" value="${machine.model}">--%>
-                  <%--<label>${machine.model}</label>--%>
-                  <%--</li>--%>
-                  <%--</c:forEach>--%>
-                  <%--</ul>--%>
-                <!--price-->
-                <%--<h2>Price</h2>--%>
+                <!--year-->
+                <h2>Year</h2>
                 <%--<ul>--%>
-                  <%--<li>--%>
-                    <%--<input class="le-input" name="priceFrom" type="text" placeholder="from" size="5">--%>
-                    <%--<input class="le-input" name="priceTo" type="text" placeholder="to" size="5">--%>
-                  <%--</li>--%>
+                  <%--<c:forEach items="${machineList}" var="machine">--%>
+                    <%--<li>--%>
+                      <%--<input class="le-checkbox" name="model" type="checkbox" value="${machine.model}">--%>
+                      <%--<label>${machine.model}</label>--%>
+                    <%--</li>--%>
+                  <%--</c:forEach>--%>
                 <%--</ul>--%>
-                <%--<hr>--%>
+                <hr>
+                <h2>Axes</h2>
+                <hr>
+                <h2>Load</h2>
+                <hr>
+                <h2>Reach</h2>
+                <hr>
+                <h2>Location</h2>
               </div>
               <div class="place-order-button">
                 <input class="le-button-huge" type="submit" value="Filter">
@@ -158,7 +157,6 @@
 
           <div class="title-nav">
             <h2><spring:message code="common.hmc"/></h2>
-
             <div class="nav-holder"></div>
           </div>
 
@@ -220,7 +218,7 @@
                           </div>
                           <div class="body">
                             <div class="title">
-                              <a href="/hmc${robot.productId}">
+                              <a href="/robot${robot.productId}">
                                   ${robot.type}<br><span
                                       class="model${robot.productId}">${robot.model}</span>
                               </a>
@@ -300,18 +298,19 @@
                               <%--<span class="brand${robot.productId}">${robot.brand}</span>, ${robot.producingCountry}<br>--%>
                             <%--</div>--%>
                             <div class="excerpt">
-                                <%--<p>--%>
-                                <%--<spring:message--%>
-                                <%--code="machine.machineCondition"/>: ${machine.machineConditionEn}<br>--%>
-                                <%--<spring:message--%>
-                                <%--code="machine.location"/>: ${machine.machineLocationEn}<br>--%>
-                                <%--<spring:message code="machine.motion"/>--%>
-                                <%--X&timesY&timesZ: ${machine.xMotion}&times${machine.yMotion}&times${machine.zMotion}--%>
+                                <p>
+                                <spring:message
+                                code="machine.machineCondition"/>: ${robot.condition}<br>
+                                <spring:message
+                                code="machine.location"/>: ${robot.location}<br>
+                                <spring:message code="machine.motion"/>
+                                Reach: ${robot.reach}
+                                  <%--&times${machine.yMotion}&times${machine.zMotion}--%>
                                 <%--<spring:message code="machine.mm"/><br>--%>
                                 <%--<spring:message code="machine.tableSize"/>--%>
                                 <%--X&timesY: ${machine.xTableSize}&times${machine.yTableSize}--%>
                                 <%--<spring:message code="machine.mm"/>--%>
-                                <%--</p>--%>
+                                </p>
                             </div>
                           </div>
                         </div>
@@ -408,7 +407,7 @@
   <!-- /.container -->
 </section>
   <!-- /#category-grid -->
-  <%@include file="hmc/insertions/footer.jsp" %>
+  <%@include file="insertions/footer.jsp" %>
 </div>
 <!-- JavaScripts placed at the end of the document so the pages load faster -->
 <script src="../../resources/js/jquery-1.10.2.min.js"></script>

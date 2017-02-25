@@ -36,7 +36,7 @@
 <body>
 
 <div class="wrapper">
-    <%@include file="hmc/insertions/header.jsp" %>
+    <%@include file="insertions/header.jsp" %>
     <div class="main-content" id="main-content">
         <div class="container" id="compare-container">
             <br><br><br>
@@ -53,7 +53,7 @@
 
             <br><br><br>
         </div>
-    <%@include file="hmc/insertions/footer.jsp" %>
+    <%@include file="insertions/footer.jsp" %>
     </div>
     <!-- /.wrapper -->
 </div>

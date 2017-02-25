@@ -57,7 +57,7 @@
 <body>
 
 <div class="wrapper">
-<%@include file="hmc/insertions/navigation.jsp" %>
+<%@include file="insertions/navigation.jsp" %>
 <!-- ================================================ HEADER ======================================================= -->
 <header>
     <div class="container no-padding">
@@ -410,7 +410,7 @@
 <br><br><br><br>
 <!-- ========================================= MAIN : END ========================================= -->
 <!-- ============================================================= FOOTER ============================================================= -->
-<%@include file="hmc/insertions/footer.jsp" %>
+<%@include file="insertions/footer.jsp" %>
 <!-- ============================================================= FOOTER : END ============================================================= -->
 </div>
 <!-- JavaScripts placed at the end of the document so the pages load faster -->

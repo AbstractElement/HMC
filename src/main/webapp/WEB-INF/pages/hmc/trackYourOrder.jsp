@@ -47,12 +47,12 @@
 </head>
 <body>
 <div class="wrapper">
-    <%@include file="insertions/header.jsp" %>
+    <%@include file="../insertions/header.jsp" %>
     <div id="top-mega-nav">
         <div class="container">
             <nav>
                 <ul class="inline">
-                    <%@include file="insertions/shopByDepartment.jsp" %>
+                    <%@include file="../insertions/shopByDepartment.jsp" %>
                     <li class="breadcrumb-nav-holder">
                         <ul>
                             <li class="breadcrumb-item">
@@ -114,7 +114,7 @@
     </div>
 </div>
 <!-- ================================================= FOOTER ========================================== -->
-<%@include file="insertions/footer.jsp" %>
+<%@include file="../insertions/footer.jsp" %>
 <!-- ============================================================= FOOTER : END ============================================================= -->
 </div>
 <!-- /.wrapper -->
