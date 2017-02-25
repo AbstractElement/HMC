@@ -9,6 +9,7 @@ import java.util.List;
  */
 public interface RobotsService {
     public void addRobot(Robots robot);
-    public Robots getRobot(int id);
+    public Robots getRobot(String id);
     public List<Robots> listRobots();
+    public void editRobot(Robots robot);
 }

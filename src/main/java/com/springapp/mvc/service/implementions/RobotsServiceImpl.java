@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.awt.*;
 import java.util.List;
 
 /**
@@ -25,7 +26,7 @@ public class RobotsServiceImpl implements RobotsService {
 
     @Override
     @Transactional
-    public Robots getRobot(int id) {
+    public Robots getRobot(String id) {
         return robotsDAO.getRobot(id);
     }
 
@@ -33,5 +34,11 @@ public class RobotsServiceImpl implements RobotsService {
     @Transactional
     public List<Robots> listRobots() {
         return robotsDAO.listRobots();
+    }
+
+    @Override
+    @Transactional
+    public void editRobot(Robots robots){
+       robotsDAO.editRobot(robots);
     }
 }

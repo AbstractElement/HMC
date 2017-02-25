@@ -126,6 +126,16 @@ public class MachineController {
         return new ModelAndView("hmc/machine", map);
     }
 
+    @RequestMapping(value = "/robot{productId}", method = RequestMethod.GET)
+    public ModelAndView robotItem(@PathVariable("productId") String productId, Map<String, Object> map) {
+        Robots machine = robotsService.getRobot(productId);
+        if (machine == null) {
+            return new ModelAndView("error/error404");
+        }
+        map.put("machine", machine);
+        return new ModelAndView("robot/machine", map);
+    }
+
     @RequestMapping(value = "/hmc/compare", method = RequestMethod.GET)
     public void comparison(@RequestParam(required = false) String itemsId, Map<String, Object> map) {
         if (itemsId != null) {
