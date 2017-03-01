@@ -54,4 +54,17 @@ public class RobotsServiceImpl implements RobotsService {
         }
         return list;
     }
+
+    @Override
+    @Transactional
+    public List<Robots> listFiltered(String manufacturer, String year, String axes,
+                                     String load, String reach, String location) {
+        String[] manufacturerArr = (manufacturer != null) ? manufacturer.split(",") : null;
+        String[] yearArr = (year != null) ? year.split(",") : null;
+        String[] axesArr = (axes != null) ? axes.split(",") : null;
+        String[] loadArr = (load != null) ? load.split(",") : null;
+        String[] reachArr = (reach != null) ? reach.split(",") : null;
+        String[] locationArr = (location != null) ? location.split(",") : null;
+        return robotsDAO.listFiltered(manufacturerArr, yearArr, axesArr, loadArr, reachArr, locationArr);
+    }
 }

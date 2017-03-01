@@ -97,7 +97,7 @@
           <h2 style="font-size: 28px; line-height: 52px; color: #3d3d3d"><spring:message code="productFilters"/></h2>
 
           <div class="body bordered" id="filterForm">
-            <form:form action="/hmc/filter" method="get">
+            <form:form action="/robot/filter" method="get">
               <div class="category-filter">
                 <!-- manufacturer -->
                 <h2>Manufacturer</h2>
@@ -105,7 +105,7 @@
                   <ul>
                     <c:forEach items="${machineManufacturer}" var="manufacturer">
                       <li>
-                        <input class="le-checkbox" name="brand" type="checkbox" value="${manufacturer.nameManufacturer}"
+                        <input class="le-checkbox" name="manufacturer" type="checkbox" value="${manufacturer.nameManufacturer}"
                                 <c:forEach items="${machineFiltered}" var="machine">
                                   <c:if test="${manufacturer.nameManufacturer == machine.manufacturer}">checked</c:if>
                                 </c:forEach>/>
@@ -117,14 +117,14 @@
                 <hr>
 
                 <!--year-->
-                <%--<h2>Year</h2>--%>
-                <%--<ul>--%>
-                  <%--&lt;%&ndash;<c:forEach items="${machineList}" var="machine">&ndash;%&gt;--%>
-                    <%--<li>--%>
-                      <%--<input type="number" min="2000" max="2017" value="2000"/>--%>
-                    <%--</li>--%>
-                  <%--&lt;%&ndash;</c:forEach>&ndash;%&gt;--%>
-                <%--</ul>--%>
+                <h2>Year</h2>
+                <ul>
+                  <%--<c:forEach items="${machineList}" var="machine">--%>
+                    <li>
+                      <select name="producingYear"></select>
+                    </li>
+                  <%--</c:forEach>--%>
+                </ul>
                 <hr>
                 <h2>Axes</h2>
                 <hr>
@@ -135,13 +135,13 @@
                 <h2>Location</h2>
                 <c:if test="${!empty machineLocation}">
                   <ul>
-                    <c:forEach items="${machineLocation}" var="manufacturer">
+                    <c:forEach items="${machineLocation}" var="location">
                       <li>
-                        <input class="le-checkbox" name="brand" type="checkbox" value="${manufacturer.countryName}"
+                        <input class="le-checkbox" name="location" type="checkbox" value="${location.countryName}"
                                 <c:forEach items="${machineFiltered}" var="machine">
-                                  <c:if test="${manufacturer.countryName == machine.location}">checked</c:if>
+                                  <c:if test="${location.countryName == machine.location}">checked</c:if>
                                 </c:forEach>/>
-                        <label>${manufacturer.countryName}</label>
+                        <label>${location.countryName}</label>
                       </li>
                     </c:forEach>
                   </ul>

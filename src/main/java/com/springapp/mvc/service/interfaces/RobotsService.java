@@ -13,4 +13,6 @@ public interface RobotsService {
     public List<Robots> listRobots();
     public void editRobot(Robots robot);
     public List<Robots> getRobotsList(String[] productsId);
+    public List<Robots> listFiltered(String manufacturer, String year, String axes,
+                                     String load, String reach, String location);
 }

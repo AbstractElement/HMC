@@ -123,6 +123,28 @@ public class MachineController {
         return "/hmc";
     }
 
+    @RequestMapping(value = "/robot/filter", method = RequestMethod.GET)
+    public String robotFiltered(@RequestParam(value = "perPage", required = false) String perPage,
+                              @RequestParam(value = "manufacturer", required = false) String manufacturer,
+                              @RequestParam(value = "year", required = false) String year,
+                              @RequestParam(value = "axes", required = false) String axes,
+                              @RequestParam(value = "load", required = false) String load,
+                              @RequestParam(value = "reach", required = false) String reach,
+                              @RequestParam(value = "location", required = false) String location,
+                              Map<String, Object> map) {
+        List<Robots> robotList;
+        if (manufacturer == null && year == null && location == null)
+            robotList = robotsService.listRobots();
+        else
+            robotList = robotsService.listFiltered(manufacturer, year, axes, load, reach, location);
+        map.put("machineManufacturer", manufacturerFilterService.listManufacturer());
+        map.put("machineLocation", locationFilterService.listLocation());
+        map.put("machineFiltered", robotList);
+        map.put("robotsList", robotList);
+        putPagesInfo(map, perPage, robotList.size());
+        return "/robots";
+    }
+
     @RequestMapping(value = "/hmc{productId}", method = RequestMethod.GET)
     public ModelAndView machineItem(@PathVariable("productId") String productId, Map<String, Object> map) {
         Hmc machine = hmcService.getMachine(productId);

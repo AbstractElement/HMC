@@ -86,7 +86,7 @@ public class RobotsDAOImpl implements RobotsDAO {
                 criteria.add(Restrictions.le("reach", Integer.parseInt(reachArr[1])));
         }
         if (locations != null)
-            criteria.add(Restrictions.in("location", manufacturers));
+            criteria.add(Restrictions.in("location", locations));
         return criteria.list();
     }
 
