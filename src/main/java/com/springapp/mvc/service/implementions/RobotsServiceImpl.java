@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -40,5 +41,17 @@ public class RobotsServiceImpl implements RobotsService {
     @Transactional
     public void editRobot(Robots robots){
        robotsDAO.editRobot(robots);
+    }
+
+    @Override
+    @Transactional
+    public List<Robots> getRobotsList(String[] productsId){
+        List<Robots> list = new ArrayList<Robots>();
+        for (String productId : productsId) {
+            Robots robots = robotsDAO.getRobot(productId);
+            if (robots != null)
+                list.add(robots);
+        }
+        return list;
     }
 }

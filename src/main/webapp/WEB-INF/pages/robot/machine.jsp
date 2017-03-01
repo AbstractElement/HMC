@@ -117,24 +117,6 @@
               </div>
             </c:if>
 
-            <%--<c:if test="${machine.photo4!=''}">--%>
-            <%--<div class="single-product-gallery-item" id="slide4">--%>
-            <%--<a data-rel="prettyphoto" href="../resources/images/products/${machine.photo4}">--%>
-            <%--<img class="img-responsive" alt="" src="../resources/images/blank.gif"--%>
-            <%--data-echo="../resources/images/products/${machine.photo4}"/>--%>
-            <%--</a>--%>
-            <%--</div>--%>
-            <%--</c:if>--%>
-
-            <%--<c:if test="${machine.photo5!=''}">--%>
-            <%--<div class="single-product-gallery-item" id="slide5">--%>
-            <%--<a data-rel="prettyphoto" href="../resources/images/products/${machine.photo5}">--%>
-            <%--<img class="img-responsive" alt="" src="../resources/images/blank.gif"--%>
-            <%--data-echo="../resources/images/products/${machine.photo5}"/>--%>
-            <%--</a>--%>
-            <%--</div>--%>
-            <%--</c:if>--%>
-
           </div>
           <!-- /.single-product-slider -->
 
@@ -160,20 +142,6 @@
                        data-echo="../resources/images/products/${machine.photo3}"/>
                 </a>
               </c:if>
-
-              <%--<c:if test="${machine.photo4!=''}">--%>
-              <%--<a class="horizontal-thumb" data-target="#owl-single-product" data-slide="3" href="#slide4">--%>
-              <%--<img width="67" alt="" src="../resources/images/blank.gif"--%>
-              <%--data-echo="../resources/images/products/${machine.photo4}"/>--%>
-              <%--</a>--%>
-              <%--</c:if>--%>
-
-              <%--<c:if test="${machine.photo5!=''}">--%>
-              <%--<a class="horizontal-thumb" data-target="#owl-single-product" data-slide="4" href="#slide5">--%>
-              <%--<img width="67" alt="" src="../resources/images/blank.gif"--%>
-              <%--data-echo="../resources/images/products/${machine.photo5}"/>--%>
-              <%--</a>--%>
-              <%--</c:if>--%>
             </div>
             <!-- /#owl-single-product-thumbnails -->
 
@@ -336,73 +304,7 @@
                 <label><spring:message code="robot.weight"/></label>
                 <div class="value">${machine.weight}</div>
               </li>
-              <%--<li>--%>
-                <%--<label><spring:message code="robot.displacement"/></label>--%>
 
-                <%--<div class="value">${machine.displacement}</div>--%>
-              <%--</li>--%>
-              <%--<li>--%>
-                <%--<label><spring:message code="drive_head.internalSupply"/></label>--%>
-                <%--<div class="value">${machine.internalSupply}</div>--%>
-              <%--</li>--%>
-              <%--<li>--%>
-                <%--<label><spring:message code="drive_head.weight"/></label>--%>
-                <%--<div class="value">${machine.weight}</div>--%>
-              <%--</li>--%>
-              <%--<li>--%>
-              <%--<label><spring:message code="machine.toolCount"/>, <spring:message--%>
-              <%--code="machine.pcs"/></label>--%>
-
-              <%--<div class="value">${machine.toolCount}</div>--%>
-              <%--</li>--%>
-              <%--<li>--%>
-              <%--<label><spring:message code="machine.maxToolDiameter"/>, <spring:message--%>
-              <%--code="machine.mm"/></label>--%>
-
-              <%--<div class="value">${machine.maxToolDiameter}</div>--%>
-              <%--</li>--%>
-              <%--<li>--%>
-              <%--<label><spring:message code="machine.maxToolWeight"/>, <spring:message--%>
-              <%--code="machine.kg"/></label>--%>
-
-              <%--<div class="value">${machine.maxToolWeight}</div>--%>
-              <%--</li>--%>
-              <%--<li>--%>
-              <%--<label><spring:message code="machine.maxToolLength"/>, <spring:message--%>
-              <%--code="machine.mm"/></label>--%>
-
-              <%--<div class="value">${machine.maxToolLength}</div>--%>
-              <%--</li>--%>
-              <%--<li>--%>
-              <%--<label><spring:message code="machine.toolReplacementTime"/>, <spring:message--%>
-              <%--code="machine.sec"/></label>--%>
-
-              <%--<div class="value">${machine.toolReplacementTime}</div>--%>
-              <%--</li>--%>
-              <%--<li>--%>
-              <%--<label><spring:message code="machine.chipReplacementTime"/>, <spring:message--%>
-              <%--code="machine.sec"/></label>--%>
-
-              <%--<div class="value">${machine.chipReplacementTime}</div>--%>
-              <%--</li>--%>
-              <%--<li>--%>
-              <%--<label><spring:message code="machine.positionRepositionPrecision"/>, <spring:message--%>
-              <%--code="machine.mm"/></label>--%>
-
-              <%--<div class="value">${machine.positionRepositionPrecision}</div>--%>
-              <%--</li>--%>
-              <%--<li>--%>
-              <%--<label><spring:message code="machine.spindleRuntime"/>, <spring:message--%>
-              <%--code="machine.h"/></label>--%>
-
-              <%--<div class="value">${machine.spindleRuntime}</div>--%>
-              <%--</li>--%>
-              <%--<li>--%>
-              <%--<label><spring:message code="machine.machineLaunching"/>, <spring:message--%>
-              <%--code="machine.h"/></label>--%>
-
-              <%--<div class="value">${machine.machineLaunching}</div>--%>
-              <%--</li>--%>
             </ul>
 
           </div>

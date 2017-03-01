@@ -5,6 +5,7 @@ package com.springapp.mvc.util;
 import com.springapp.mvc.domain.hmc.Hmc;
 
 //import com.springapp.mvc.domain.lathe.*;
+import com.springapp.mvc.domain.robots.Robots;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
@@ -14,6 +15,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -73,7 +75,43 @@ public class ParserExcelUtil {
 
     }
 
-    
+    public static Robots readRobot(File file) throws IOException {
+        FileInputStream fis = new FileInputStream(file);
+        Workbook workbook = getWorkbook(fis,file.getPath());
+        Sheet firstSheet = workbook.getSheetAt(0);
+        Iterator<Row> rowIterator = firstSheet.iterator();
+        DataFormatter df = new DataFormatter();
+
+        Robots robot = new Robots();
+        robot.setProductId(df.formatCellValue(rowIterator.next().getCell(1)).trim());
+        robot.setType(df.formatCellValue(rowIterator.next().getCell(1)).trim());
+        robot.setModel(df.formatCellValue(rowIterator.next().getCell(1)));
+        robot.setManufacturer(df.formatCellValue(rowIterator.next().getCell(1)).trim());
+        robot.setYear(Integer.parseInt(df.formatCellValue(rowIterator.next().getCell(1))));
+        robot.setCondition(df.formatCellValue(rowIterator.next().getCell(1)).trim());
+        robot.setLocation(df.formatCellValue(rowIterator.next().getCell(1)).trim());
+        robot.setAxes(Integer.parseInt(df.formatCellValue(rowIterator.next().getCell(1))));
+        robot.setLoad(Integer.parseInt(df.formatCellValue(rowIterator.next().getCell(1))));
+        robot.setReach(Integer.parseInt(df.formatCellValue(rowIterator.next().getCell(1))));
+        robot.setFootprint(df.formatCellValue(rowIterator.next().getCell(1)));
+        robot.setRepeatability(Integer.parseInt(df.formatCellValue(rowIterator.next().getCell(1))));
+        robot.setWeight(Integer.parseInt(df.formatCellValue(rowIterator.next().getCell(1))));
+        robot.setPrice(Integer.parseInt(df.formatCellValue(rowIterator.next().getCell(1))));
+        robot.setPhoto1(df.formatCellValue(rowIterator.next().getCell(1)));
+        robot.setPhoto2(df.formatCellValue(rowIterator.next().getCell(1)));
+        robot.setPhoto3(df.formatCellValue(rowIterator.next().getCell(1)));
+        robot.setDescriptionEn(df.formatCellValue(rowIterator.next().getCell(1)));
+        robot.setDescriptionRu(df.formatCellValue(rowIterator.next().getCell(1)));
+        robot.setVideo1(df.formatCellValue(rowIterator.next().getCell(1)));
+        robot.setVideo2(df.formatCellValue(rowIterator.next().getCell(1)));
+        robot.setVideo3(df.formatCellValue(rowIterator.next().getCell(1)));
+        robot.setSold("No");
+//        if(!robot.getSold().equals("Yes")) {
+//            robot.setSold("No");
+//        }
+        fis.close();
+        return robot;
+    }
     
 
 

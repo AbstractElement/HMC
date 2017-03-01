@@ -1,75 +1,83 @@
 package com.springapp.mvc.domain.robots;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Vladislav on 21.02.2017.
  */
 @Entity
 @Table(name = "robot", catalog = "hmc_example")
-public class Robots {
+public class Robots implements Serializable{
     @Id
-    private int id;
-
     @Column(name = "product_id")
     private String productId;
 
+    @Column(name = "robot_type")
     private String type;
 
+    @Column(name = "model")
     private String model;
 
+    @Column(name = "manufacturer")
     private String manufacturer;
 
-    private String year;
+    @Column(name = "producing_year")
+    private int year;
 
-    private String condition;
+    @Column(name = "robot_condition")
+    private String condition = "";
 
+    @Column(name = "location")
     private String location;
 
+    @Column(name = "axes")
     private int axes;
 
-    private int load;
+    @Column(name = "robot_load")
+    private int load = 0;
 
+    @Column(name = "reach")
     private int reach;
 
+    @Column(name = "footprint")
     private String footprint;
 
+    @Column(name = "repeatability")
     private int repeatability;
 
+    @Column(name = "weight")
     private int weight;
 
+    @Column(name = "price")
     private int price;
 
+    @Column(name = "photo1")
     private String photo1;
 
+    @Column(name = "photo2")
     private String photo2;
 
+    @Column(name = "photo3")
     private String photo3;
 
     @Column(name = "descriptionen")
     private String descriptionEn;
 
     @Column(name = "descriptionru")
-    private String getDescriptionRu;
+    private String descriptionRu;
 
+    @Column(name = "video1")
     private String video1;
 
+    @Column(name = "video2")
     private String video2;
 
+    @Column(name = "video3")
     private String video3;
 
+    @Column(name = "sold")
     private String sold;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getProductId() {
         return productId;
@@ -111,11 +119,11 @@ public class Robots {
         this.condition = condition;
     }
 
-    public String getYear() {
+    public int getYear() {
         return year;
     }
 
-    public void setYear(String year) {
+    public void setYear(int year) {
         this.year = year;
     }
 
@@ -207,12 +215,12 @@ public class Robots {
         this.descriptionEn = descriptionEn;
     }
 
-    public String getGetDescriptionRu() {
-        return getDescriptionRu;
+    public String getDescriptionRu() {
+        return descriptionRu;
     }
 
-    public void setGetDescriptionRu(String getDescriptionRu) {
-        this.getDescriptionRu = getDescriptionRu;
+    public void setDescriptionRu(String descriptionRu) {
+        this.descriptionRu = descriptionRu;
     }
 
     public String getPhoto3() {

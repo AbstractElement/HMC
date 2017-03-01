@@ -12,4 +12,5 @@ public interface RobotsService {
     public Robots getRobot(String id);
     public List<Robots> listRobots();
     public void editRobot(Robots robot);
+    public List<Robots> getRobotsList(String[] productsId);
 }

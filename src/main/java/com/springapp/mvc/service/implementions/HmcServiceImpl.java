@@ -47,7 +47,9 @@ public class HmcServiceImpl implements HmcService {
     public List<Hmc> getMachinesList(String[] productIdArr) {
         List<Hmc> list = new ArrayList<Hmc>();
         for (String productId : productIdArr) {
-            list.add(hmcDAO.getMachine(productId));
+            Hmc hmc = hmcDAO.getMachine(productId);
+            if (hmc != null)
+                list.add(hmc);
         }
         return list;
     }

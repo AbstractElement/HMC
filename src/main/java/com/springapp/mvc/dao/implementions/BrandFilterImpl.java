@@ -1,7 +1,7 @@
 package com.springapp.mvc.dao.implementions;
 
 import com.springapp.mvc.dao.interfaces.BrandFilterDAO;
-import com.springapp.mvc.filters.BrandFilter;
+import com.springapp.mvc.domain.filters.hmcFilter.BrandFilter;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -20,6 +20,7 @@ public class RobotsDAOImpl implements RobotsDAO {
     private SessionFactory sessionFactory;
 
     @Override
+    @SuppressWarnings("unchecked")
     public void addRobot(Robots robot) {
         sessionFactory.getCurrentSession().saveOrUpdate(robot);
     }

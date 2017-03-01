@@ -80,171 +80,320 @@
                 <div class="page-header">
                     <h2 class="page-title">
                         <spring:message code="comparison.comparison"/>
-                        <c:if test="${empty comparisonList}">
+                        <c:if test="${empty comparisonList || empty comparisonListRobots}">
                             <br><br><spring:message code="comparison.chooseItemsToCompare"/>
                         </c:if>
+
                     </h2>
                 </div>
             </div>
             <!-- /.section-page-title -->
-
-                <c:if test="${!empty comparisonList}">
+                <c:if test="${!empty comparisonList || !empty comparisonListRobots}">
                 <div class="table-responsive">
                     <table id="compare-table" class="table compare-list">
                         <thead>
                         <tr>
                             <th>&nbsp;</th>
-                            <c:forEach items="${comparisonList}" var="machine">
-                            <td class="text-center">
-                                <div class="image-wrap">
-                                    <span onclick="removeFromComparison('${machine.productId}'); goToComparison();" class="remove-link">
+
+                            <c:if test="${!empty comparisonList}">
+                                <c:forEach items="${comparisonList}" var="machine">
+                                    <td class="text-center">
+                                        <div class="image-wrap">
+                                    <span onclick="removeFromComparison('${machine.productId}'); goToComparison();"
+                                          class="remove-link">
                                         <i class="fa fa-times"></i>
                                     </span>
-                                    <img width="220" height="154" class="attachment-yith-woocompare-image" src="../resources/images/blank.gif"
-                                         data-echo="../resources/images/products/${machine.photo1}">
-                                    <span class="photo${machine.productId} hidden">${machine.photo1}</span>
-                                </div>
-                                <p><strong>
-                                    <a href="/hmc${machine.productId}">
-                                        ${machine.type}<br>
-                                        <span class="model${machine.productId}">${machine.model}</span>
-                                    </a>
-                                </strong></p>
-                            </td>
-                            </c:forEach>
+                                            <img width="220" height="154" class="attachment-yith-woocompare-image"
+                                                 src="../resources/images/blank.gif"
+                                                 data-echo="../resources/images/products/${machine.photo1}">
+                                            <span class="photo${machine.productId} hidden">${machine.photo1}</span>
+                                        </div>
+                                        <p><strong>
+                                            <a href="/hmc${machine.productId}">
+                                                    ${machine.type}<br>
+                                                <span class="model${machine.productId}">${machine.model}</span>
+                                            </a>
+                                        </strong></p>
+                                    </td>
+                                </c:forEach>
+                            </c:if>
+
+                            <c:if test="${!empty comparisonListRobots}">
+                                <c:forEach items="${comparisonListRobots}" var="machine">
+                                    <td class="text-center">
+                                        <div class="image-wrap">
+                                    <span onclick="removeFromComparison('${machine.productId}'); goToComparison();"
+                                          class="remove-link">
+                                        <i class="fa fa-times"></i>
+                                    </span>
+                                            <img width="220" height="154" class="attachment-yith-woocompare-image"
+                                                 src="../resources/images/blank.gif"
+                                                 data-echo="../resources/images/products/${machine.photo1}">
+                                            <span class="photo${machine.productId} hidden">${machine.photo1}</span>
+                                        </div>
+                                        <p><strong>
+                                            <a href="/robot${machine.productId}">
+                                                    ${machine.type}<br>
+                                                <span class="model${machine.productId}">${machine.model}</span>
+                                            </a>
+                                        </strong></p>
+                                    </td>
+                                </c:forEach>
+                            </c:if>
                         </tr>
                         <tr class="tr-add-to-cart">
                             <th>&nbsp;</th>
-                            <c:forEach items="${comparisonList}" var="machine">
-                            <td class="text-center">
-                                <div class="add-cart-button">
-                                    <a class="cart${machine.productId} le-button"
-                                       onclick="addToCart('${machine.productId}')"><spring:message code="common.addToCart"/></a>
-                                    <a class="cart${machine.productId} le-button in-cart hidden"
-                                       onclick="removeFromCart('${machine.productId}')"><spring:message code="common.inCart"/></a>
-                                </div>
-                            </td>
-                            </c:forEach>
+
+                            <c:if test="${!empty comparisonList}">
+                                <c:forEach items="${comparisonList}" var="machine">
+                                    <td class="text-center">
+                                        <div class="add-cart-button">
+                                            <a class="cart${machine.productId} le-button"
+                                               onclick="addToCart('${machine.productId}')"><spring:message code="common.addToCart"/></a>
+                                            <a class="cart${machine.productId} le-button in-cart hidden"
+                                               onclick="removeFromCart('${machine.productId}')"><spring:message code="common.inCart"/></a>
+                                        </div>
+                                    </td>
+                                </c:forEach>
+                            </c:if>
+
+                            <c:if test="${!empty comparisonListRobots}">
+                                <c:forEach items="${comparisonListRobots}" var="machine">
+                                    <td class="text-center">
+                                        <div class="add-cart-button">
+                                            <a class="cart${machine.productId} le-button"
+                                               onclick="addToCart('${machine.productId}')"><spring:message code="common.addToCart"/></a>
+                                            <a class="cart${machine.productId} le-button in-cart hidden"
+                                               onclick="removeFromCart('${machine.productId}')"><spring:message code="common.inCart"/></a>
+                                        </div>
+                                    </td>
+                                </c:forEach>
+                            </c:if>
                         </tr>
                         </thead>
                         <tbody>
-
-                        <tr class="comparison-item price" <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
-                            <th><spring:message code="machine.price"/></th>
-                            <c:forEach items="${comparisonList}" var="machine">
-                            <td class="comparison-item-cell odd product_39">
-                                <span class="amount">$<span class="price${machine.productId}">${machine.price}</span></span>
-                            </td>
-                            </c:forEach>
-                        </tr>
-
-                        <tr class="comparison-item description">
-                            <th><spring:message code="machine.brand"/>, <spring:message code="machine.country"/>, <spring:message code="machine.productionYear"/></th>
-                            <c:forEach items="${comparisonList}" var="machine">
-                            <td class="comparison-item-cell odd product_39">
-                                <p><span class="brand${machine.productId}">${machine.brand}</span>, ${machine.producingCountry}<br><br></p>
-                            </td>
-                            </c:forEach>
-                        </tr>
-
-                        <tr class="comparison-item description">
-                            <th><spring:message code="drive_head.instrumentType"/></th>
-                            <c:forEach items="${comparisonList}" var="machine">
+                        <%--<c:if test="${!empty comparisonList}">--%>
+                            <tr class="comparison-item price" <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
+                                <th><spring:message code="machine.price"/></th>
+                                <c:forEach items="${comparisonList}" var="machine">
                                 <td class="comparison-item-cell odd product_39">
-                                    <p>${machine.instrumentTypeEn}</p>
+                                    <span class="amount">$<span class="price${machine.productId}">${machine.price}</span></span>
                                 </td>
-                            </c:forEach>
-                        </tr>
+                                </c:forEach>
+                            </tr>
 
-                        <tr class="comparison-item description">
-                            <th><spring:message code="drive_head.landingDiameter"/></th>
-                            <c:forEach items="${comparisonList}" var="machine">
+                            <tr class="comparison-item description">
+                                <th><spring:message code="machine.brand"/>, <spring:message code="machine.country"/>, <spring:message code="machine.productionYear"/></th>
+                                <c:forEach items="${comparisonList}" var="machine">
                                 <td class="comparison-item-cell odd product_39">
-                                    <p>${machine.landingDiameter}</p>
+                                    <p><span class="brand${machine.productId}">${machine.brand}</span>, ${machine.producingCountry}<br><br></p>
                                 </td>
-                            </c:forEach>
-                        </tr>
+                                </c:forEach>
+                            </tr>
 
-                        <tr class="comparison-item description">
-                            <th><spring:message code="drive_head.driveType"/></th>
-                            <c:forEach items="${comparisonList}" var="machine">
-                                <td class="comparison-item-cell odd product_39">
-                                    <p>${machine.driveType}</p>
-                                </td>
-                            </c:forEach>
-                        </tr>
+                            <tr class="comparison-item description">
+                                <th><spring:message code="drive_head.instrumentType"/></th>
+                                <c:forEach items="${comparisonList}" var="machine">
+                                    <td class="comparison-item-cell odd product_39">
+                                        <p>${machine.instrumentTypeEn}</p>
+                                    </td>
+                                </c:forEach>
+                            </tr>
 
-                        <tr class="comparison-item description">
-                            <th><spring:message code="drive_head.toolHolder"/></th>
-                            <c:forEach items="${comparisonList}" var="machine">
-                                <td class="comparison-item-cell odd product_39">
-                                    <p>${machine.toolHolder}</p>
-                                </td>
-                            </c:forEach>
-                        </tr>
+                            <tr class="comparison-item description">
+                                <th><spring:message code="drive_head.landingDiameter"/></th>
+                                <c:forEach items="${comparisonList}" var="machine">
+                                    <td class="comparison-item-cell odd product_39">
+                                        <p>${machine.landingDiameter}</p>
+                                    </td>
+                                </c:forEach>
+                            </tr>
 
-                        <tr class="comparison-item description">
-                            <th><spring:message code="drive_head.clampingRange"/>, <spring:message code="machine.mm"/></th>
-                            <c:forEach items="${comparisonList}" var="machine">
-                                <td class="comparison-item-cell odd product_39">
-                                    <p>${machine.clampingRange}</p>
-                                </td>
-                            </c:forEach>
-                        </tr>
+                            <tr class="comparison-item description">
+                                <th><spring:message code="drive_head.driveType"/></th>
+                                <c:forEach items="${comparisonList}" var="machine">
+                                    <td class="comparison-item-cell odd product_39">
+                                        <p>${machine.driveType}</p>
+                                    </td>
+                                </c:forEach>
+                            </tr>
 
-                        <tr class="comparison-item description">
-                            <th><spring:message code="drive_head.n1_n2"/></th>
-                            <c:forEach items="${comparisonList}" var="machine">
-                                <td class="comparison-item-cell odd product_39">
-                                    <p>${machine.n1_n2}</p>
-                                </td>
-                            </c:forEach>
-                        </tr>
+                            <tr class="comparison-item description">
+                                <th><spring:message code="drive_head.toolHolder"/></th>
+                                <c:forEach items="${comparisonList}" var="machine">
+                                    <td class="comparison-item-cell odd product_39">
+                                        <p>${machine.toolHolder}</p>
+                                    </td>
+                                </c:forEach>
+                            </tr>
 
-                        <tr class="comparison-item description">
-                            <th><spring:message code="drive_head.torqueMax"/>, Nm</th>
-                            <c:forEach items="${comparisonList}" var="machine">
-                                <td class="comparison-item-cell odd product_39">
-                                    <p>${machine.torqueMax}</p>
-                                </td>
-                            </c:forEach>
-                        </tr>
+                            <tr class="comparison-item description">
+                                <th><spring:message code="drive_head.clampingRange"/>, <spring:message code="machine.mm"/></th>
+                                <c:forEach items="${comparisonList}" var="machine">
+                                    <td class="comparison-item-cell odd product_39">
+                                        <p>${machine.clampingRange}</p>
+                                    </td>
+                                </c:forEach>
+                            </tr>
 
-                        <tr class="comparison-item description">
-                            <th><spring:message code="drive_head.lengthWorkingPart"/>, <spring:message code="machine.revMin"/></th>
-                            <c:forEach items="${comparisonList}" var="machine">
-                                <td class="comparison-item-cell odd product_39">
-                                    <p>${machine.lengthWorkingPart}<br><br></p>
-                                </td>
-                            </c:forEach>
-                        </tr>
+                            <tr class="comparison-item description">
+                                <th><spring:message code="drive_head.n1_n2"/></th>
+                                <c:forEach items="${comparisonList}" var="machine">
+                                    <td class="comparison-item-cell odd product_39">
+                                        <p>${machine.n1_n2}</p>
+                                    </td>
+                                </c:forEach>
+                            </tr>
 
-                        <tr class="comparison-item description">
-                            <th><spring:message code="drive_head.displacement"/>, <spring:message code="machine.kw"/></th>
-                            <c:forEach items="${comparisonList}" var="machine">
-                                <td class="comparison-item-cell odd product_39">
-                                    <p>${machine.displacement}</p>
-                                </td>
-                            </c:forEach>
-                        </tr>
+                            <tr class="comparison-item description">
+                                <th><spring:message code="drive_head.torqueMax"/>, Nm</th>
+                                <c:forEach items="${comparisonList}" var="machine">
+                                    <td class="comparison-item-cell odd product_39">
+                                        <p>${machine.torqueMax}</p>
+                                    </td>
+                                </c:forEach>
+                            </tr>
 
-                        <tr class="comparison-item description">
-                            <th><spring:message code="drive_head.internalSupply"/>, <spring:message code="machine.pcs"/></th>
-                            <c:forEach items="${comparisonList}" var="machine">
-                                <td class="comparison-item-cell odd product_39">
-                                    <p>${machine.internalSupply}</p>
-                                </td>
-                            </c:forEach>
-                        </tr>
+                            <tr class="comparison-item description">
+                                <th><spring:message code="drive_head.lengthWorkingPart"/>, <spring:message code="machine.revMin"/></th>
+                                <c:forEach items="${comparisonList}" var="machine">
+                                    <td class="comparison-item-cell odd product_39">
+                                        <p>${machine.lengthWorkingPart}<br><br></p>
+                                    </td>
+                                </c:forEach>
+                            </tr>
 
-                        <tr class="comparison-item description">
-                            <th><spring:message code="drive_head.weight"/>, <spring:message code="machine.mm"/></th>
-                            <c:forEach items="${comparisonList}" var="machine">
-                                <td class="comparison-item-cell odd product_39">
-                                    <p>${machine.weight}</p>
-                                </td>
-                            </c:forEach>
-                        </tr>
+                            <tr class="comparison-item description">
+                                <th><spring:message code="drive_head.displacement"/>, <spring:message code="machine.kw"/></th>
+                                <c:forEach items="${comparisonList}" var="machine">
+                                    <td class="comparison-item-cell odd product_39">
+                                        <p>${machine.displacement}</p>
+                                    </td>
+                                </c:forEach>
+                            </tr>
+
+                            <tr class="comparison-item description">
+                                <th><spring:message code="drive_head.internalSupply"/>, <spring:message code="machine.pcs"/></th>
+                                <c:forEach items="${comparisonList}" var="machine">
+                                    <td class="comparison-item-cell odd product_39">
+                                        <p>${machine.internalSupply}</p>
+                                    </td>
+                                </c:forEach>
+                            </tr>
+
+                            <tr class="comparison-item description">
+                                <th><spring:message code="drive_head.weight"/>, <spring:message code="machine.mm"/></th>
+                                <c:forEach items="${comparisonList}" var="machine">
+                                    <td class="comparison-item-cell odd product_39">
+                                        <p>${machine.weight}</p>
+                                    </td>
+                                </c:forEach>
+                            </tr>
+                        <%--</c:if>--%>
+                        <%------------------------------------%>
+
+                        <%--<c:if test="${!empty comparisonListRobots}">--%>
+
+                                <tr class="comparison-item price" <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
+                                    <th><spring:message code="machine.price"/></th>
+                                    <c:forEach items="${comparisonListRobots}" var="machine">
+                                        <td class="comparison-item-cell odd product_39">
+                                            <span class="amount">$<span class="price${machine.productId}">${machine.price}</span></span>
+                                        </td>
+                                    </c:forEach>
+                                </tr>
+
+                                <tr class="comparison-item description">
+                                    <th><spring:message code="robot.manufacturer"/>, <spring:message code="machine.country"/>,
+                                        <spring:message code="robot.year"/></th>
+                                    <c:forEach items="${comparisonListRobots}" var="machine">
+                                        <td class="comparison-item-cell odd product_39">
+                                            <%--<p><span class="brand${machine.productId}">${machine.manufaturer}</span>,--%>
+                                            ${machine.location}, ${machine.year}<br><br></p>
+                                        </td>
+                                    </c:forEach>
+                                </tr>
+
+                                <tr class="comparison-item description">
+                                    <th><spring:message code="robot.type"/></th>
+                                    <c:forEach items="${comparisonListRobots}" var="machine">
+                                        <td class="comparison-item-cell odd product_39">
+                                            <p>${machine.type}</p>
+                                        </td>
+                                    </c:forEach>
+                                </tr>
+
+                                <tr class="comparison-item description">
+                                    <th><spring:message code="robot.model"/></th>
+                                    <c:forEach items="${comparisonListRobots}" var="machine">
+                                        <td class="comparison-item-cell odd product_39">
+                                            <p>${machine.model}</p>
+                                        </td>
+                                    </c:forEach>
+                                </tr>
+
+                                <tr class="comparison-item description">
+                                    <th><spring:message code="robot.condition"/></th>
+                                    <c:forEach items="${comparisonListRobots}" var="machine">
+                                        <td class="comparison-item-cell odd product_39">
+                                            <p>${machine.condition}</p>
+                                        </td>
+                                    </c:forEach>
+                                </tr>
+
+                                <tr class="comparison-item description">
+                                    <th><spring:message code="robot.axes"/></th>
+                                    <c:forEach items="${comparisonListRobots}" var="machine">
+                                        <td class="comparison-item-cell odd product_39">
+                                            <p>${machine.axes}</p>
+                                        </td>
+                                    </c:forEach>
+                                </tr>
+
+                                <tr class="comparison-item description">
+                                    <th><spring:message code="robot.load"/></th>
+                                    <c:forEach items="${comparisonListRobots}" var="machine">
+                                        <td class="comparison-item-cell odd product_39">
+                                            <p>${machine.load}</p>
+                                        </td>
+                                    </c:forEach>
+                                </tr>
+
+                                <tr class="comparison-item description">
+                                    <th><spring:message code="robot.reach"/>, Nm</th>
+                                    <c:forEach items="${comparisonListRobots}" var="machine">
+                                        <td class="comparison-item-cell odd product_39">
+                                            <p>${machine.reach}</p>
+                                        </td>
+                                    </c:forEach>
+                                </tr>
+
+                                <tr class="comparison-item description">
+                                    <th><spring:message code="robot.footprint"/></th>
+                                    <c:forEach items="${comparisonListRobots}" var="machine">
+                                        <td class="comparison-item-cell odd product_39">
+                                            <p>${machine.footprint}<br><br></p>
+                                        </td>
+                                    </c:forEach>
+                                </tr>
+
+                                <tr class="comparison-item description">
+                                    <th><spring:message code="robot.repeatability"/></th>
+                                    <c:forEach items="${comparisonListRobots}" var="machine">
+                                        <td class="comparison-item-cell odd product_39">
+                                            <p>${machine.repeatability}</p>
+                                        </td>
+                                    </c:forEach>
+                                </tr>
+
+                                <tr class="comparison-item description">
+                                    <th><spring:message code="robot.weight"/></th>
+                                    <c:forEach items="${comparisonListRobots}" var="machine">
+                                        <td class="comparison-item-cell odd product_39">
+                                            <p>${machine.weight}</p>
+                                        </td>
+                                    </c:forEach>
+                                </tr>
 
                         <%--<tr class="comparison-item description">--%>
                             <%--<th><spring:message code="machine.maxToolWeight"/>, <spring:message code="machine.kg"/></th>--%>
@@ -320,50 +469,101 @@
 
                         <tr class="price repeated" <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
                             <th><spring:message code="machine.price"/></th>
+
+                            <c:if test="${!empty comparisonList}">
                             <c:forEach items="${comparisonList}" var="machine">
                                 <td class="comparison-item-cell odd product_39">
                                     <span class="amount">$${machine.price}</span>
                                 </td>
                             </c:forEach>
+                            </c:if>
+
+                            <c:if test="${!empty comparisonRobots}">
+                                <c:forEach items="${comparisonListRobots}" var="machine">
+                                    <td class="comparison-item-cell odd product_39">
+                                        <span class="amount">$${machine.price}</span>
+                                    </td>
+                                </c:forEach>
+                            </c:if>
                         </tr>
 
                         </tbody>
                         <thead>
                         <tr>
                             <th>&nbsp;</th>
-                            <c:forEach items="${comparisonList}" var="machine">
-                                <td class="text-center">
-                                    <br><br>
-                                    <div class="image-wrap">
-                                    <span onclick="removeFromComparison('${machine.productId}'); goToComparison();" class="remove-link">
-                                        <i class="fa fa-times"></i>
-                                    </span>
-                                        <img width="220" height="154" class="attachment-yith-woocompare-image" src="../resources/images/blank.gif"
-                                             data-echo="../resources/images/products/${machine.photo1}">
-                                    </div>
-                                    <p><strong>
-                                        <a href="/hmc${machine.productId}">
-                                            ${machine.type}<br>${machine.model}
-                                        </a>
-                                    </strong></p>
-                                </td>
-                            </c:forEach>
+
+                            <c:if test="${!empty comparisonList}">
+                                <c:forEach items="${comparisonList}" var="machine">
+                                    <td class="text-center">
+                                        <br><br>
+                                        <div class="image-wrap">
+                                        <span onclick="removeFromComparison('${machine.productId}'); goToComparison();" class="remove-link">
+                                            <i class="fa fa-times"></i>
+                                        </span>
+                                            <img width="220" height="154" class="attachment-yith-woocompare-image" src="../resources/images/blank.gif"
+                                                 data-echo="../resources/images/products/${machine.photo1}">
+                                        </div>
+                                        <p><strong>
+                                            <a href="/hmc${machine.productId}">
+                                                ${machine.type}<br>${machine.model}
+                                            </a>
+                                        </strong></p>
+                                    </td>
+                                </c:forEach>
+                            </c:if>
+
+                            <c:if test="${!empty comparisonListRobots}">
+                                <c:forEach items="${comparisonListRobots}" var="machine">
+                                    <td class="text-center">
+                                        <br><br>
+                                        <div class="image-wrap">
+                                        <span onclick="removeFromComparison('${machine.productId}'); goToComparison();" class="remove-link">
+                                            <i class="fa fa-times"></i>
+                                        </span>
+                                            <img width="220" height="154" class="attachment-yith-woocompare-image"
+                                                 src="../resources/images/blank.gif"
+                                                 data-echo="../resources/images/products/${machine.photo1}">
+                                        </div>
+                                        <p><strong>
+                                            <a href="robot${machine.productId}">
+                                                    ${machine.type}<br>${machine.model}
+                                            </a>
+                                        </strong></p>
+                                    </td>
+                                </c:forEach>
+                            </c:if>
                         </tr>
                         <tr class="tr-add-to-cart">
                             <th>&nbsp;</th>
-                            <c:forEach items="${comparisonList}" var="machine">
-                                <td class="text-center">
-                                    <div class="add-cart-button">
-                                        <a class="cart${machine.productId} le-button"
-                                           onclick="addToCart('${machine.productId}')"><spring:message code="common.addToCart"/></a>
-                                        <a class="cart${machine.productId} le-button in-cart hidden"
-                                           onclick="removeFromCart('${machine.productId}')"><spring:message code="common.inCart"/></a>
-                                    </div>
-                                </td>
-                            </c:forEach>
+
+                            <c:if test="${!empty comparisonList}">
+                                <c:forEach items="${comparisonList}" var="machine">
+                                    <td class="text-center">
+                                        <div class="add-cart-button">
+                                            <a class="cart${machine.productId} le-button"
+                                               onclick="addToCart('${machine.productId}')"><spring:message code="common.addToCart"/></a>
+                                            <a class="cart${machine.productId} le-button in-cart hidden"
+                                               onclick="removeFromCart('${machine.productId}')"><spring:message code="common.inCart"/></a>
+                                        </div>
+                                    </td>
+                                </c:forEach>
+                            </c:if>
+
+                            <c:if test="${!empty comparisonListRobots}">
+                                <c:forEach items="${comparisonListRobots}" var="machine">
+                                    <td class="text-center">
+                                        <div class="add-cart-button">
+                                            <a class="cart${machine.productId} le-button"
+                                               onclick="addToCart('${machine.productId}')"><spring:message code="common.addToCart"/></a>
+                                            <a class="cart${machine.productId} le-button in-cart hidden"
+                                               onclick="removeFromCart('${machine.productId}')"><spring:message code="common.inCart"/></a>
+                                        </div>
+                                    </td>
+                                </c:forEach>
+                            <%--</c:if>--%>
                         </tr>
                         </thead>
-
+                        </c:if>
                     </table>
                 <!-- /.table-responsive -->
                 </div>

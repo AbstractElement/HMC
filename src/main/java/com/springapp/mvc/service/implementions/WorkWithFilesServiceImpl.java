@@ -5,9 +5,12 @@ import com.springapp.mvc.dao.interfaces.BrandFilterDAO;
 import com.springapp.mvc.dao.interfaces.HmcDAO;
 
 
+import com.springapp.mvc.dao.interfaces.RobotsDAO;
 import com.springapp.mvc.domain.hmc.Hmc;
 
 
+import com.springapp.mvc.domain.robots.Robots;
+import com.springapp.mvc.service.interfaces.RobotsService;
 import com.springapp.mvc.service.interfaces.WorkWithFilesService;
 import com.springapp.mvc.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +36,9 @@ public class WorkWithFilesServiceImpl implements WorkWithFilesService {
     
     @Autowired
     private BrandFilterDAO brandFilterDAO;
+
+    @Autowired
+    private RobotsDAO robotsDAO;
 
 //    @Autowired
 //    private LatheDAO latheDAO;
@@ -88,6 +94,23 @@ public class WorkWithFilesServiceImpl implements WorkWithFilesService {
                 Hmc machine = ParserExcelUtil.readHmc(uploadFile);
                 hmcDAO.addMachine(machine);
                 brandFilterDAO.addBrand(machine.getBrand());
+                uploadFile.delete();
+                System.out.println("Successfully uploaded machine: " + machines[i].getOriginalFilename());
+            } catch (IOException e) {
+                System.out.println("Failed to upload machine file: " + e.getMessage());
+            }
+        }
+    }
+
+    @Transactional
+    public void uploadRobot(String path, MultipartFile[] machines) {
+        for (int i = 0; i < machines.length; i++) {
+            try {
+                File uploadFile = UploadMultipartFileUtil.uploadFile(path, machines[i]);
+                Robots robots = ParserExcelUtil.readRobot(uploadFile);
+                robotsDAO.addRobot(robots);
+                // Заменить и добавить страну и фирму
+                // brandFilterDAO.addBrand(machine.getManufacturer());
                 uploadFile.delete();
                 System.out.println("Successfully uploaded machine: " + machines[i].getOriginalFilename());
             } catch (IOException e) {

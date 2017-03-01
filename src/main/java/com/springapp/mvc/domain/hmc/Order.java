@@ -1,7 +1,6 @@
 package com.springapp.mvc.domain.hmc;
 
 
-import javax.annotation.Generated;
 import javax.persistence.*;
 import java.util.Date;
 

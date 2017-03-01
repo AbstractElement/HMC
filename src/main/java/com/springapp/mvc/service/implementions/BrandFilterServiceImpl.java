@@ -1,7 +1,7 @@
 package com.springapp.mvc.service.implementions;
 
 import com.springapp.mvc.dao.interfaces.BrandFilterDAO;
-import com.springapp.mvc.filters.BrandFilter;
+import com.springapp.mvc.domain.filters.hmcFilter.BrandFilter;
 import com.springapp.mvc.service.interfaces.BrandFilterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

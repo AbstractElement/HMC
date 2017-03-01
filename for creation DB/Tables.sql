@@ -68,16 +68,16 @@ CREATE TABLE IF NOT EXISTS `hmc_example`.`machine_order` (
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `hmc_example`.`robot` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `product_id` varchar(145) DEFAULT NULL,
-  `type` varchar(250) DEFAULT NULL,
+  `robot_type` varchar(250) DEFAULT NULL,
   `model` varchar(155) DEFAULT NULL,
   `manufacturer` varchar(145) DEFAULT NULL,
-  `year` int(11) DEFAULT NULL,
-  `condition` varchar(245) DEFAULT NULL,
+  `producing_year` int(11) DEFAULT NULL,
+  `robot_condition` varchar(245) DEFAULT NULL,
   `location` varchar(145) DEFAULT NULL,
   `axes` int(11) DEFAULT NULL COMMENT 'axis',
-  `load` int(11) DEFAULT NULL COMMENT 'kg',
+  `robot_load` int(11) DEFAULT NULL COMMENT 'kg',
   `reach` int(11) DEFAULT NULL COMMENT 'like radius, mm',
   `footprint` varchar(145) DEFAULT NULL,
   `repeatability` int(11) DEFAULT NULL COMMENT '0.08',
@@ -86,14 +86,28 @@ CREATE TABLE IF NOT EXISTS `hmc_example`.`robot` (
   `photo1` varchar(145) DEFAULT NULL,
   `photo2` varchar(145) DEFAULT NULL,
   `photo3` varchar(145) DEFAULT NULL,
-  `descriptionen` text,
-  `descriptionru` text,
+  `descriptionen` VARCHAR (1023),
+  `descriptionru` VARCHAR (1023),
   `video1` varchar(145) DEFAULT NULL,
   `video2` varchar(145) DEFAULT NULL,
   `video3` varchar(145) DEFAULT NULL,
   `sold` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`product_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `hmc_example`.`manufacturer_filter` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `nameManufacturer` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `hmc_example`.`location_filter` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `countryName` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC))
+ENGINE = InnoDB;
 
 insert into users value (1, '1111', '1111', '1111@11.11', 'ROLE_ADMIN');
 insert into users value (2, '22', '22', '1111@11.11', 'ROLE_ADMIN');

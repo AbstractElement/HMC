@@ -336,6 +336,7 @@
             var arrOfId = getArrOfId(localStorage.cartItemStr);
             goTo("/hmc/cart",arrOfId);
         }
+
         function goToRobots(){
             var url = "";
             var arr = [sessionStorage.slidersUrl, sessionStorage.checkboxesUrl, sessionStorage.perPageUrl];

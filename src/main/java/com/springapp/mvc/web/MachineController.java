@@ -2,7 +2,7 @@ package com.springapp.mvc.web;
 
 import com.springapp.mvc.domain.hmc.Order;
 import com.springapp.mvc.domain.robots.Robots;
-import com.springapp.mvc.filters.BrandFilter;
+import com.springapp.mvc.domain.filters.hmcFilter.BrandFilter;
 import com.springapp.mvc.domain.hmc.Hmc;
 
 import com.springapp.mvc.service.interfaces.*;
@@ -10,7 +10,6 @@ import com.springapp.mvc.util.EmailUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -140,6 +139,7 @@ public class MachineController {
     public void comparison(@RequestParam(required = false) String itemsId, Map<String, Object> map) {
         if (itemsId != null) {
             map.put("comparisonList", hmcService.getMachinesList(itemsId.split(",")));
+            map.put("comparisonListRobots", robotsService.getRobotsList(itemsId.split(",")));
         }
     }
 

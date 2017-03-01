@@ -1,6 +1,6 @@
 package com.springapp.mvc.dao.interfaces;
 
-import com.springapp.mvc.filters.BrandFilter;
+import com.springapp.mvc.domain.filters.hmcFilter.BrandFilter;
 
 import java.util.List;
 

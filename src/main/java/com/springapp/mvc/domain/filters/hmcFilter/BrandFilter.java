@@ -1,4 +1,4 @@
-package com.springapp.mvc.filters;
+package com.springapp.mvc.domain.filters.hmcFilter;
 
 import javax.persistence.*;
 import java.io.Serializable;

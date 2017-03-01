@@ -4,6 +4,7 @@ import com.springapp.mvc.domain.hmc.Hmc;
 
 import com.springapp.mvc.domain.User;
 
+import com.springapp.mvc.domain.robots.Robots;
 import com.springapp.mvc.service.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,9 @@ public class AdminController {
 
     @Autowired
     private HmcService hmcService;
+
+    @Autowired
+    private RobotsService robotsService;
 
     @Autowired
     private UserService userService;
@@ -75,6 +79,13 @@ public class AdminController {
         putPagesInfo(map, machineList.size(), 10);
     }
 
+    @RequestMapping(value = "/robot", method = RequestMethod.GET)
+    public void robot(Map<String, Object> map){
+        List<Robots> robotsList = robotsService.listRobots();
+        map.put("robotList", robotsList);
+        putPagesInfo(map, robotsList.size(), 10);
+    }
+
     private void putPagesInfo(Map<String, Object> map, int itemsNum, int itemsPerPage) {
         int pagesNum = itemsNum / itemsPerPage;
         if (itemsNum % itemsPerPage != 0) {
@@ -86,10 +97,17 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/hmc/edit", method = RequestMethod.POST)
-    public String editMachine(@ModelAttribute("machine") Hmc machine){
+     public String editMachine(@ModelAttribute("machine") Hmc machine){
         hmcService.editMachine(machine);
         brandFilterService.addBrand(machine.getBrand());
         return "redirect:/admin/hmc";
+    }
+
+    @RequestMapping(value = "/robot/edit", method = RequestMethod.POST)
+    public String editRobot(@ModelAttribute("machine") Robots machine){
+        robotsService.editRobot(machine);
+//        brandFilterService.addBrand(machine.getManufacturer());
+        return "redirect:/admin/robot";
     }
 
     @RequestMapping(value = "/hmc/upload", method = RequestMethod.POST)
@@ -99,6 +117,15 @@ public class AdminController {
             workWithFilesService.uploadMachines(path, machines);
         }
         return "redirect:/admin/hmc";
+    }
+
+    @RequestMapping(value = "/robot/upload", method = RequestMethod.POST)
+    public String adminUploadRobotFromFiles(@RequestParam("textFile") MultipartFile[] machines, HttpServletRequest request){
+        if (machines != null && machines.length > 0) {
+            String path = request.getServletContext().getRealPath("") + "/resources/";
+            workWithFilesService.uploadRobot(path, machines);
+        }
+        return "redirect:/admin/robot";
     }
 
     @RequestMapping(value = "/gallery", method = RequestMethod.GET)
