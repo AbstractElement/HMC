@@ -101,84 +101,84 @@
                 <table class="table table-bordered table-condensed table-machine">
                   <tr>
                     <td colspan="3" width="25%">Type</td>
-                    <td colspan="3" width="25%"><input class="le-input form-control" name="type"
+                    <td colspan="3" width="25%"><form:input path="type" class="le-input form-control" name="type"
                                                        value="${machine.type}" type="text"/></td>
                     <td colspan="3" width="25%">Model</td>
-                    <td colspan="3" width="25%"><input class="le-input form-control" name="model"
+                    <td colspan="3" width="25%"><form:input path="model" class="le-input form-control" name="model"
                                                        value="${machine.model}" type="text"/></td>
                   </tr>
                   <tr>
                     <td colspan="3" width="25%">Manufacturer</td>
-                    <td colspan="3" width="25%"><input class="le-input form-control" name="brand"
+                    <td colspan="3" width="25%"><form:input path="manufacturer" class="le-input form-control" name="brand"
                                                        value="${machine.manufacturer}" type="text"/></td>
                     <td colspan="3" width="25%">Year</td>
-                    <td colspan="3" width="25%"><input class="le-input form-control" name="producingCountry"
+                    <td colspan="3" width="25%"><form:input path="year" class="le-input form-control" name="producingCountry"
                                                        value="${machine.year}" type="text"/></td>
                   </tr>
                   <tr>
                     <td colspan="3" width="25%">Condition</td>
-                    <td colspan="3" width="25%"><input class="le-input form-control" name="landingDiameter"
+                    <td colspan="3" width="25%"><form:input path="condition" class="le-input form-control" name="landingDiameter"
                                                        value="${machine.condition}" type="text"/></td>
                     <td colspan="3" width="25%">Location</td>
-                    <td colspan="3" width="25%"><input class="le-input form-control" name="driveType"
+                    <td colspan="3" width="25%"><form:input path="location" class="le-input form-control" name="driveType"
                                                        value="${machine.location}" type="text"/></td>
                   </tr>
                   <tr>
                     <td colspan="3" width="25%">Axes</td>
-                    <td colspan="3" width="25%"><input class="le-input form-control" name="toolHolder"
+                    <td colspan="3" width="25%"><form:input path="axes" class="le-input form-control" name="toolHolder"
                                                        value="${machine.axes}" type="text"/></td>
                     <td colspan="3" width="25%">Load</td>
-                    <td colspan="3" width="25%"><input class="le-input form-control" name="clampingRange"
+                    <td colspan="3" width="25%"><form:input path="load" class="le-input form-control" name="clampingRange"
                                                        value="${machine.load}" type="text"/></td>
                   </tr>
                   <tr>
                     <td colspan="3" width="25%">Reach</td>
-                    <td colspan="3" width="25%"><input class="le-input form-control" name="n1_n2"
+                    <td colspan="3" width="25%"><form:input path="reach" class="le-input form-control" name="n1_n2"
                                                        value="${machine.reach}" type="text"/></td>
                     <td colspan="3" width="25%">Footprint</td>
-                    <td colspan="3" width="25%"><input class="le-input form-control" name="torqueMax"
+                    <td colspan="3" width="25%"><form:input path="footprint" class="le-input form-control" name="torqueMax"
                                                        value="${machine.footprint}" type="text"/></td>
                   </tr>
                   <tr>
                     <td colspan="3" width="25%">Repeatability</td>
-                    <td colspan="3" width="25%"><input class="le-input form-control" name="lengthWorkingPart"
+                    <td colspan="3" width="25%"><form:input path="repeatability" class="le-input form-control" name="lengthWorkingPart"
                                                        value="${machine.repeatability}" type="text"/></td>
                     <td colspan="3" width="25%">Weight</td>
-                    <td colspan="3" width="25%"><input class="le-input form-control" name="displacement"
+                    <td colspan="3" width="25%"><form:input path="weight" class="le-input form-control" name="displacement"
                                                        value="${machine.weight}" type="text"/></td>
                   </tr>
                   <tr>
                     <td colspan="3" width="25%">Image 1 (main)</td>
-                    <td colspan="3" width="25%"><input class="le-input form-control" name="photo1"
+                    <td colspan="3" width="25%"><form:input path="photo1" class="le-input form-control" name="photo1"
                                                        value="${machine.photo1}" type="text"/></td>
                     <td colspan="3" width="25%">Image 2</td>
-                    <td colspan="3" width="25%"><input class="le-input form-control" name="photo2"
+                    <td colspan="3" width="25%"><form:input path="photo2" class="le-input form-control" name="photo2"
                                                        value="${machine.photo2}" type="text"/></td>
                   </tr>
                   <tr>
                     <td colspan="3" width="25%">Image 3</td>
-                    <td colspan="3" width="25%"><input class="le-input form-control" name="photo3"
+                    <td colspan="3" width="25%"><form:input path="photo3" class="le-input form-control" name="photo3"
                                                        value="${machine.photo3}" type="text"/></td>
                   </tr>
                   <tr>
                     <td colspan="3" width="25%">Video 1</td>
-                    <td colspan="3" width="25%"><input class="le-input form-control" name="video1"
+                    <td colspan="3" width="25%"><form:input path="video1" class="le-input form-control" name="video1"
                                                        value="${machine.video1}" type="text"/></td>
                   </tr>
                   <tr>
                     <td colspan="3" width="25%">Video 2</td>
-                    <td colspan="3" width="25%"><input class="le-input form-control" name="video2"
+                    <td colspan="3" width="25%"><form:input path="video2" class="le-input form-control" name="video2"
                                                        value="${machine.video2}" type="text"/></td>
                     <td colspan="3" width="25%">Video 3</td>
-                    <td colspan="3" width="25%"><input class="le-input form-control" name="video3"
+                    <td colspan="3" width="25%"><form:input path="video3" class="le-input form-control" name="video3"
                                                        value="${machine.video3}" type="text"/></td>
                   </tr>
                   <tr>
                     <td colspan="3" width="25%">Price</td>
-                    <td colspan="3" width="25%"><input class="le-input form-control" name="price"
+                    <td colspan="3" width="25%"><form:input path="price" class="le-input form-control" name="price"
                                                        value="${machine.price}" type="number"/></td>
                     <td colspan="3" width="25%">Is sold</td>
-                    <td colspan="3" width="25%"><input class="le-input form-control" name="isSold"
+                    <td colspan="3" width="25%"><form:input path="sold" class="le-input form-control" name="isSold"
                                                        value="${machine.sold}" type="text"/></td>
                   </tr>
                   <tr>

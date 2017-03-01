@@ -1,12 +1,9 @@
 package com.springapp.mvc.service.implementions;
 
 //import com.springapp.mvc.dao.interfaces.CommonDao;
-import com.springapp.mvc.dao.interfaces.BrandFilterDAO;
-import com.springapp.mvc.dao.interfaces.HmcDAO;
+import com.springapp.mvc.dao.interfaces.*;
 
 
-import com.springapp.mvc.dao.interfaces.ManufacturerFilterDAO;
-import com.springapp.mvc.dao.interfaces.RobotsDAO;
 import com.springapp.mvc.domain.filters.robotFilters.ManufacturerFilter;
 import com.springapp.mvc.domain.hmc.Hmc;
 
@@ -29,6 +26,8 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
+import java.util.Map;
+import java.util.TreeMap;
 
 @Service
 public class WorkWithFilesServiceImpl implements WorkWithFilesService {
@@ -45,9 +44,9 @@ public class WorkWithFilesServiceImpl implements WorkWithFilesService {
     @Autowired
     private ManufacturerFilterDAO manufacturerFilterDAO;
 
-//    @Autowired
-//    private CommonDao commonDAO;
-//
+    @Autowired
+    private LocationFilterDAO locationFilterDAO;
+
     @Transactional
     public ResponseEntity<byte[]> getPDFOffer(String path, String products, String company, String director, boolean showPrice) throws Exception {
         String[] productsArr = products.split(";");
@@ -111,12 +110,13 @@ public class WorkWithFilesServiceImpl implements WorkWithFilesService {
                 File uploadFile = UploadMultipartFileUtil.uploadFile(path, machines[i]);
                 Robots robots = ParserExcelUtil.readRobot(uploadFile);
                 robotsDAO.addRobot(robots);
-                // Заменить и добавить страну и фирму
                 manufacturerFilterDAO.addManufacturer(robots.getManufacturer());
+                locationFilterDAO.addLocation(robots.getLocation());
                 uploadFile.delete();
                 System.out.println("Successfully uploaded machine: " + machines[i].getOriginalFilename());
             } catch (IOException e) {
                 System.out.println("Failed to upload machine file: " + e.getMessage());
+
             }
         }
     }

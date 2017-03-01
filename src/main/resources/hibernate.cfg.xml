@@ -19,6 +19,7 @@
         <mapping class="com.springapp.mvc.domain.hmc.Order"/>
         <mapping class="com.springapp.mvc.domain.filters.hmcFilter.BrandFilter"/>
         <mapping class="com.springapp.mvc.domain.filters.robotFilters.ManufacturerFilter"/>
+        <mapping class="com.springapp.mvc.domain.filters.robotFilters.LocationFilter"/>
 
     </session-factory>
 </hibernate-configuration>

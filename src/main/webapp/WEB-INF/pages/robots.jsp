@@ -5,7 +5,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html>
+<%--<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">--%>
+<!doctype html>
+<html>
 <html lang="en">
 <head>
   <!-- Meta -->
@@ -115,14 +117,13 @@
                 <hr>
 
                 <!--year-->
-                <h2>Year</h2>
+                <%--<h2>Year</h2>--%>
                 <%--<ul>--%>
-                  <%--<c:forEach items="${machineList}" var="machine">--%>
+                  <%--&lt;%&ndash;<c:forEach items="${machineList}" var="machine">&ndash;%&gt;--%>
                     <%--<li>--%>
-                      <%--<input class="le-checkbox" name="model" type="checkbox" value="${machine.model}">--%>
-                      <%--<label>${machine.model}</label>--%>
+                      <%--<input type="number" min="2000" max="2017" value="2000"/>--%>
                     <%--</li>--%>
-                  <%--</c:forEach>--%>
+                  <%--&lt;%&ndash;</c:forEach>&ndash;%&gt;--%>
                 <%--</ul>--%>
                 <hr>
                 <h2>Axes</h2>
@@ -132,6 +133,20 @@
                 <h2>Reach</h2>
                 <hr>
                 <h2>Location</h2>
+                <c:if test="${!empty machineLocation}">
+                  <ul>
+                    <c:forEach items="${machineLocation}" var="manufacturer">
+                      <li>
+                        <input class="le-checkbox" name="brand" type="checkbox" value="${manufacturer.countryName}"
+                                <c:forEach items="${machineFiltered}" var="machine">
+                                  <c:if test="${manufacturer.countryName == machine.location}">checked</c:if>
+                                </c:forEach>/>
+                        <label>${manufacturer.countryName}</label>
+                      </li>
+                    </c:forEach>
+                  </ul>
+                </c:if>
+                <hr>
               </div>
               <div class="place-order-button">
                 <input class="le-button-huge" type="submit" value="Filter">

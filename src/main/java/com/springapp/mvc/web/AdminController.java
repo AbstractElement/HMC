@@ -40,6 +40,8 @@ public class AdminController {
     @Autowired
     private ManufacturerFilterService manufacturerFilterService;
 
+    @Autowired
+    private LocationFilterService locationFilterService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String admin(HttpServletRequest request) {
@@ -85,6 +87,7 @@ public class AdminController {
     @RequestMapping(value = "/robot", method = RequestMethod.GET)
     public void robot(Map<String, Object> map){
         List<Robots> robotsList = robotsService.listRobots();
+        map.put("machine", new Robots());
         map.put("robotList", robotsList);
         putPagesInfo(map, robotsList.size(), 10);
     }
@@ -110,6 +113,7 @@ public class AdminController {
     public String editRobot(@ModelAttribute("machine") Robots machine){
         robotsService.editRobot(machine);
         manufacturerFilterService.addManufacturer(machine.getManufacturer());
+        locationFilterService.addLocation(machine.getLocation());
         return "redirect:/admin/robot";
     }
 

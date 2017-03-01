@@ -1,5 +1,6 @@
 package com.springapp.mvc.web;
 
+import com.springapp.mvc.domain.filters.robotFilters.LocationFilter;
 import com.springapp.mvc.domain.filters.robotFilters.ManufacturerFilter;
 import com.springapp.mvc.domain.hmc.Order;
 import com.springapp.mvc.domain.robots.Robots;
@@ -46,6 +47,9 @@ public class MachineController {
 
     @Autowired
     private ManufacturerFilterService manufacturerFilterService;
+
+    @Autowired
+    private LocationFilterService locationFilterService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView home(Map<String,Object> map) {
@@ -240,8 +244,10 @@ public class MachineController {
     public void getRobots(Map<String, Object> map){
         List<Robots> robotsList = robotsService.listRobots();
         List<ManufacturerFilter> manufacturerFilters = manufacturerFilterService.listManufacturer();
+        List<LocationFilter> locationFilters = locationFilterService.listLocation();
         map.put("machineManufacturer", manufacturerFilters);
         map.put("robotsList", robotsList);
+        map.put("machineLocation", locationFilters);
         putPagesInfo(map, null, robotsList.size());
     }
 }

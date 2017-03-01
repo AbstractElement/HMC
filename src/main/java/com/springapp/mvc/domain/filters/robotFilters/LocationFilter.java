@@ -1,5 +1,6 @@
 package com.springapp.mvc.domain.filters.robotFilters;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -11,9 +12,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "location_filter", catalog = "hmc_example")
 public class LocationFilter {
-    @Id
     private int id;
 
+    @Id
+    @Column(name = "location")
     private String countryName;
 
     public int getId() {
