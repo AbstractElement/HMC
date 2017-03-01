@@ -1,5 +1,6 @@
 package com.springapp.mvc.web;
 
+import com.springapp.mvc.domain.filters.robotFilters.ManufacturerFilter;
 import com.springapp.mvc.domain.hmc.Order;
 import com.springapp.mvc.domain.robots.Robots;
 import com.springapp.mvc.domain.filters.hmcFilter.BrandFilter;
@@ -42,6 +43,9 @@ public class MachineController {
 
     @Autowired
     private EmailUtil emailUtil;
+
+    @Autowired
+    private ManufacturerFilterService manufacturerFilterService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView home(Map<String,Object> map) {
@@ -235,6 +239,8 @@ public class MachineController {
     @RequestMapping(value = "/robots", method = RequestMethod.GET)
     public void getRobots(Map<String, Object> map){
         List<Robots> robotsList = robotsService.listRobots();
+        List<ManufacturerFilter> manufacturerFilters = manufacturerFilterService.listManufacturer();
+        map.put("machineManufacturer", manufacturerFilters);
         map.put("robotsList", robotsList);
         putPagesInfo(map, null, robotsList.size());
     }

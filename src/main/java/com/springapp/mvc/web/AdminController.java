@@ -37,6 +37,9 @@ public class AdminController {
     @Autowired
     private WorkWithFilesService workWithFilesService;
 
+    @Autowired
+    private ManufacturerFilterService manufacturerFilterService;
+
 
     @RequestMapping(method = RequestMethod.GET)
     public String admin(HttpServletRequest request) {
@@ -106,7 +109,7 @@ public class AdminController {
     @RequestMapping(value = "/robot/edit", method = RequestMethod.POST)
     public String editRobot(@ModelAttribute("machine") Robots machine){
         robotsService.editRobot(machine);
-//        brandFilterService.addBrand(machine.getManufacturer());
+        manufacturerFilterService.addManufacturer(machine.getManufacturer());
         return "redirect:/admin/robot";
     }
 

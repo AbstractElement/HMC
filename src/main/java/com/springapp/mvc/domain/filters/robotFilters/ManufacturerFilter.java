@@ -12,9 +12,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "manufacturer_filter", catalog = "hmc_example")
 public class ManufacturerFilter {
-    @Id
     private int id;
 
+    @Id
     private String nameManufacturer;
 
     public int getId() {

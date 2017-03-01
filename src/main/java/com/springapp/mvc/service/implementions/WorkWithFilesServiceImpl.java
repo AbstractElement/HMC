@@ -5,7 +5,9 @@ import com.springapp.mvc.dao.interfaces.BrandFilterDAO;
 import com.springapp.mvc.dao.interfaces.HmcDAO;
 
 
+import com.springapp.mvc.dao.interfaces.ManufacturerFilterDAO;
 import com.springapp.mvc.dao.interfaces.RobotsDAO;
+import com.springapp.mvc.domain.filters.robotFilters.ManufacturerFilter;
 import com.springapp.mvc.domain.hmc.Hmc;
 
 
@@ -40,8 +42,8 @@ public class WorkWithFilesServiceImpl implements WorkWithFilesService {
     @Autowired
     private RobotsDAO robotsDAO;
 
-//    @Autowired
-//    private LatheDAO latheDAO;
+    @Autowired
+    private ManufacturerFilterDAO manufacturerFilterDAO;
 
 //    @Autowired
 //    private CommonDao commonDAO;
@@ -110,7 +112,7 @@ public class WorkWithFilesServiceImpl implements WorkWithFilesService {
                 Robots robots = ParserExcelUtil.readRobot(uploadFile);
                 robotsDAO.addRobot(robots);
                 // Заменить и добавить страну и фирму
-                // brandFilterDAO.addBrand(machine.getManufacturer());
+                manufacturerFilterDAO.addManufacturer(robots.getManufacturer());
                 uploadFile.delete();
                 System.out.println("Successfully uploaded machine: " + machines[i].getOriginalFilename());
             } catch (IOException e) {

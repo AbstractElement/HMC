@@ -18,6 +18,7 @@
         <mapping class="com.springapp.mvc.domain.robots.Robots"/>
         <mapping class="com.springapp.mvc.domain.hmc.Order"/>
         <mapping class="com.springapp.mvc.domain.filters.hmcFilter.BrandFilter"/>
+        <mapping class="com.springapp.mvc.domain.filters.robotFilters.ManufacturerFilter"/>
 
     </session-factory>
 </hibernate-configuration>

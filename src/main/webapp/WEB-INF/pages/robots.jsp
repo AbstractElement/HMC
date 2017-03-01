@@ -99,19 +99,19 @@
               <div class="category-filter">
                 <!-- manufacturer -->
                 <h2>Manufacturer</h2>
-                <%--<c:if test="${!empty machineBrands}">--%>
-                  <%--<ul>--%>
-                    <%--<c:forEach items="${machineBrands}" var="brands">--%>
-                      <%--<li>--%>
-                        <%--<input class="le-checkbox" name="brand" type="checkbox" value="${brands.brand}"--%>
-                                <%--<c:forEach items="${machineFiltered}" var="machine">--%>
-                                  <%--<c:if test="${brands.brand == machine.brand}">checked</c:if>--%>
-                                <%--</c:forEach>/>--%>
-                        <%--<label>${brands.brand}</label>--%>
-                      <%--</li>--%>
-                    <%--</c:forEach>--%>
-                  <%--</ul>--%>
-                <%--</c:if>--%>
+                <c:if test="${!empty machineManufacturer}">
+                  <ul>
+                    <c:forEach items="${machineManufacturer}" var="manufacturer">
+                      <li>
+                        <input class="le-checkbox" name="brand" type="checkbox" value="${manufacturer.nameManufacturer}"
+                                <c:forEach items="${machineFiltered}" var="machine">
+                                  <c:if test="${manufacturer.nameManufacturer == machine.manufacturer}">checked</c:if>
+                                </c:forEach>/>
+                        <label>${manufacturer.nameManufacturer}</label>
+                      </li>
+                    </c:forEach>
+                  </ul>
+                </c:if>
                 <hr>
 
                 <!--year-->
