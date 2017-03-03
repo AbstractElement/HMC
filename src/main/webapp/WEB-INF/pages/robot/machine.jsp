@@ -65,7 +65,7 @@
                 <a href="/"><spring:message code="common.home"/></a>
               </li>
               <li class="breadcrumb-item gray">
-                <a onclick="goToHmc()"><spring:message code="common.hmc"/></a>
+                <a onclick="goToRobots()"><spring:message code="common.robots"/></a>
               </li>
               <li class="breadcrumb-item current">
                 <a onclick="window.location.reload(true);">
@@ -211,8 +211,8 @@
       <div class="tab-holder">
 
         <ul class="nav nav-tabs simple">
-          <%--<li class="active"><a href="#description" data-toggle="tab"><spring:message code="machine.video"/></a>--%>
-          <%--</li>--%>
+          <li class="active"><a href="#description" data-toggle="tab"><spring:message code="machine.video"/></a>
+          </li>
           <li><a href="#additional-info" data-toggle="tab"><spring:message
                   code="machine.additionalInformation"/></a></li>
         </ul>

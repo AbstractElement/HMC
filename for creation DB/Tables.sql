@@ -1,9 +1,6 @@
-
-
 CREATE SCHEMA IF NOT EXISTS `hmc_example` DEFAULT CHARACTER SET utf8 ;
 
 use `hmc_example`;
-
 
 CREATE TABLE IF NOT EXISTS `hmc_example`.`drive_heads` (
   `productId` VARCHAR(255) NOT NULL,
@@ -52,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `hmc_example`.`users` (
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `hmc_example`.`machine_order` (
-  `orderId` VARCHAR(255) NOT NULL AUTO_INCREMENT,
+  `orderId` VARCHAR(255) NOT NULL,
   `firstName` VARCHAR(255) NOT NULL,
   `lastName` VARCHAR(255) NOT NULL,
   `company` VARCHAR(255) NOT NULL,
@@ -68,17 +65,16 @@ CREATE TABLE IF NOT EXISTS `hmc_example`.`machine_order` (
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `hmc_example`.`robot` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `product_id` varchar(145) DEFAULT NULL,
+  `product_id` varchar(145),
   `robot_type` varchar(250) DEFAULT NULL,
   `model` varchar(155) DEFAULT NULL,
   `manufacturer` varchar(145) DEFAULT NULL,
   `producing_year` int(11) DEFAULT NULL,
   `robot_condition` varchar(245) DEFAULT NULL,
   `location` varchar(145) DEFAULT NULL,
-  `axes` int(11) DEFAULT NULL COMMENT 'axis',
-  `robot_load` int(11) DEFAULT NULL COMMENT 'kg',
-  `reach` int(11) DEFAULT NULL COMMENT 'like radius, mm',
+  `axes` VARCHAR(100) DEFAULT NULL COMMENT 'axis',
+  `robot_load` VARCHAR(100) DEFAULT NULL COMMENT 'kg',
+  `reach` VARCHAR(145) DEFAULT NULL COMMENT 'like radius, mm',
   `footprint` varchar(145) DEFAULT NULL,
   `repeatability` int(11) DEFAULT NULL COMMENT '0.08',
   `weight` int(11) DEFAULT NULL COMMENT 'kg',
@@ -96,18 +92,36 @@ CREATE TABLE IF NOT EXISTS `hmc_example`.`robot` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `hmc_example`.`manufacturer_filter` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `id` INT(11) NOT NULL,
   `nameManufacturer` VARCHAR(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC))
+  PRIMARY KEY (`nameManufacturer`),
+  UNIQUE INDEX `id_UNIQUE` (`nameManufacturer` ASC))
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `hmc_example`.`location_filter` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `id` INT(11) NOT NULL,
   `countryName` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`countryName`),
+  UNIQUE INDEX `id_UNIQUE` (`countryName` ASC))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `hmc_example`.`sliders_filter` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `axes` VARCHAR(100) ,
+#   `load` VARCHAR(100) NOT NULL,
+  `xReach` VARCHAR(100) ,
+  `yReach` VARCHAR(100),
+  `zReach` VARCHAR(100),
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC))
-ENGINE = InnoDB;
+  ENGINE = InnoDB;
+
+INSERT INTO `sliders_filter` VALUES
+  (1, '3', '500', '300', '300'),
+  (2, '4', '800', '500', '500'),
+  (3, '3+2', '1000', '800', '800'),
+  (4, '5', NULL, NULL , '1000'),
+  (5, NULL , NULL, NULL , '1000');
 
 insert into users value (1, '1111', '1111', '1111@11.11', 'ROLE_ADMIN');
 insert into users value (2, '22', '22', '1111@11.11', 'ROLE_ADMIN');

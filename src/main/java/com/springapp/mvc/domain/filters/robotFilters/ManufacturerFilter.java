@@ -2,6 +2,7 @@ package com.springapp.mvc.domain.filters.robotFilters;
 
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -12,6 +13,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "manufacturer_filter", catalog = "hmc_example")
 public class ManufacturerFilter {
+    @GeneratedValue
     private int id;
 
     @Id

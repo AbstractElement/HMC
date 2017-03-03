@@ -72,7 +72,7 @@
               </li>
               <li class="breadcrumb-item current">
                 <a onclick="window.location.reload(true);">
-                  <h1 class="h2 department-h1"><spring:message code="common.dh"/></h1>
+                  <h1 class="h2 department-h1"><spring:message code="common.robots"/></h1>
                 </a>
               </li>
             </ul>
@@ -120,13 +120,27 @@
                 <h2>Year</h2>
                 <ul>
                   <%--<c:forEach items="${machineList}" var="machine">--%>
-                    <li>
-                      <select name="producingYear"></select>
-                    </li>
+                    <%--<li>--%>
+                      <%--<select name="producingYear"></select>--%>
+                    <%--</li>--%>
                   <%--</c:forEach>--%>
                 </ul>
                 <hr>
                 <h2>Axes</h2>
+                <%--<c:if test="${!empty axesArr}">--%>
+                  <ul>
+                      <li>
+                        <select class="le-select" name="axes">
+                          <option disabled selected>Axes is not selected:</option>
+                          <c:forEach items="${axesArr}" var="axes">
+                            <c:if test="${axes != null}">
+                              <option value="${axes}">${axes} Axes</option>
+                            </c:if>
+                          </c:forEach>
+                        </select>
+                      </li>
+                  </ul>
+                <%--</c:if>--%>
                 <hr>
                 <h2>Load</h2>
                 <hr>
@@ -157,7 +171,7 @@
           </div>
 
           <div class="reset-filter">
-            <a onclick="resetFilter()"><spring:message code="hmc.resetFilter"/></a>
+            <a onclick="resetFilterRobot()"><spring:message code="hmc.resetFilter"/></a>
           </div>
           <br><br>
         </div>
@@ -171,7 +185,7 @@
         <section class="carousel-holder">
 
           <div class="title-nav">
-            <h2><spring:message code="common.hmc"/></h2>
+            <h2><spring:message code="common.robots"/></h2>
             <div class="nav-holder"></div>
           </div>
 

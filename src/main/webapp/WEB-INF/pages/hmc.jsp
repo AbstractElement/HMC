@@ -158,7 +158,7 @@
 <section class="carousel-holder">
 
 <div class="title-nav">
-    <h2><spring:message code="common.hmc"/></h2>
+    <h2><spring:message code="common.dh"/></h2>
 
     <div class="nav-holder"></div>
 </div>

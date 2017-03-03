@@ -135,5 +135,11 @@
             goToHmc();
         }
 
+        function resetFilterRobot() {
+            sessionStorage.slidersUrl = "";
+            sessionStorage.checkboxesUrl = "";
+            goToRobots();
+        }
+
 
 

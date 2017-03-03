@@ -59,9 +59,9 @@
                             <li class="breadcrumb-item gray">
                                 <a href="/"><spring:message code="common.home"/></a>
                             </li>
-                            <li class="breadcrumb-item gray">
-                                <a onclick="goToHmc()"><spring:message code="common.dh"/></a>
-                            </li>
+                            <%--<li class="breadcrumb-item gray">--%>
+                                <%--<a onclick="goToHmc()"><spring:message code="common.dh"/></a>--%>
+                            <%--</li>--%>
                             <li class="breadcrumb-item gray">
                                 <a onclick="window.history.back()">${machine.type} - ${machine.productId}</a>
                             </li>

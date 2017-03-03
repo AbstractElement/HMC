@@ -90,9 +90,9 @@ public class ParserExcelUtil {
         robot.setYear(Integer.parseInt(df.formatCellValue(rowIterator.next().getCell(1))));
         robot.setCondition(df.formatCellValue(rowIterator.next().getCell(1)).trim());
         robot.setLocation(df.formatCellValue(rowIterator.next().getCell(1)).trim());
-        robot.setAxes(Integer.parseInt(df.formatCellValue(rowIterator.next().getCell(1))));
-        robot.setLoad(Integer.parseInt(df.formatCellValue(rowIterator.next().getCell(1))));
-        robot.setReach(Integer.parseInt(df.formatCellValue(rowIterator.next().getCell(1))));
+        robot.setAxes(df.formatCellValue(rowIterator.next().getCell(1)));
+        robot.setLoad(df.formatCellValue(rowIterator.next().getCell(1)));
+        robot.setReach(df.formatCellValue(rowIterator.next().getCell(1)));
         robot.setFootprint(df.formatCellValue(rowIterator.next().getCell(1)));
         robot.setRepeatability(Integer.parseInt(df.formatCellValue(rowIterator.next().getCell(1))));
         robot.setWeight(Integer.parseInt(df.formatCellValue(rowIterator.next().getCell(1))));

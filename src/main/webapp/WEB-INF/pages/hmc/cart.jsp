@@ -65,9 +65,9 @@
                             <li class="breadcrumb-item gray">
                                 <a href="/"><spring:message code="common.home"/></a>
                             </li>
-                            <li class="breadcrumb-item gray">
-                                <a onclick="goToHmc()"><spring:message code="common.hmc"/></a>
-                            </li>
+                            <%--<li class="breadcrumb-item gray">--%>
+                                <%--<a onclick="goToHmc()"><spring:message code="common.hmc"/></a>--%>
+                            <%--</li>--%>
                             <li class="breadcrumb-item current">
                                 <a onclick="window.location.reload(true);">
                                     <h1 class="h2 department-h1"><spring:message code="cart.shoppingCart"/></h1>

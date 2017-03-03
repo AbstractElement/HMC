@@ -32,13 +32,13 @@ public class Robots implements Serializable{
     private String location;
 
     @Column(name = "axes")
-    private int axes;
+    private String axes;
 
     @Column(name = "robot_load")
-    private int load = 0;
+    private String load;
 
     @Column(name = "reach")
-    private int reach;
+    private String reach;
 
     @Column(name = "footprint")
     private String footprint;
@@ -135,28 +135,28 @@ public class Robots implements Serializable{
         this.location = location;
     }
 
-    public int getAxes() {
+    public String getAxes() {
         return axes;
     }
 
-    public void setAxes(int axes) {
+    public void setAxes(String axes) {
         this.axes = axes;
     }
 
-    public int getReach() {
-        return reach;
-    }
-
-    public void setReach(int reach) {
-        this.reach = reach;
-    }
-
-    public int getLoad() {
+    public String getLoad() {
         return load;
     }
 
-    public void setLoad(int load) {
+    public void setLoad(String load) {
         this.load = load;
+    }
+
+    public String getReach() {
+        return reach;
+    }
+
+    public void setReach(String reach) {
+        this.reach = reach;
     }
 
     public String getFootprint() {

@@ -59,9 +59,9 @@
                             <li class="breadcrumb-item gray">
                                 <a href="/"><spring:message code="common.home"/></a>
                             </li>
-                            <li class="breadcrumb-item gray">
-                                <a onclick="goToHmc()"><spring:message code="common.hmc"/></a>
-                            </li>
+                            <%--<li class="breadcrumb-item gray">--%>
+                                <%--<a onclick="goToHmc()"><spring:message code="common.hmc"/></a>--%>
+                            <%--</li>--%>
                             <li class="breadcrumb-item current">
                                 <a onclick="window.location.reload(true);">
                                     <h1 class="h2 department-h1"><spring:message code="comparison.comparison"/></h1>
@@ -172,7 +172,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <%--<c:if test="${!empty comparisonList}">--%>
+                        <c:if test="${!empty comparisonList}">
                             <tr class="comparison-item price" <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
                                 <th><spring:message code="machine.price"/></th>
                                 <c:forEach items="${comparisonList}" var="machine">
@@ -289,11 +289,10 @@
                                     </td>
                                 </c:forEach>
                             </tr>
-                        <%--</c:if>--%>
+                        </c:if>
                         <%------------------------------------%>
 
-                        <%--<c:if test="${!empty comparisonListRobots}">--%>
-
+                        <c:if test="${!empty comparisonListRobots}">
                                 <tr class="comparison-item price" <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
                                     <th><spring:message code="machine.price"/></th>
                                     <c:forEach items="${comparisonListRobots}" var="machine">
@@ -486,7 +485,7 @@
                                 </c:forEach>
                             </c:if>
                         </tr>
-
+                        </c:if>
                         </tbody>
                         <thead>
                         <tr>

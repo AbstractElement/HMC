@@ -59,13 +59,7 @@ public class RobotsDAOImpl implements RobotsDAO {
                 criteria.add(Restrictions.le("year", Integer.parseInt(years[1])));
         }
         if (axesArr != null) {
-            if (!axesArr[0].equals("") && !axesArr[1].equals(""))
-                criteria.add(Restrictions.between("axes", Integer.parseInt(axesArr[0]),
-                        Integer.parseInt(axesArr[1])));
-            else if(!axesArr[0].equals(""))
-                criteria.add(Restrictions.ge("axes", Integer.parseInt(axesArr[0])));
-            else if(!axesArr[1].equals(""))
-                criteria.add(Restrictions.le("axes", Integer.parseInt(axesArr[1])));
+            criteria.add(Restrictions.in("axes", axesArr));
         }
         if (loadArr != null) {
             if (!loadArr[0].equals("") && !loadArr[1].equals(""))
