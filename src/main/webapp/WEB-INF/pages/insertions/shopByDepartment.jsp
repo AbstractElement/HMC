@@ -3,7 +3,7 @@
         <i class="fa fa-list"></i><spring:message code="common.shopByDepartment"/>
     </a>
     <ul class="dropdown-menu">
-        <li><a href="hmc">Drive Heads</a>
-        <li><a href="robots">Robots</a>
+        <li><a href="hmc"><spring:message code="common.dh"/></a>
+        <li><a href="robots"><spring:message code="common.robots"/></a>
     </ul>
 </li>
