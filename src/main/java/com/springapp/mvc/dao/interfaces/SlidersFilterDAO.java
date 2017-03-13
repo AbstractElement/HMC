@@ -1,5 +1,7 @@
 package com.springapp.mvc.dao.interfaces;
 
+import com.springapp.mvc.domain.filters.robotFilters.SlidersFilter;
+
 import java.util.List;
 
 /**
@@ -7,5 +9,9 @@ import java.util.List;
  */
 public interface SlidersFilterDAO {
     public List<String> getAxes();
-
+    public List<String> getLoadValues();
+//    public List<String> getLoadName();
+    public List<String> getReachValues();
+//    public List<String> getReachName();
+    public List<SlidersFilter> getAllElements();
 }

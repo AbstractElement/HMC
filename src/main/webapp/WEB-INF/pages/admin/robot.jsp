@@ -68,7 +68,7 @@
       <ul class="bookmarks">
         <li><a href="#editRobot">Edit robot</a></li>
         <li><a href="#uploadRobot">Upload robot from file</a></li>
-        <%--<li><a href="#filters">Renew filters</a></li>--%>
+        <li><a href="#filters">Renew filters</a></li>
       </ul>
       <div class="box-content">
         <div id="editRobot">
@@ -265,6 +265,22 @@
 
               <div class="btn-submit"><!-- Submit form -->
                 <input type="submit" value="Add / update" class="button"/>
+              </div>
+            </fieldset>
+
+          </form:form>
+        </div>
+
+        <div id="filters">
+          <form:form class="formBox" method="post" action="hmc/renewFilters">
+
+            <fieldset>
+              Renewing filters means forming new filter parameters according to existing DB with Machines.
+              <h3 style="color: red; margin-top:10px">Please, do it every time you've finally changed the items.</h3>
+              As a result, you would see <u>relevant</u> filter parameters.<br><br>
+
+              <div class="btn-submit"><!-- Submit form -->
+                <input type="submit" value="Renew filters" class="button"/>
               </div>
             </fieldset>
 

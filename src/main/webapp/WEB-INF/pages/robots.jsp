@@ -106,9 +106,7 @@
                     <c:forEach items="${machineManufacturer}" var="manufacturer">
                       <li>
                         <input class="le-checkbox" name="manufacturer" type="checkbox" value="${manufacturer.nameManufacturer}"
-                                <c:forEach items="${machineFiltered}" var="machine">
-                                  <c:if test="${manufacturer.nameManufacturer == machine.manufacturer}">checked</c:if>
-                                </c:forEach>/>
+                                  <c:if test="${manufacturer.nameManufacturer == mainFilter.manufacturer}">checked</c:if>>
                         <label>${manufacturer.nameManufacturer}</label>
                       </li>
                     </c:forEach>
@@ -120,9 +118,10 @@
                 <h2>Year</h2>
                 <ul>
                   <%--<c:forEach items="${machineList}" var="machine">--%>
-                    <%--<li>--%>
-                      <%--<select name="producingYear"></select>--%>
-                    <%--</li>--%>
+                    <li>
+                      <input type="text" name="yearFrom" size="5" placeholder="from" value="${mainFilter.yearFrom}">
+                      <input type="text" name="yearTo" size="5" placeholder="to" value="${mainFilter.yearTo}">
+                    </li>
                   <%--</c:forEach>--%>
                 </ul>
                 <hr>
@@ -134,7 +133,9 @@
                           <option disabled selected>Axes is not selected:</option>
                           <c:forEach items="${axesArr}" var="axes">
                             <c:if test="${axes != null}">
-                              <option value="${axes}">${axes} Axes</option>
+                              <option value="${axes}" <c:if test="${mainFilter.axes == axes}">
+                                selected
+                              </c:if>>${axes} Axes</option>
                             </c:if>
                           </c:forEach>
                         </select>
@@ -143,8 +144,45 @@
                 <%--</c:if>--%>
                 <hr>
                 <h2>Load</h2>
+                  <ul>
+                    <li>
+                      <select class="le-select" name="load">
+                        <option disabled selected>Load is not selected:</option>
+                        <c:forEach items="${loadArr}" var="load">
+                          <c:choose>
+                            <c:when test="${load.split(',')[0] == '>'}">
+                              <option value="${load}" <c:if test="${mainFilter.load == load}"> selected </c:if>>
+                              ${load.split(',')[0]} ${load.split(',')[1]} kg</option>
+                            </c:when>
+                            <c:when test="${load.split(',')[0] == '<'}">
+                              <option value="${load}" <c:if test="${mainFilter.load == load}"> selected </c:if>>
+                              ${load.split(',')[0]} ${load.split(',')[1]} kg</option>
+                            </c:when>
+                            <c:when test="${load.split(',')[0] != null}">
+                              <option value="${load}" <c:if test="${mainFilter.load == load}"> selected </c:if>>
+                              = ${load.split(',')[0]}...${load.split(',')[1]} kg</option>
+                            </c:when>
+                          </c:choose>
+                        </c:forEach>
+                      </select>
+                    </li>
+                  </ul>
                 <hr>
                 <h2>Reach</h2>
+                <ul>
+                  <li>
+                    <select class="le-select" name="reach">
+                      <option disabled selected>Reach is not selected:</option>
+                      <c:forEach items="${reachArr}" var="reach">
+                        <c:if test="${reach != null}">
+                          <option value="${reach}" <c:if test="${mainFilter.reach == reach}">
+                            selected
+                          </c:if>>${reach} mm</option>
+                        </c:if>
+                      </c:forEach>
+                    </select>
+                  </li>
+                </ul>
                 <hr>
                 <h2>Location</h2>
                 <c:if test="${!empty machineLocation}">
@@ -152,9 +190,7 @@
                     <c:forEach items="${machineLocation}" var="location">
                       <li>
                         <input class="le-checkbox" name="location" type="checkbox" value="${location.countryName}"
-                                <c:forEach items="${machineFiltered}" var="machine">
-                                  <c:if test="${location.countryName == machine.location}">checked</c:if>
-                                </c:forEach>/>
+                                  <c:if test="${location.countryName == mainFilter.location}">checked</c:if>>
                         <label>${location.countryName}</label>
                       </li>
                     </c:forEach>

@@ -57,10 +57,10 @@ public class RobotsServiceImpl implements RobotsService {
 
     @Override
     @Transactional
-    public List<Robots> listFiltered(String manufacturer, String year, String axes,
+    public List<Robots> listFiltered(String manufacturer, String yearFrom, String yearTo, String axes,
                                      String load, String reach, String location) {
         String[] manufacturerArr = (manufacturer != null) ? manufacturer.split(",") : null;
-        String[] yearArr = (year != null) ? year.split(",") : null;
+        String[] yearArr = {yearFrom, yearTo};
         String[] axesArr = (axes != null) ? axes.split(",") : null;
         String[] loadArr = (load != null) ? load.split(",") : null;
         String[] reachArr = (reach != null) ? reach.split(",") : null;

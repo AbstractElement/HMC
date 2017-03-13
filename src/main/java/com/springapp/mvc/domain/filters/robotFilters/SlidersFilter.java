@@ -15,13 +15,13 @@ public class SlidersFilter {
 
     private String axes;
 
-//    private String load;
+    private String loadValues;
 
-    private String xReach;
+//    private String loadName;
 
-    private String yReach;
+    private String reachValues;
 
-    private String zReach;
+//    private String reachName;
 
     public int getId() {
         return id;
@@ -38,36 +38,36 @@ public class SlidersFilter {
     public void setAxes(String axes) {
         this.axes = axes;
     }
+
+    public String getLoadValues() {
+        return loadValues;
+    }
+
+    public void setLoadValues(String loadValues) {
+        this.loadValues = loadValues;
+    }
 //
-//    public String getLoad() {
-//        return load;
+//    public String getLoadName() {
+//        return loadName;
 //    }
 //
-//    public void setLoad(String load) {
-//        this.load = load;
+//    public void setLoadName(String loadName) {
+//        this.loadName = loadName;
 //    }
 
-    public String getxReach() {
-        return xReach;
+    public String getReachValues() {
+        return reachValues;
     }
 
-    public void setxReach(String xReach) {
-        this.xReach = xReach;
+    public void setReachValues(String reachValues) {
+        this.reachValues = reachValues;
     }
 
-    public String getyReach() {
-        return yReach;
-    }
-
-    public void setyReach(String yReach) {
-        this.yReach = yReach;
-    }
-
-    public String getzReach() {
-        return zReach;
-    }
-
-    public void setzReach(String zReach) {
-        this.zReach = zReach;
-    }
+//    public String getReachName() {
+//        return reachName;
+//    }
+//
+//    public void setReachName(String reachName) {
+//        this.reachName = reachName;
+//    }
 }

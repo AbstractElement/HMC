@@ -62,13 +62,12 @@ public class RobotsDAOImpl implements RobotsDAO {
             criteria.add(Restrictions.in("axes", axesArr));
         }
         if (loadArr != null) {
-            if (!loadArr[0].equals("") && !loadArr[1].equals(""))
-                criteria.add(Restrictions.between("load", Integer.parseInt(loadArr[0]),
-                        Integer.parseInt(loadArr[1])));
-            else if(!loadArr[0].equals(""))
-                criteria.add(Restrictions.ge("load", Integer.parseInt(loadArr[0])));
-            else if(!loadArr[1].equals(""))
-                criteria.add(Restrictions.le("load", Integer.parseInt(loadArr[1])));
+            if(loadArr[0].equals("<"))
+                criteria.add(Restrictions.ge("load", loadArr[1]));
+            else if(loadArr[0].equals(">"))
+                criteria.add(Restrictions.le("load", loadArr[1]));
+            else if (!loadArr[0].equals("") && !loadArr[1].equals(""))
+                criteria.add(Restrictions.between("load", loadArr[0], loadArr[1]));
         }
         if (reachArr != null) {
             if (!reachArr[0].equals("") && !reachArr[1].equals(""))

@@ -1,6 +1,7 @@
 package com.springapp.mvc.web;
 
 import com.springapp.mvc.domain.filters.robotFilters.LocationFilter;
+import com.springapp.mvc.domain.filters.robotFilters.MainFilter;
 import com.springapp.mvc.domain.filters.robotFilters.ManufacturerFilter;
 import com.springapp.mvc.domain.hmc.Order;
 import com.springapp.mvc.domain.robots.Robots;
@@ -129,34 +130,35 @@ public class MachineController {
     @RequestMapping(value = "/robots", method = RequestMethod.GET)
     public void getRobots(Map<String, Object> map){
         List<Robots> robotsList = robotsService.listRobots();
-        List<ManufacturerFilter> manufacturerFilters = manufacturerFilterService.listManufacturer();
-        List<LocationFilter> locationFilters = locationFilterService.listLocation();
-        List<String> axesArr = slidersFilterService.getAxes();
-        map.put("machineManufacturer", manufacturerFilters);
-        map.put("axesArr", axesArr);
+        map.put("mainFilter", new MainFilter());
+        map.put("machineManufacturer", manufacturerFilterService.listManufacturer());
+        map.put("axesArr", slidersFilterService.getAxes());
+        map.put("loadArr", slidersFilterService.getLoadValues());
+        map.put("reachArr", slidersFilterService.getReachValues());
         map.put("robotsList", robotsList);
-        map.put("machineLocation", locationFilters);
+        map.put("machineLocation", locationFilterService.listLocation());
         putPagesInfo(map, null, robotsList.size());
     }
 
     @RequestMapping(value = "/robot/filter", method = RequestMethod.GET)
-    public String robotFiltered(@RequestParam(value = "perPage", required = false) String perPage,
-                              @RequestParam(value = "manufacturer", required = false) String manufacturer,
-                              @RequestParam(value = "year", required = false) String year,
-                              @RequestParam(value = "axes", required = false) String axes,
-                              @RequestParam(value = "load", required = false) String load,
-                              @RequestParam(value = "xReach", required = false) String reach,
-                              @RequestParam(value = "location", required = false) String location,
+    public String robotFiltered(@ModelAttribute(value = "mainFilter") MainFilter filters,
+                                @RequestParam(value = "perPage", required = false) String perPage,
                               Map<String, Object> map) {
         List<Robots> robotList;
-        if (manufacturer == null && year == null && location == null && axes == null)
+        if (filters.getManufacturer() == null && filters.getYearFrom() == null && filters.getYearTo() == null
+                && filters.getLoad() == null && filters.getLocation() == null && filters.getReach() == null &&
+                filters.getAxes() == null)
             robotList = robotsService.listRobots();
         else
-            robotList = robotsService.listFiltered(manufacturer, year, axes, load, reach, location);
+            robotList = robotsService.listFiltered(filters.getManufacturer(), filters.getYearFrom(), filters.getYearTo(),
+                    filters.getAxes(), filters.getLoad(), filters.getReach(), filters.getLocation());
+        map.put("mainFilter", filters);
         map.put("machineManufacturer", manufacturerFilterService.listManufacturer());
         map.put("machineLocation", locationFilterService.listLocation());
         map.put("axesArr", slidersFilterService.getAxes());
-        map.put("machineFiltered", robotList);
+        map.put("loadArr", slidersFilterService.getLoadValues());
+        map.put("reachArr", slidersFilterService.getReachValues());
+//        map.put("machineFiltered", robotList);
         map.put("robotsList", robotList);
         putPagesInfo(map, perPage, robotList.size());
         return "/robots";

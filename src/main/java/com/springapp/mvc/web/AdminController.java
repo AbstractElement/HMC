@@ -43,6 +43,9 @@ public class AdminController {
     @Autowired
     private LocationFilterService locationFilterService;
 
+    @Autowired
+    private SlidersFilterService slidersFilterService;
+
     @RequestMapping(method = RequestMethod.GET)
     public String admin(HttpServletRequest request) {
         if(request.isUserInRole("ROLE_ADMIN")){
@@ -89,6 +92,7 @@ public class AdminController {
         List<Robots> robotsList = robotsService.listRobots();
         map.put("machine", new Robots());
         map.put("robotList", robotsList);
+        map.put("filters", slidersFilterService.getAllElements());
         putPagesInfo(map, robotsList.size(), 10);
     }
 
