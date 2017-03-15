@@ -1,5 +1,6 @@
 package com.springapp.mvc.web;
 
+import com.springapp.mvc.domain.filters.robotFilters.LoadFilter;
 import com.springapp.mvc.domain.hmc.Hmc;
 
 import com.springapp.mvc.domain.User;
@@ -44,7 +45,7 @@ public class AdminController {
     private LocationFilterService locationFilterService;
 
     @Autowired
-    private SlidersFilterService slidersFilterService;
+    private LoadFilterService loadFilterService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String admin(HttpServletRequest request) {
@@ -91,8 +92,9 @@ public class AdminController {
     public void robot(Map<String, Object> map){
         List<Robots> robotsList = robotsService.listRobots();
         map.put("machine", new Robots());
+        map.put("filterObj", new LoadFilter());
         map.put("robotList", robotsList);
-        map.put("filters", slidersFilterService.getAllElements());
+        map.put("filters", loadFilterService.getLoadValues());
         putPagesInfo(map, robotsList.size(), 10);
     }
 
@@ -161,7 +163,25 @@ public class AdminController {
         return "redirect:/admin/gallery";
     }
     
+    @RequestMapping(value = "/robot/saveLoadFilter", method = RequestMethod.POST)
+    public String saveFilter(@ModelAttribute("filterObj") LoadFilter loadFilter){
+//        if(loadFilter.getNumPosition() != loadFilterService.getLoadFilter(loadFilter.getId()).getNumPosition())
+//            loadFilterService.changeNumPosition(loadFilter);
+        loadFilterService.uploadLoadFilter(loadFilter);
+        return "redirect:/admin/robot";
+    }
+
+    @RequestMapping(value = "/robot/addFilter", method = RequestMethod.POST)
+    public String addFilter(@ModelAttribute("filterObj") LoadFilter loadFilter){
+        loadFilterService.addLoadFilter(loadFilter);
+        return "redirect:/admin/robot";
+    }
 
 
+    @RequestMapping(value = "/robot/delFilter", method = RequestMethod.POST)
+    public String delFilter(@ModelAttribute("filterObj") LoadFilter loadFilter){
+        loadFilterService.deleteLoadFilter(loadFilter);
+        return "redirect:/admin/robot";
+    }
 
 }

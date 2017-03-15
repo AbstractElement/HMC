@@ -16,13 +16,27 @@ CREATE TABLE IF NOT EXISTS `hmc_example`.`location_filter` (
   UNIQUE INDEX `id_UNIQUE` (`countryName` ASC))
 ENGINE = InnoDB;
 
+CREATE TABLE IF NOT EXISTS `hmc_example`.`filter_axes` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `axes` VARCHAR(100) ,
+  `numPosition` INT(11),
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC))
+  ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `hmc_example`.`filter_load` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `loadValue` VARCHAR(100),
+  `numPosition` INT(11),
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC))
+  ENGINE = InnoDB;
+
 CREATE TABLE IF NOT EXISTS `hmc_example`.`sliders_filter` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `axes` VARCHAR(100) ,
   `loadValues` VARCHAR(100),
-  `loadName` VARCHAR(100),
   `reachValues` VARCHAR(100),
-  `reachName` VARCHAR(100),
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC))
   ENGINE = InnoDB;

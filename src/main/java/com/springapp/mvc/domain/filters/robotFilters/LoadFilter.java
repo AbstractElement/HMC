@@ -5,15 +5,16 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * Created by Vladislav on 02.03.2017.
+ * Created by Vladislav on 15.03.2017.
  */
+
 @Entity
-@Table(name = "filter_axes", catalog = "hmc_example")
-public class AxesFilter {
+@Table(name = "filter_load", catalog = "hmc_example")
+public class LoadFilter {
     @Id
     private int id;
 
-    private String axes;
+    private String loadValue;
 
     private int numPosition;
 
@@ -25,19 +26,19 @@ public class AxesFilter {
         this.id = id;
     }
 
-    public String getAxes() {
-        return axes;
-    }
-
-    public void setAxes(String axes) {
-        this.axes = axes;
-    }
-
     public int getNumPosition() {
         return numPosition;
     }
 
     public void setNumPosition(int numPosition) {
         this.numPosition = numPosition;
+    }
+
+    public String getLoadValue() {
+        return loadValue;
+    }
+
+    public void setLoadValue(String loadValue) {
+        this.loadValue = loadValue;
     }
 }

@@ -1,5 +1,6 @@
 package com.springapp.mvc.web;
 
+import com.springapp.mvc.domain.filters.robotFilters.LoadFilter;
 import com.springapp.mvc.domain.filters.robotFilters.LocationFilter;
 import com.springapp.mvc.domain.filters.robotFilters.MainFilter;
 import com.springapp.mvc.domain.filters.robotFilters.ManufacturerFilter;
@@ -17,10 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.GregorianCalendar;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping()
@@ -53,7 +51,10 @@ public class MachineController {
     private LocationFilterService locationFilterService;
 
     @Autowired
-    private SlidersFilterService slidersFilterService;
+    private AxesService axesService;
+
+    @Autowired
+    private LoadFilterService loadFilterService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView home(Map<String,Object> map) {
@@ -132,9 +133,9 @@ public class MachineController {
         List<Robots> robotsList = robotsService.listRobots();
         map.put("mainFilter", new MainFilter());
         map.put("machineManufacturer", manufacturerFilterService.listManufacturer());
-        map.put("axesArr", slidersFilterService.getAxes());
-        map.put("loadArr", slidersFilterService.getLoadValues());
-        map.put("reachArr", slidersFilterService.getReachValues());
+        map.put("axesArr", axesService.getAxes());
+        map.put("loadArr", loadFilterService.getLoadValues());
+        map.put("reachArr", loadFilterService.getLoadValues());//////////////////////change!!!!!
         map.put("robotsList", robotsList);
         map.put("machineLocation", locationFilterService.listLocation());
         putPagesInfo(map, null, robotsList.size());
@@ -155,9 +156,9 @@ public class MachineController {
         map.put("mainFilter", filters);
         map.put("machineManufacturer", manufacturerFilterService.listManufacturer());
         map.put("machineLocation", locationFilterService.listLocation());
-        map.put("axesArr", slidersFilterService.getAxes());
-        map.put("loadArr", slidersFilterService.getLoadValues());
-        map.put("reachArr", slidersFilterService.getReachValues());
+        map.put("axesArr", axesService.getAxes());
+        map.put("loadArr", loadFilterService.getLoadValues());
+        map.put("reachArr", loadFilterService.getLoadValues());/////////////////change!!!!!!!!!!
 //        map.put("machineFiltered", robotList);
         map.put("robotsList", robotList);
         putPagesInfo(map, perPage, robotList.size());

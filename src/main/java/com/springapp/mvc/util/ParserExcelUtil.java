@@ -15,12 +15,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 
 public class ParserExcelUtil {
 
@@ -91,7 +87,7 @@ public class ParserExcelUtil {
         robot.setCondition(df.formatCellValue(rowIterator.next().getCell(1)).trim());
         robot.setLocation(df.formatCellValue(rowIterator.next().getCell(1)).trim());
         robot.setAxes(df.formatCellValue(rowIterator.next().getCell(1)));
-        robot.setLoad(df.formatCellValue(rowIterator.next().getCell(1)));
+        robot.setLoad(Integer.parseInt(df.formatCellValue(rowIterator.next().getCell(1))));
         robot.setReach(df.formatCellValue(rowIterator.next().getCell(1)));
         robot.setFootprint(df.formatCellValue(rowIterator.next().getCell(1)));
         robot.setRepeatability(Integer.parseInt(df.formatCellValue(rowIterator.next().getCell(1))));

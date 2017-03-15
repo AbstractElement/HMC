@@ -132,7 +132,7 @@
                         <select class="le-select" name="axes">
                           <option disabled selected>Axes is not selected:</option>
                           <c:forEach items="${axesArr}" var="axes">
-                            <c:if test="${axes != null}">
+                            <c:if test="${!empty axes}">
                               <option value="${axes}" <c:if test="${mainFilter.axes == axes}">
                                 selected
                               </c:if>>${axes} Axes</option>
@@ -150,17 +150,17 @@
                         <option disabled selected>Load is not selected:</option>
                         <c:forEach items="${loadArr}" var="load">
                           <c:choose>
-                            <c:when test="${load.split(',')[0] == '>'}">
-                              <option value="${load}" <c:if test="${mainFilter.load == load}"> selected </c:if>>
-                              ${load.split(',')[0]} ${load.split(',')[1]} kg</option>
+                            <c:when test="${load.loadValue.split(',')[0] == '>'}">
+                              <option value="${load.loadValue}" <c:if test="${mainFilter.load == load}"> selected </c:if>>
+                              ${load.loadValue.split(',')[0]} ${load.loadValue.split(',')[1]} kg</option>
                             </c:when>
-                            <c:when test="${load.split(',')[0] == '<'}">
-                              <option value="${load}" <c:if test="${mainFilter.load == load}"> selected </c:if>>
-                              ${load.split(',')[0]} ${load.split(',')[1]} kg</option>
+                            <c:when test="${load.loadValue.split(',')[0] == '<'}">
+                              <option value="${load.loadValue}" <c:if test="${mainFilter.load == load}"> selected </c:if>>
+                              ${load.loadValue.split(',')[0]} ${load.loadValue.split(',')[1]} kg</option>
                             </c:when>
-                            <c:when test="${load.split(',')[0] != null}">
-                              <option value="${load}" <c:if test="${mainFilter.load == load}"> selected </c:if>>
-                              = ${load.split(',')[0]}...${load.split(',')[1]} kg</option>
+                            <c:when test="${load.loadValue.split(',')[0] != null}">
+                              <option value="${load.loadValue}" <c:if test="${mainFilter.load == load}"> selected </c:if>>
+                              = ${load.loadValue.split(',')[0]}...${load.loadValue.split(',')[1]} kg</option>
                             </c:when>
                           </c:choose>
                         </c:forEach>

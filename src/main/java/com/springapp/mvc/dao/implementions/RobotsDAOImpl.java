@@ -63,21 +63,21 @@ public class RobotsDAOImpl implements RobotsDAO {
         }
         if (loadArr != null) {
             if(loadArr[0].equals("<"))
-                criteria.add(Restrictions.ge("load", loadArr[1]));
+                criteria.add(Restrictions.le("load", Integer.parseInt(loadArr[1])));
             else if(loadArr[0].equals(">"))
-                criteria.add(Restrictions.le("load", loadArr[1]));
+                criteria.add(Restrictions.ge("load", Integer.parseInt(loadArr[1])));
             else if (!loadArr[0].equals("") && !loadArr[1].equals(""))
-                criteria.add(Restrictions.between("load", loadArr[0], loadArr[1]));
+                criteria.add(Restrictions.between("load", Integer.parseInt(loadArr[0]), Integer.parseInt(loadArr[1])));
         }
-        if (reachArr != null) {
-            if (!reachArr[0].equals("") && !reachArr[1].equals(""))
-                criteria.add(Restrictions.between("reach", Integer.parseInt(reachArr[0]),
-                        Integer.parseInt(reachArr[1])));
-            else if(!reachArr[0].equals(""))
-                criteria.add(Restrictions.ge("reach", Integer.parseInt(reachArr[0])));
-            else if(!reachArr[1].equals(""))
-                criteria.add(Restrictions.le("reach", Integer.parseInt(reachArr[1])));
-        }
+//        if (reachArr != null) {
+//            if (!reachArr[0].equals("") && !reachArr[1].equals(""))
+//                criteria.add(Restrictions.between("reach", Integer.parseInt(reachArr[0]),
+//                        Integer.parseInt(reachArr[1])));
+//            else if(!reachArr[0].equals(""))
+//                criteria.add(Restrictions.ge("reach", Integer.parseInt(reachArr[0])));
+//            else if(!reachArr[1].equals(""))
+//                criteria.add(Restrictions.le("reach", Integer.parseInt(reachArr[1])));
+//        }
         if (locations != null)
             criteria.add(Restrictions.in("location", locations));
         return criteria.list();

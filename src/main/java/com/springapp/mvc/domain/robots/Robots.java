@@ -35,7 +35,7 @@ public class Robots implements Serializable{
     private String axes;
 
     @Column(name = "robot_load")
-    private String load;
+    private int load;
 
     @Column(name = "reach")
     private String reach;
@@ -143,11 +143,11 @@ public class Robots implements Serializable{
         this.axes = axes;
     }
 
-    public String getLoad() {
+    public int getLoad() {
         return load;
     }
 
-    public void setLoad(String load) {
+    public void setLoad(int load) {
         this.load = load;
     }
 

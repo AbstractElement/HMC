@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `hmc_example`.`robot` (
   `robot_condition` varchar(245) DEFAULT NULL,
   `location` varchar(145) DEFAULT NULL,
   `axes` VARCHAR(100) DEFAULT NULL COMMENT 'axis',
-  `robot_load` VARCHAR(100) DEFAULT NULL COMMENT 'kg',
+  `robot_load` int(11) DEFAULT NULL COMMENT 'kg',
   `reach` VARCHAR(145) DEFAULT NULL COMMENT 'like radius, mm',
   `footprint` varchar(145) DEFAULT NULL,
   `repeatability` int(11) DEFAULT NULL COMMENT '0.08',

@@ -272,19 +272,68 @@
         </div>
 
         <div id="filters">
-          <form:form class="formBox" method="post" action="hmc/renewFilters">
-
-            <fieldset>
-              Renewing filters means forming new filter parameters according to existing DB with Machines.
-              <h3 style="color: red; margin-top:10px">Please, do it every time you've finally changed the items.</h3>
-              As a result, you would see <u>relevant</u> filter parameters.<br><br>
-
-              <div class="btn-submit"><!-- Submit form -->
-                <input type="submit" value="Renew filters" class="button"/>
-              </div>
-            </fieldset>
-
+          <h3>Values of load</h3>
+          <hr>
+          <c:forEach items="${filters}" var="filter">
+            <%--${filter.loadValues}--%>
+            <c:if test="${!empty filter.loadValue.split(',')[0] && !empty filter.loadValue.split(',')[1]}">
+            <form:form class="formBox" modelAttribute="filterObj" method="post">
+              <form:input type="hidden" path="id" value="${filter.id}"/>
+              <%--<form:input type="hidden" path="axes" value="${filter.axes}"/>--%>
+              <%--<form:input type="hidden" path="reachValue" value="${filter.reachValues}"/>--%>
+              <table class="table table-bordered table-condensed table-machine">
+                <tr>
+                  <%--<c:choose>--%>
+                    <%--<c:when test="${filter.loadValue.split(',')[0] == '<'}">--%>
+                      <%--<td colspan="3" width="25%">Maximal value</td>--%>
+                    <%--</c:when>--%>
+                    <%--<c:when test="${filter.loadValue.split(',')[0] == '>'}">--%>
+                      <%--<td colspan="3" width="25%">Minimal value</td>--%>
+                    <%--</c:when>--%>
+                  <%--</c:choose>--%>
+                    <td colspan="3" width="25%">Position:</td>
+                    <td colspan="3" width="25%"><form:input path="numPosition" class="le-input form-control"
+                                                          value="${filter.numPosition}" type="number"/></td>
+                    <td colspan="3" width="25%"><form:input path="loadValue" class="le-input form-control"
+                                                            value="${filter.loadValue}" type="text"/></td>
+                    <td colspan="3" width="25%"><input type="submit" formaction="robot/saveLoadFilter"
+                                                       value="Save" class="button" style="font-weight: normal"/></td>
+                    <td colspan="3" width="25%"><input type="submit" formaction="robot/delLoadFilter"
+                                                       value="Delete" class="button" style="font-weight: normal"/></td>
+                </tr>
+              </table>
+            </form:form>
+            </c:if>
+          </c:forEach>
+          <form:form class="formBox" modelAttribute="filterObj" action="robot/addFilter" method="post">
+            <form:input type="hidden" path="id" value="${filter.id}"/>
+            <%--<form:input type="hidden" path="axes" value="${filter.axes}"/>--%>
+            <%--<form:input type="hidden" path="reachValues" value="${filter.reachValues}"/>--%>
+            <table class="table table-bordered table-condensed table-machine">
+              <tr>
+                  <td colspan="3" width="25%">Entry new value (Example: "value1,value2"): </td>
+                  <td colspan="3" width="25%"><form:input path="loadValue" class="le-input form-control" type="text"/></td>
+                  <td colspan="3" width="25%">Entry position: </td>
+                  <td colspan="3" width="25%"><form:input path="numPosition" class="le-input form-control" type="number"/></td>
+                  <td colspan="3" width="25%"><input type="submit"
+                                                     value="Add" class="button" style="font-weight: normal"/></td>
+              </tr>
+            </table>
           </form:form>
+          <hr>
+          <%--<form:form class="formBox" method="post" action="hmc/renewFilters">--%>
+
+            <%--<fieldset>--%>
+              <%--Renewing filters means forming new filter parameters according to existing DB with Machines.--%>
+              <%--<h3 style="color: red; margin-top:10px">Please, do it every time you've finally changed the items.</h3>--%>
+              <%--As a result, you would see <u>relevant</u> filter parameters.<br><br>--%>
+
+              <%--<div class="btn-submit"><!-- Submit form -->--%>
+                <%--<input type="submit" value="Renew filters" class="button"/>--%>
+              <%--</div>--%>
+            <%--</fieldset>--%>
+
+          <%--</form:form>--%>
         </div>
       </div>
     </div>

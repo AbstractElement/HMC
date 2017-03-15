@@ -67,4 +67,5 @@ public class RobotsServiceImpl implements RobotsService {
         String[] locationArr = (location != null) ? location.split(",") : null;
         return robotsDAO.listFiltered(manufacturerArr, yearArr, axesArr, loadArr, reachArr, locationArr);
     }
+
 }

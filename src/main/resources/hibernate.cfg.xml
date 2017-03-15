@@ -20,7 +20,8 @@
         <mapping class="com.springapp.mvc.domain.filters.hmcFilter.BrandFilter"/>
         <mapping class="com.springapp.mvc.domain.filters.robotFilters.ManufacturerFilter"/>
         <mapping class="com.springapp.mvc.domain.filters.robotFilters.LocationFilter"/>
-        <mapping class="com.springapp.mvc.domain.filters.robotFilters.SlidersFilter"/>
+        <mapping class="com.springapp.mvc.domain.filters.robotFilters.AxesFilter"/>
+        <mapping class="com.springapp.mvc.domain.filters.robotFilters.LoadFilter"/>
 
     </session-factory>
 </hibernate-configuration>
