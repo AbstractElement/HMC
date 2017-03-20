@@ -22,6 +22,7 @@
         <mapping class="com.springapp.mvc.domain.filters.robotFilters.LocationFilter"/>
         <mapping class="com.springapp.mvc.domain.filters.robotFilters.AxesFilter"/>
         <mapping class="com.springapp.mvc.domain.filters.robotFilters.LoadFilter"/>
+        <mapping class="com.springapp.mvc.domain.filters.robotFilters.ReachFilter"/>
 
     </session-factory>
 </hibernate-configuration>

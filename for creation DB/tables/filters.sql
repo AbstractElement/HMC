@@ -32,6 +32,15 @@ CREATE TABLE IF NOT EXISTS `hmc_example`.`filter_load` (
   UNIQUE INDEX `id_UNIQUE` (`id` ASC))
   ENGINE = InnoDB;
 
+CREATE TABLE IF NOT EXISTS `hmc_example`.`filter_reach` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `reachValue` VARCHAR(100),
+  `numPosition` INT(11),
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC))
+  ENGINE = InnoDB;
+
+
 CREATE TABLE IF NOT EXISTS `hmc_example`.`sliders_filter` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `axes` VARCHAR(100) ,

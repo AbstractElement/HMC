@@ -88,7 +88,7 @@ public class ParserExcelUtil {
         robot.setLocation(df.formatCellValue(rowIterator.next().getCell(1)).trim());
         robot.setAxes(df.formatCellValue(rowIterator.next().getCell(1)));
         robot.setLoad(Integer.parseInt(df.formatCellValue(rowIterator.next().getCell(1))));
-        robot.setReach(df.formatCellValue(rowIterator.next().getCell(1)));
+        robot.setReach(Integer.parseInt(df.formatCellValue(rowIterator.next().getCell(1))));
         robot.setFootprint(df.formatCellValue(rowIterator.next().getCell(1)));
         robot.setRepeatability(Integer.parseInt(df.formatCellValue(rowIterator.next().getCell(1))));
         robot.setWeight(Integer.parseInt(df.formatCellValue(rowIterator.next().getCell(1))));

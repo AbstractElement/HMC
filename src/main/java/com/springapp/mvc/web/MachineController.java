@@ -1,9 +1,6 @@
 package com.springapp.mvc.web;
 
-import com.springapp.mvc.domain.filters.robotFilters.LoadFilter;
-import com.springapp.mvc.domain.filters.robotFilters.LocationFilter;
 import com.springapp.mvc.domain.filters.robotFilters.MainFilter;
-import com.springapp.mvc.domain.filters.robotFilters.ManufacturerFilter;
 import com.springapp.mvc.domain.hmc.Order;
 import com.springapp.mvc.domain.robots.Robots;
 import com.springapp.mvc.domain.filters.hmcFilter.BrandFilter;
@@ -55,6 +52,9 @@ public class MachineController {
 
     @Autowired
     private LoadFilterService loadFilterService;
+
+    @Autowired
+    private ReachFilterService reachFilterService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView home(Map<String,Object> map) {
@@ -135,7 +135,7 @@ public class MachineController {
         map.put("machineManufacturer", manufacturerFilterService.listManufacturer());
         map.put("axesArr", axesService.getAxes());
         map.put("loadArr", loadFilterService.getLoadValues());
-        map.put("reachArr", loadFilterService.getLoadValues());//////////////////////change!!!!!
+        map.put("reachArr", reachFilterService.getReachValues());
         map.put("robotsList", robotsList);
         map.put("machineLocation", locationFilterService.listLocation());
         putPagesInfo(map, null, robotsList.size());
@@ -158,8 +158,7 @@ public class MachineController {
         map.put("machineLocation", locationFilterService.listLocation());
         map.put("axesArr", axesService.getAxes());
         map.put("loadArr", loadFilterService.getLoadValues());
-        map.put("reachArr", loadFilterService.getLoadValues());/////////////////change!!!!!!!!!!
-//        map.put("machineFiltered", robotList);
+        map.put("reachArr", reachFilterService.getReachValues());
         map.put("robotsList", robotList);
         putPagesInfo(map, perPage, robotList.size());
         return "/robots";

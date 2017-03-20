@@ -174,11 +174,20 @@
                     <select class="le-select" name="reach">
                       <option disabled selected>Reach is not selected:</option>
                       <c:forEach items="${reachArr}" var="reach">
-                        <c:if test="${reach != null}">
-                          <option value="${reach}" <c:if test="${mainFilter.reach == reach}">
-                            selected
-                          </c:if>>${reach} mm</option>
-                        </c:if>
+                        <c:choose>
+                          <c:when test="${reach.reachValue.split(',')[0] == '>'}">
+                            <option value="${reach.reachValue}" <c:if test="${mainFilter.reach == reach}"> selected </c:if>>
+                                ${reach.reachValue.split(',')[0]} ${reach.reachValue.split(',')[1]} mm</option>
+                          </c:when>
+                          <c:when test="${reach.reachValue.split(',')[0] == '<'}">
+                            <option value="${reach.reachValue}" <c:if test="${mainFilter.reach == reach}"> selected </c:if>>
+                                ${reach.reachValue.split(',')[0]} ${reach.reachValue.split(',')[1]} mm</option>
+                          </c:when>
+                          <c:when test="${reach.reachValue.split(',')[0] != null}">
+                            <option value="${reach.reachValue}" <c:if test="${mainFilter.reach == reach}"> selected </c:if>>
+                              = ${reach.reachValue.split(',')[0]}...${reach.reachValue.split(',')[1]} mm</option>
+                          </c:when>
+                        </c:choose>
                       </c:forEach>
                     </select>
                   </li>

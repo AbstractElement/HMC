@@ -1,6 +1,7 @@
 package com.springapp.mvc.web;
 
 import com.springapp.mvc.domain.filters.robotFilters.LoadFilter;
+import com.springapp.mvc.domain.filters.robotFilters.ReachFilter;
 import com.springapp.mvc.domain.hmc.Hmc;
 
 import com.springapp.mvc.domain.User;
@@ -46,6 +47,9 @@ public class AdminController {
 
     @Autowired
     private LoadFilterService loadFilterService;
+
+    @Autowired
+    private ReachFilterService reachFilterService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String admin(HttpServletRequest request) {
@@ -93,8 +97,10 @@ public class AdminController {
         List<Robots> robotsList = robotsService.listRobots();
         map.put("machine", new Robots());
         map.put("filterObj", new LoadFilter());
+        map.put("reachObj", new ReachFilter());
         map.put("robotList", robotsList);
         map.put("filters", loadFilterService.getLoadValues());
+        map.put("filtersReach", reachFilterService.getReachValues());
         putPagesInfo(map, robotsList.size(), 10);
     }
 
@@ -165,8 +171,6 @@ public class AdminController {
     
     @RequestMapping(value = "/robot/saveLoadFilter", method = RequestMethod.POST)
     public String saveFilter(@ModelAttribute("filterObj") LoadFilter loadFilter){
-//        if(loadFilter.getNumPosition() != loadFilterService.getLoadFilter(loadFilter.getId()).getNumPosition())
-//            loadFilterService.changeNumPosition(loadFilter);
         loadFilterService.uploadLoadFilter(loadFilter);
         return "redirect:/admin/robot";
     }
@@ -181,6 +185,25 @@ public class AdminController {
     @RequestMapping(value = "/robot/delFilter", method = RequestMethod.POST)
     public String delFilter(@ModelAttribute("filterObj") LoadFilter loadFilter){
         loadFilterService.deleteLoadFilter(loadFilter);
+        return "redirect:/admin/robot";
+    }
+
+    @RequestMapping(value = "/robot/saveReachFilter", method = RequestMethod.POST)
+    public String saveReachFilter(@ModelAttribute("reachObj") ReachFilter reachFilter){
+        reachFilterService.uploadReachFilter(reachFilter);
+        return "redirect:/admin/robot";
+    }
+
+    @RequestMapping(value = "/robot/addReachFilter", method = RequestMethod.POST)
+    public String addReachFilter(@ModelAttribute("reachObj") ReachFilter reachFilter){
+        reachFilterService.addReachFilter(reachFilter);
+        return "redirect:/admin/robot";
+    }
+
+
+    @RequestMapping(value = "/robot/delReachFilter", method = RequestMethod.POST)
+    public String delReachFilter(@ModelAttribute("reachObj") ReachFilter reachFilter){
+        reachFilterService.deleteReachFilter(reachFilter);
         return "redirect:/admin/robot";
     }
 
