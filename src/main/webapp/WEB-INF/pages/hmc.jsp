@@ -115,6 +115,38 @@
                         </c:if>
                         <hr>
 
+                        <h2>Producing Country</h2>
+                        <c:if test="${!empty machineProducingCountry}">
+                            <ul>
+                                <c:forEach items="${machineProducingCountry}" var="country">
+                                    <li>
+                                        <input class="le-checkbox" name="country" type="checkbox" value="${country.countryName}"
+                                                <c:forEach items="${machineFiltered}" var="machine">
+                                                    <c:if test="${country.countryName == machine.producingCountry}">checked</c:if>
+                                                </c:forEach>/>
+                                        <label>${country.countryName}</label>
+                                    </li>
+                                </c:forEach>
+                            </ul>
+                        </c:if>
+                        <hr>
+
+                        <h2>Drive Type</h2>
+                        <c:if test="${!empty machineDriveType}">
+                            <ul>
+                                <c:forEach items="${machineDriveType}" var="driveType">
+                                    <li>
+                                        <input class="le-checkbox" name="country" type="checkbox" value="${driveType.driveType}"
+                                                <c:forEach items="${machineFiltered}" var="machine">
+                                                    <c:if test="${driveType.driveType == machine.driveType}">checked</c:if>
+                                                </c:forEach>/>
+                                        <label>${driveType.driveType}</label>
+                                    </li>
+                                </c:forEach>
+                            </ul>
+                        </c:if>
+                        <hr>
+
                         <%--<!--model-->--%>
                         <%--<h2>Model</h2>--%>
                         <%--<ul>--%>
@@ -126,14 +158,14 @@
                             <%--</c:forEach>--%>
                         <%--</ul>--%>
                         <!--price-->
-                        <h2>Price</h2>
-                        <ul>
-                            <li>
-                                <input class="le-input" name="priceFrom" type="text" placeholder="from" size="5">
-                                <input class="le-input" name="priceTo" type="text" placeholder="to" size="5">
-                            </li>
-                        </ul>
-                        <hr>
+                        <%--<h2>Price</h2>--%>
+                        <%--<ul>--%>
+                            <%--<li>--%>
+                                <%--<input class="le-input" name="priceFrom" type="text" placeholder="from" size="5">--%>
+                                <%--<input class="le-input" name="priceTo" type="text" placeholder="to" size="5">--%>
+                            <%--</li>--%>
+                        <%--</ul>--%>
+                        <%--<hr>--%>
                     </div>
                     <div class="place-order-button">
                         <input class="le-button-huge" type="submit" value="Filter">

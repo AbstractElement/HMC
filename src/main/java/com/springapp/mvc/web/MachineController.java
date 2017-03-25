@@ -1,6 +1,6 @@
 package com.springapp.mvc.web;
 
-import com.springapp.mvc.domain.filters.robotFilters.MainFilter;
+import com.springapp.mvc.domain.filters.robotFilters.MainRobotFilter;
 import com.springapp.mvc.domain.hmc.Order;
 import com.springapp.mvc.domain.robots.Robots;
 import com.springapp.mvc.domain.filters.hmcFilter.BrandFilter;
@@ -56,6 +56,9 @@ public class MachineController {
     @Autowired
     private ReachFilterService reachFilterService;
 
+    @Autowired
+    private DriveTypeFilterService driveTypeFilterService;
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView home(Map<String,Object> map) {
         putMachinesForBlocks(map);
@@ -102,9 +105,10 @@ public class MachineController {
     @RequestMapping(value = "/hmc", method = RequestMethod.GET)
     public void hmc(Map<String, Object> map) {
         List<Hmc> machineList = hmcService.listMachine();
-        List<BrandFilter> machineBrands = brandFilterService.listBrand();
         map.put("machineList", machineList);
-        map.put("machineBrands", machineBrands);
+        map.put("machineBrands", brandFilterService.listBrand());
+        map.put("machineProducingCountry", locationFilterService.listLiveToolLocation());
+        map.put("machineDriveType", driveTypeFilterService.driveTypeList());
         putPagesInfo(map, null, machineList.size());
     }
 
@@ -131,18 +135,18 @@ public class MachineController {
     @RequestMapping(value = "/robots", method = RequestMethod.GET)
     public void getRobots(Map<String, Object> map){
         List<Robots> robotsList = robotsService.listRobots();
-        map.put("mainFilter", new MainFilter());
+        map.put("mainFilter", new MainRobotFilter());
         map.put("machineManufacturer", manufacturerFilterService.listManufacturer());
         map.put("axesArr", axesService.getAxes());
         map.put("loadArr", loadFilterService.getLoadValues());
         map.put("reachArr", reachFilterService.getReachValues());
         map.put("robotsList", robotsList);
-        map.put("machineLocation", locationFilterService.listLocation());
+        map.put("machineLocation", locationFilterService.listRobotLocation());
         putPagesInfo(map, null, robotsList.size());
     }
 
     @RequestMapping(value = "/robot/filter", method = RequestMethod.GET)
-    public String robotFiltered(@ModelAttribute(value = "mainFilter") MainFilter filters,
+    public String robotFiltered(@ModelAttribute(value = "mainFilter") MainRobotFilter filters,
                                 @RequestParam(value = "perPage", required = false) String perPage,
                               Map<String, Object> map) {
         List<Robots> robotList;
@@ -155,7 +159,7 @@ public class MachineController {
                     filters.getAxes(), filters.getLoad(), filters.getReach(), filters.getLocation());
         map.put("mainFilter", filters);
         map.put("machineManufacturer", manufacturerFilterService.listManufacturer());
-        map.put("machineLocation", locationFilterService.listLocation());
+        map.put("machineLocation", locationFilterService.listRobotLocation());
         map.put("axesArr", axesService.getAxes());
         map.put("loadArr", loadFilterService.getLoadValues());
         map.put("reachArr", reachFilterService.getReachValues());

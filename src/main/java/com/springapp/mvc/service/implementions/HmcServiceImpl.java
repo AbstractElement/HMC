@@ -69,4 +69,21 @@ public class HmcServiceImpl implements HmcService {
         return hmcDAO.newArrivalsList();
     }
 
+    @Override
+    @Transactional
+    public List<String> getLocationList() {
+        return hmcDAO.getLocationList();
+    }
+
+    @Override
+    @Transactional
+    public List<String> getBrandsList() {
+        return hmcDAO.getBrandsList();
+    }
+
+    @Override
+    @Transactional
+    public List<String> getDriveType() {
+        return hmcDAO.getDriveTypeList();
+    }
 }

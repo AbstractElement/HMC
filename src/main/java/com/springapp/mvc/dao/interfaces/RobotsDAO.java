@@ -14,4 +14,5 @@ public interface RobotsDAO {
     public void editRobot(Robots robot);
     public List<Robots> listFiltered(String[] manufacturers, String[] years,
                                      String[] axesArr, String[] loadArr, String[] reachArr, String[] locations);
+    public List<String> getLocationList();
 }

@@ -1,4 +1,4 @@
-package com.springapp.mvc.domain.filters.robotFilters;
+package com.springapp.mvc.domain.filters;
 
 import javax.persistence.*;
 
@@ -7,7 +7,7 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name = "location_filter", catalog = "hmc_example")
+@Table(name = "filter_location", catalog = "hmc_example")
 public class LocationFilter {
     @GeneratedValue
     private int id;
@@ -15,6 +15,8 @@ public class LocationFilter {
     @Id
     @Column(name = "countryName")
     private String countryName;
+
+    private String typeProduct;
 
     public int getId() {
         return id;
@@ -30,5 +32,13 @@ public class LocationFilter {
 
     public void setCountryName(String countryName) {
         this.countryName = countryName;
+    }
+
+    public String getTypeProduct() {
+        return typeProduct;
+    }
+
+    public void setTypeProduct(String typeProduct) {
+        this.typeProduct = typeProduct;
     }
 }

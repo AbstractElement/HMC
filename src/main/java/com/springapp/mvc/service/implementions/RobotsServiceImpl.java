@@ -68,4 +68,8 @@ public class RobotsServiceImpl implements RobotsService {
         return robotsDAO.listFiltered(manufacturerArr, yearArr, axesArr, loadArr, reachArr, locationArr);
     }
 
+    @Override
+    public List<String> getLocationList() {
+        return robotsDAO.getLocationList();
+    }
 }

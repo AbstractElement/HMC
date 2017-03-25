@@ -1,6 +1,6 @@
 package com.springapp.mvc.dao.interfaces;
 
-import com.springapp.mvc.domain.filters.robotFilters.LocationFilter;
+import com.springapp.mvc.domain.filters.LocationFilter;
 
 import java.util.List;
 
@@ -9,6 +9,8 @@ import java.util.List;
  */
 public interface LocationFilterDAO {
     public List<LocationFilter> listLocation();
-    public void addLocation(String location);
+    public void addLocation(LocationFilter location);
     public LocationFilter getLocation(String location);
+    public List<LocationFilter> listRobotLocation();
+    public List<LocationFilter> listLiveToolLocation();
 }

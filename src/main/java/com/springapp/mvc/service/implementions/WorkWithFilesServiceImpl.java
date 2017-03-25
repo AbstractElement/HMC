@@ -4,12 +4,10 @@ package com.springapp.mvc.service.implementions;
 import com.springapp.mvc.dao.interfaces.*;
 
 
-import com.springapp.mvc.domain.filters.robotFilters.ManufacturerFilter;
 import com.springapp.mvc.domain.hmc.Hmc;
 
 
 import com.springapp.mvc.domain.robots.Robots;
-import com.springapp.mvc.service.interfaces.RobotsService;
 import com.springapp.mvc.service.interfaces.WorkWithFilesService;
 import com.springapp.mvc.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +24,6 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
-import java.util.Map;
-import java.util.TreeMap;
 
 @Service
 public class WorkWithFilesServiceImpl implements WorkWithFilesService {
@@ -94,7 +90,6 @@ public class WorkWithFilesServiceImpl implements WorkWithFilesService {
                 File uploadFile = UploadMultipartFileUtil.uploadFile(path, machines[i]);
                 Hmc machine = ParserExcelUtil.readHmc(uploadFile);
                 hmcDAO.addMachine(machine);
-                brandFilterDAO.addBrand(machine.getBrand());
                 uploadFile.delete();
                 System.out.println("Successfully uploaded machine: " + machines[i].getOriginalFilename());
             } catch (IOException e) {
@@ -111,7 +106,6 @@ public class WorkWithFilesServiceImpl implements WorkWithFilesService {
                 Robots robots = ParserExcelUtil.readRobot(uploadFile);
                 robotsDAO.addRobot(robots);
                 manufacturerFilterDAO.addManufacturer(robots.getManufacturer());
-                locationFilterDAO.addLocation(robots.getLocation());
                 uploadFile.delete();
                 System.out.println("Successfully uploaded machine: " + machines[i].getOriginalFilename());
             } catch (IOException e) {

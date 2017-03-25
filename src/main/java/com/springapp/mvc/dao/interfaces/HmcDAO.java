@@ -13,4 +13,7 @@ public interface HmcDAO {
     public void editMachine(Hmc machine);
     public List<Hmc> randomListMachine();
     public List<Hmc> newArrivalsList();
+    public List<String> getLocationList();
+    public List<String> getBrandsList();
+    public List<String> getDriveTypeList();
 }

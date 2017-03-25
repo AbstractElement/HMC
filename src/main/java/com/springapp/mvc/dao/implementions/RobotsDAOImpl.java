@@ -82,4 +82,9 @@ public class RobotsDAOImpl implements RobotsDAO {
         return criteria.list();
     }
 
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<String> getLocationList() {
+        return sessionFactory.getCurrentSession().createQuery("select distinct location from Robots ").list();
+    }
 }

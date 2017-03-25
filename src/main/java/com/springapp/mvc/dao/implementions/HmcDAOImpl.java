@@ -99,4 +99,21 @@ public class HmcDAOImpl implements HmcDAO {
             return query.list();
     }
 
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<String> getLocationList() {
+        return sessionFactory.getCurrentSession().createQuery("select distinct producingCountry from Hmc ").list();
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<String> getBrandsList() {
+        return sessionFactory.getCurrentSession().createQuery("select distinct brand from Hmc ").list();
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<String> getDriveTypeList() {
+        return sessionFactory.getCurrentSession().createQuery("select distinct driveType from Hmc ").list();
+    }
 }

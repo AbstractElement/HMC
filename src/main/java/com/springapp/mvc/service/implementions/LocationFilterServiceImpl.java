@@ -1,7 +1,7 @@
 package com.springapp.mvc.service.implementions;
 
 import com.springapp.mvc.dao.interfaces.LocationFilterDAO;
-import com.springapp.mvc.domain.filters.robotFilters.LocationFilter;
+import com.springapp.mvc.domain.filters.LocationFilter;
 import com.springapp.mvc.service.interfaces.LocationFilterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -24,12 +24,22 @@ public class LocationFilterServiceImpl implements LocationFilterService {
     }
 
     @Override
-    public void addLocation(String location) {
+    public void addLocation(LocationFilter location) {
         locationFilterDAO.addLocation(location);
     }
 
     @Override
     public LocationFilter getLocation(String location) {
         return locationFilterDAO.getLocation(location);
+    }
+
+    @Override
+    public List<LocationFilter> listRobotLocation() {
+        return locationFilterDAO.listRobotLocation();
+    }
+
+    @Override
+    public List<LocationFilter> listLiveToolLocation() {
+        return locationFilterDAO.listLiveToolLocation();
     }
 }

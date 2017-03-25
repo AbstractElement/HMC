@@ -9,9 +9,10 @@ CREATE TABLE IF NOT EXISTS `hmc_example`.`manufacturer_filter` (
   UNIQUE INDEX `id_UNIQUE` (`nameManufacturer` ASC))
 ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `hmc_example`.`location_filter` (
+CREATE TABLE IF NOT EXISTS `hmc_example`.`filter_location` (
   `id` INT(11) NOT NULL,
   `countryName` VARCHAR(255) NOT NULL,
+  'typeProduct' VARCHAR(255) NOT NULL,
   PRIMARY KEY (`countryName`),
   UNIQUE INDEX `id_UNIQUE` (`countryName` ASC))
 ENGINE = InnoDB;
@@ -40,15 +41,15 @@ CREATE TABLE IF NOT EXISTS `hmc_example`.`filter_reach` (
   UNIQUE INDEX `id_UNIQUE` (`id` ASC))
   ENGINE = InnoDB;
 
-
-CREATE TABLE IF NOT EXISTS `hmc_example`.`sliders_filter` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `axes` VARCHAR(100) ,
-  `loadValues` VARCHAR(100),
-  `reachValues` VARCHAR(100),
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC))
-  ENGINE = InnoDB;
+#
+# CREATE TABLE IF NOT EXISTS `hmc_example`.`sliders_filter` (
+#   `id` INT(11) NOT NULL AUTO_INCREMENT,
+#   `axes` VARCHAR(100) ,
+#   `loadValues` VARCHAR(100),
+#   `reachValues` VARCHAR(100),
+#   PRIMARY KEY (`id`),
+#   UNIQUE INDEX `id_UNIQUE` (`id` ASC))
+#   ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `hmc_example`.`brand_filter` (
   `brand` VARCHAR(255) NOT NULL,
@@ -56,3 +57,10 @@ CREATE TABLE IF NOT EXISTS `hmc_example`.`brand_filter` (
   PRIMARY KEY (`brand`),
   UNIQUE INDEX `brand_UNIQUE` (`brand` ASC))
 ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `hmc_example`.`filter_driveType` (
+  `driveType` VARCHAR(255) NOT NULL,
+  `num` INT(11) NOT NULL,
+  PRIMARY KEY (`driveType`),
+  UNIQUE INDEX `brand_UNIQUE` (`driveType` ASC))
+  ENGINE = InnoDB;

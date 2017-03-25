@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-public class MainFilter {
+public class MainRobotFilter {
     private String manufacturer;
     private String axes;
     private String load;

@@ -380,7 +380,7 @@
 </div>
 
 <div id="filters">
-    <form:form class="formBox" method="post" action="hmc/renewFilters">
+    <form:form class="formBox" method="post" action="hmc/renewFiltersLiveTool">
 
         <fieldset>
             Renewing filters means forming new filter parameters according to existing DB with Machines.
