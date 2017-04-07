@@ -1,11 +1,9 @@
-package com.springapp.mvc.web;
+package com.springapp.mvc.web.products;
 
-import com.springapp.mvc.domain.filters.robotFilters.MainRobotFilter;
-import com.springapp.mvc.domain.hmc.Order;
-import com.springapp.mvc.domain.robots.Robots;
 import com.springapp.mvc.domain.filters.hmcFilter.BrandFilter;
+import com.springapp.mvc.domain.filters.hmcFilter.MainLiveToolFilter;
 import com.springapp.mvc.domain.hmc.Hmc;
-
+import com.springapp.mvc.domain.hmc.Order;
 import com.springapp.mvc.service.interfaces.*;
 import com.springapp.mvc.util.EmailUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,19 +13,24 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.Map;
 
+/**
+ * Created by Vladislav on 07.04.2017.
+ */
 @Controller
-@RequestMapping()
-public class MachineController {
-    @Autowired
-    private RobotsService robotsService;
-
-    @Autowired
-    private OrderService orderService;
-
+public class ProductLiveToolController {
     @Autowired
     private HmcService hmcService;
+
+    @Autowired
+    private ProductController productController;
+
+    @Autowired
+    private LocationFilterService locationFilterService;
 
     @Autowired
     private BrandFilterService brandFilterService;
@@ -36,136 +39,49 @@ public class MachineController {
     private WorkWithFilesService workWithFilesService;
 
     @Autowired
-    private UserService userService;
-
-    @Autowired
-    private EmailUtil emailUtil;
-
-    @Autowired
-    private ManufacturerFilterService manufacturerFilterService;
-
-    @Autowired
-    private LocationFilterService locationFilterService;
-
-    @Autowired
-    private AxesService axesService;
-
-    @Autowired
-    private LoadFilterService loadFilterService;
-
-    @Autowired
-    private ReachFilterService reachFilterService;
+    private OrderService orderService;
 
     @Autowired
     private DriveTypeFilterService driveTypeFilterService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView home(Map<String,Object> map) {
-        putMachinesForBlocks(map);
-        return new ModelAndView("index", map);
-    }
+    @Autowired
+    private ToolHolderService toolHolderService;
 
-    @RequestMapping(value = "/hmc/authentication", method = RequestMethod.GET)
-    public void authentication(@RequestParam(value = "error", required = false) String error,
-                               @RequestParam(value = "logout", required = false) String logout,
-                               Map<String, Object> map) {
-        if (error != null) {
-            map.put("error", "Invalid username or password!");
-        }
-        if (logout != null) {
-            map.put("msg", "You've been logged out successfully.");
-        }
-    }
-
-    @RequestMapping(value = "/hmc/authentication", method = RequestMethod.POST)
-    public void createNewAccount(@RequestParam(value = "username") String username,
-                                 @RequestParam(value = "password") String password,
-                                 @RequestParam(value = "email") String email,
-                                 Map<String, Object> map) {
-        userService.createNewAccount(username, password, email, "ROLE_USER");
-        map.put("msg", "You've been registered successfully.");
-    }
-
-    private void putPagesInfo(Map<String, Object> map, String perPage, int itemsNum) {
-        int itemsPerPage = (perPage == null) ? 9 : Integer.parseInt(perPage);
-        int pagesNum = itemsNum / itemsPerPage;
-        if (itemsNum % itemsPerPage != 0) {
-            pagesNum++;
-        }
-        map.put("itemsPerPage", itemsPerPage);
-        map.put("itemsNum", itemsNum);
-        map.put("pagesNum", pagesNum);
-    }
-
-    private void putMachinesForBlocks(Map<String, Object> map) {
-        map.put("randomMachineList", hmcService.randomListMachine());
-        map.put("newArrivalsList", hmcService.newArrivalsList());
-    }
+    @Autowired
+    private EmailUtil emailUtil;
 
     @RequestMapping(value = "/hmc", method = RequestMethod.GET)
     public void hmc(Map<String, Object> map) {
         List<Hmc> machineList = hmcService.listMachine();
+        map.put("mainFilter", new MainLiveToolFilter());
         map.put("machineList", machineList);
         map.put("machineBrands", brandFilterService.listBrand());
         map.put("machineProducingCountry", locationFilterService.listLiveToolLocation());
         map.put("machineDriveType", driveTypeFilterService.driveTypeList());
-        putPagesInfo(map, null, machineList.size());
+        map.put("machineToolHolder", toolHolderService.toolHolderList());
+        productController.putPagesInfo(map, null, machineList.size());
     }
 
     @RequestMapping(value = "/hmc/filter", method = RequestMethod.GET)
     public String hmcFiltered(@RequestParam(value = "perPage", required = false) String perPage,
-                            @RequestParam(value = "brand", required = false) String brands,
-                            @RequestParam(value = "model", required = false) String model,
-                            @RequestParam(value = "priceFrom", required = false) String priceFrom,
-                            @RequestParam(value = "priceTo", required = false) String priceTo,
-                            Map<String, Object> map) {
+                              @ModelAttribute(value = "liveToolObj") MainLiveToolFilter mainLiveToolFilter,
+                              Map<String, Object> map) {
         List<Hmc> machineList;
-        if (brands == null && model == null && priceFrom == null && priceTo == null)
+        if (mainLiveToolFilter.getBrand() == null && mainLiveToolFilter.getCountry() == null
+                && mainLiveToolFilter.getDriveType() == null && mainLiveToolFilter.getVDI() == null)
             machineList = hmcService.listMachine();
         else
-            machineList = hmcService.listFiltered(brands, model, priceFrom, priceTo);
+            machineList = hmcService.listFiltered(mainLiveToolFilter.getBrand(), mainLiveToolFilter.getCountry(),
+                    mainLiveToolFilter.getDriveType(), mainLiveToolFilter.getVDI());
         List<BrandFilter> machineBrands = brandFilterService.listBrand();
+        map.put("liveToolObj", mainLiveToolFilter);
         map.put("machineBrands", machineBrands);
-        map.put("machineFiltered", machineList);
         map.put("machineList", machineList);
-        putPagesInfo(map, perPage, machineList.size());
+        map.put("machineProducingCountry", locationFilterService.listLiveToolLocation());
+        map.put("machineDriveType", driveTypeFilterService.driveTypeList());
+        map.put("machineToolHolder", toolHolderService.toolHolderList());
+        productController.putPagesInfo(map, perPage, machineList.size());
         return "/hmc";
-    }
-
-    @RequestMapping(value = "/robots", method = RequestMethod.GET)
-    public void getRobots(Map<String, Object> map){
-        List<Robots> robotsList = robotsService.listRobots();
-        map.put("mainFilter", new MainRobotFilter());
-        map.put("machineManufacturer", manufacturerFilterService.listManufacturer());
-        map.put("axesArr", axesService.getAxes());
-        map.put("loadArr", loadFilterService.getLoadValues());
-        map.put("reachArr", reachFilterService.getReachValues());
-        map.put("robotsList", robotsList);
-        map.put("machineLocation", locationFilterService.listRobotLocation());
-        putPagesInfo(map, null, robotsList.size());
-    }
-
-    @RequestMapping(value = "/robot/filter", method = RequestMethod.GET)
-    public String robotFiltered(@ModelAttribute(value = "mainFilter") MainRobotFilter filters,
-                                @RequestParam(value = "perPage", required = false) String perPage,
-                              Map<String, Object> map) {
-        List<Robots> robotList;
-        if (filters.getManufacturer() == null && filters.getYearFrom() == null && filters.getYearTo() == null
-                && filters.getLoad() == null && filters.getLocation() == null && filters.getReach() == null &&
-                filters.getAxes() == null)
-            robotList = robotsService.listRobots();
-        else
-            robotList = robotsService.listFiltered(filters.getManufacturer(), filters.getYearFrom(), filters.getYearTo(),
-                    filters.getAxes(), filters.getLoad(), filters.getReach(), filters.getLocation());
-        map.put("mainFilter", filters);
-        map.put("machineManufacturer", manufacturerFilterService.listManufacturer());
-        map.put("machineLocation", locationFilterService.listRobotLocation());
-        map.put("axesArr", axesService.getAxes());
-        map.put("loadArr", loadFilterService.getLoadValues());
-        map.put("reachArr", reachFilterService.getReachValues());
-        map.put("robotsList", robotList);
-        putPagesInfo(map, perPage, robotList.size());
-        return "/robots";
     }
 
     @RequestMapping(value = "/hmc{productId}", method = RequestMethod.GET)
@@ -178,23 +94,7 @@ public class MachineController {
         return new ModelAndView("hmc/machine", map);
     }
 
-    @RequestMapping(value = "/robot{productId}", method = RequestMethod.GET)
-    public ModelAndView robotItem(@PathVariable("productId") String productId, Map<String, Object> map) {
-        Robots machine = robotsService.getRobot(productId);
-        if (machine == null) {
-            return new ModelAndView("error/error404");
-        }
-        map.put("machine", machine);
-        return new ModelAndView("robot/machine", map);
-    }
 
-    @RequestMapping(value = "/hmc/compare", method = RequestMethod.GET)
-    public void comparison(@RequestParam(required = false) String itemsId, Map<String, Object> map) {
-        if (itemsId != null) {
-            map.put("comparisonList", hmcService.getMachinesList(itemsId.split(",")));
-            map.put("comparisonListRobots", robotsService.getRobotsList(itemsId.split(",")));
-        }
-    }
 
     @RequestMapping(value = "/hmc/wishList", method = RequestMethod.GET)
     public void wishList(@RequestParam(required = false) String itemsId, Map<String, Object> map) {
@@ -284,6 +184,5 @@ public class MachineController {
         map.put("orderId", orderId);
         map.put("emptyTheCart", emptyTheCart);
     }
-
 
 }

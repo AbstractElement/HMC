@@ -64,3 +64,10 @@ CREATE TABLE IF NOT EXISTS `hmc_example`.`filter_driveType` (
   PRIMARY KEY (`driveType`),
   UNIQUE INDEX `brand_UNIQUE` (`driveType` ASC))
   ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `hmc_example`.`filter_toolHolder` (
+  `toolHolder` VARCHAR(255) NOT NULL,
+  `num` INT(11) NOT NULL,
+  PRIMARY KEY (`toolHolder`),
+  UNIQUE INDEX `brand_UNIQUE` (`toolHolder` ASC))
+  ENGINE = InnoDB;

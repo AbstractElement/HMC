@@ -24,6 +24,7 @@
         <mapping class="com.springapp.mvc.domain.filters.robotFilters.LoadFilter"/>
         <mapping class="com.springapp.mvc.domain.filters.robotFilters.ReachFilter"/>
         <mapping class="com.springapp.mvc.domain.filters.hmcFilter.DriveTypeFilter"/>
+        <mapping class="com.springapp.mvc.domain.filters.hmcFilter.ToolHolderFilter"/>
 
     </session-factory>
 </hibernate-configuration>

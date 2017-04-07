@@ -41,29 +41,20 @@ public class HmcDAOImpl implements HmcDAO {
     }
 
     @SuppressWarnings("unchecked")
-    public List<Hmc> listFiltered(String[] brandArr, String[] model, String[] priceRangeArr) {
+    public List<Hmc> listFiltered(String[] brandArr, String[] countriesArr, String[] driveTypesArr, String[] toolHolderArr) {
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Hmc.class);
         if (brandArr != null) {
             criteria.add(Restrictions.in("brand", brandArr));
         }
-        if (model != null) {
-            criteria.add(Restrictions.in("model", model));
+        if (countriesArr != null) {
+            criteria.add(Restrictions.in("producingCountry", countriesArr));
         }
-        if (priceRangeArr != null) {
-            if (!priceRangeArr[0].equals("") && !priceRangeArr[1].equals(""))
-                criteria.add(Restrictions.between("price", Double.parseDouble(priceRangeArr[0]),
-                        Double.parseDouble(priceRangeArr[1])));
-            else if(!priceRangeArr[0].equals(""))
-                criteria.add(Restrictions.ge("price", Double.parseDouble(priceRangeArr[0])));
-            else if(!priceRangeArr[1].equals(""))
-                criteria.add(Restrictions.le("price", Double.parseDouble(priceRangeArr[1])));
+        if (driveTypesArr != null) {
+            criteria.add(Restrictions.in("driveType", driveTypesArr));
         }
-//        if (locationArr != null) {
-//            criteria.add(Restrictions.in("machineLocationEn", locationArr));
-//        }
-//        if (cncArr != null) {
-//            criteria.add(Restrictions.in("systemCNC", cncArr));
-//        }
+        if (toolHolderArr != null) {
+            criteria.add(Restrictions.in("toolHolder", toolHolderArr));
+        }
 //        if (xMotionRangeArr != null) {
 //            criteria.add(Restrictions.between("xMotion", xMotionRangeArr[0], xMotionRangeArr[1]));
 //        }
@@ -115,5 +106,11 @@ public class HmcDAOImpl implements HmcDAO {
     @SuppressWarnings("unchecked")
     public List<String> getDriveTypeList() {
         return sessionFactory.getCurrentSession().createQuery("select distinct driveType from Hmc ").list();
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<String> getToolHolderList() {
+        return sessionFactory.getCurrentSession().createQuery("select distinct toolHolder from Hmc ").list();
     }
 }

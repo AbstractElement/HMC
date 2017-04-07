@@ -65,7 +65,7 @@ public class AdminRobotController {
             locationFilter.setTypeProduct(NamesTypeProducts.ROBOT);
             locationFilterService.addLocation(locationFilter);
         }
-        return "redirect:/admin/hmc";
+        return "redirect:/admin/robot";
     }
 
     @RequestMapping(value = "/robot/edit", method = RequestMethod.POST)

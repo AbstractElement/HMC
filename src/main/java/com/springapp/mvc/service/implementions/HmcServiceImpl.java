@@ -32,11 +32,12 @@ public class HmcServiceImpl implements HmcService {
     }
 
     @Transactional
-    public List<Hmc> listFiltered(String brands, String model, String priceFrom, String priceTo) {
+    public List<Hmc> listFiltered(String brands, String countries, String driveTypes, String toolHolders) {
         String[] brandArr = (brands != null) ? brands.split(",") : null;
-        String[] modelArr = (model != null) ? model.split(",") : null;
-        String[] priceRangeArr = {priceFrom, priceTo};
-        return hmcDAO.listFiltered(brandArr, modelArr, priceRangeArr);
+        String[] countriesArr = (countries != null) ? countries.split(",") : null;
+        String[] driveTypesArr = (driveTypes != null) ? driveTypes.split(",") : null;
+        String[] toolHoldersArr = (toolHolders != null) ? toolHolders.split(",") : null;
+        return hmcDAO.listFiltered(brandArr, countriesArr, driveTypesArr, toolHoldersArr);
     }
 
     private int[] getRangeArr(String range) {
@@ -83,7 +84,13 @@ public class HmcServiceImpl implements HmcService {
 
     @Override
     @Transactional
-    public List<String> getDriveType() {
+    public List<String> getDriveTypeList() {
         return hmcDAO.getDriveTypeList();
+    }
+
+    @Override
+    @Transactional
+    public List<String> getToolHolderList() {
+        return hmcDAO.getToolHolderList();
     }
 }

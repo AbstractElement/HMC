@@ -15,5 +15,6 @@ public interface HmcService {
     public List<Hmc> newArrivalsList();
     public List<String> getLocationList();
     public List<String> getBrandsList();
-    public List<String> getDriveType();
+    public List<String> getDriveTypeList();
+    public List<String> getToolHolderList();
 }

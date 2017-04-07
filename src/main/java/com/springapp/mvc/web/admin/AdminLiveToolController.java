@@ -3,6 +3,7 @@ package com.springapp.mvc.web.admin;
 import com.springapp.mvc.domain.filters.NamesTypeProducts;
 import com.springapp.mvc.domain.filters.LocationFilter;
 import com.springapp.mvc.domain.filters.hmcFilter.DriveTypeFilter;
+import com.springapp.mvc.domain.filters.hmcFilter.ToolHolderFilter;
 import com.springapp.mvc.domain.hmc.Hmc;
 import com.springapp.mvc.service.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,9 @@ public class AdminLiveToolController {
     private DriveTypeFilterService driveTypeFilterService;
 
     @Autowired
+    private ToolHolderService toolHolderService;
+
+    @Autowired
     private HmcService hmcService;
 
     @RequestMapping(value="/hmc", method = RequestMethod.GET)
@@ -62,10 +66,15 @@ public class AdminLiveToolController {
             locationFilterService.addLocation(locationFilter);
         }
         hmcService.getBrandsList().forEach(brandFilterService::addBrand);
-        for(String driveType : hmcService.getDriveType()){
+        for(String driveType : hmcService.getDriveTypeList()){
             DriveTypeFilter driveTypeFilter = new DriveTypeFilter();
             driveTypeFilter.setDriveType(driveType);
             driveTypeFilterService.addDriveType(driveTypeFilter);
+        }
+        for(String toolHolder : hmcService.getToolHolderList()){
+            ToolHolderFilter toolHolderFilter = new ToolHolderFilter();
+            toolHolderFilter.setToolHolder(toolHolder);
+            toolHolderService.addToolHolder(toolHolderFilter);
         }
         return "redirect:/admin/hmc";
     }

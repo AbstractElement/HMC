@@ -26,7 +26,8 @@ public class BrandFilterServiceImpl implements BrandFilterService{
 
     @Override
     @Transactional
-    public List listBrand() {
+    @SuppressWarnings("unchecked")
+    public List<BrandFilter> listBrand() {
         return brandFilterDAO.listBrand();
     }
 

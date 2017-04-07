@@ -69,6 +69,7 @@ public class RobotsServiceImpl implements RobotsService {
     }
 
     @Override
+    @Transactional
     public List<String> getLocationList() {
         return robotsDAO.getLocationList();
     }

@@ -95,7 +95,7 @@
             <h2 style="font-size: 28px; line-height: 52px; color: #3d3d3d"><spring:message code="productFilters"/></h2>
 
             <div class="body bordered" id="filterForm">
-                <form:form action="/hmc/filter" method="get">
+                <form:form action="/hmc/filter" method="get" commandName="liveToolObj" >
                     <div class="category-filter">
 
                         <!-- brands -->
@@ -105,8 +105,8 @@
                                 <c:forEach items="${machineBrands}" var="brands">
                                     <li>
                                         <input class="le-checkbox" name="brand" type="checkbox" value="${brands.brand}"
-                                               <c:forEach items="${machineFiltered}" var="machine">
-                                                   <c:if test="${brands.brand == machine.brand}">checked</c:if>
+                                               <c:forEach items="${liveToolObj.brand}" var="liveToolBrand">
+                                                   <c:if test="${brands.brand == liveToolBrand}">checked</c:if>
                                                </c:forEach>/>
                                         <label>${brands.brand}</label>
                                     </li>
@@ -121,8 +121,8 @@
                                 <c:forEach items="${machineProducingCountry}" var="country">
                                     <li>
                                         <input class="le-checkbox" name="country" type="checkbox" value="${country.countryName}"
-                                                <c:forEach items="${machineFiltered}" var="machine">
-                                                    <c:if test="${country.countryName == machine.producingCountry}">checked</c:if>
+                                                <c:forEach items="${liveToolObj.country}" var="liveToolCountry">
+                                                    <c:if test="${country.countryName == liveToolCountry}">checked</c:if>
                                                 </c:forEach>/>
                                         <label>${country.countryName}</label>
                                     </li>
@@ -136,11 +136,27 @@
                             <ul>
                                 <c:forEach items="${machineDriveType}" var="driveType">
                                     <li>
-                                        <input class="le-checkbox" name="country" type="checkbox" value="${driveType.driveType}"
-                                                <c:forEach items="${machineFiltered}" var="machine">
-                                                    <c:if test="${driveType.driveType == machine.driveType}">checked</c:if>
+                                        <input class="le-checkbox" name="driveType" type="checkbox" value="${driveType.driveType}"
+                                                <c:forEach items="${liveToolObj.driveType}" var="liveToolDriveType">
+                                                    <c:if test="${driveType.driveType == liveToolDriveType}">checked</c:if>
                                                 </c:forEach>/>
                                         <label>${driveType.driveType}</label>
+                                    </li>
+                                </c:forEach>
+                            </ul>
+                        </c:if>
+                        <hr>
+
+                        <h2>VDI</h2>
+                        <c:if test="${!empty machineToolHolder}">
+                            <ul>
+                                <c:forEach items="${machineToolHolder}" var="toolHolder">
+                                    <li>
+                                        <input class="le-checkbox" name="VDI" type="checkbox" value="${toolHolder.toolHolder}"
+                                                <c:forEach items="${liveToolObj.VDI}" var="liveToolVDI">
+                                                    <c:if test="${toolHolder.toolHolder == liveToolVDI}">checked</c:if>
+                                                </c:forEach>/>
+                                        <label>${toolHolder.toolHolder}</label>
                                     </li>
                                 </c:forEach>
                             </ul>
