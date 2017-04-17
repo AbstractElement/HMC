@@ -62,7 +62,7 @@ public class ProductLiveToolController {
         productController.putPagesInfo(map, null, machineList.size());
     }
 
-    @RequestMapping(value = "/hmc/filter", method = RequestMethod.GET)
+    @RequestMapping(value = "/hmc/filter", method = RequestMethod.POST)
     public String hmcFiltered(@RequestParam(value = "perPage", required = false) String perPage,
                               @ModelAttribute(value = "liveToolObj") MainLiveToolFilter mainLiveToolFilter,
                               Map<String, Object> map) {

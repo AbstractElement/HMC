@@ -9,7 +9,7 @@
 <html lang="en">
 <head>
     <!-- Meta -->
-    <meta charset="utf-8">
+    <meta charset="utf-8" content="text/html">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
@@ -95,7 +95,7 @@
             <h2 style="font-size: 28px; line-height: 52px; color: #3d3d3d"><spring:message code="productFilters"/></h2>
 
             <div class="body bordered" id="filterForm">
-                <form:form action="/hmc/filter" method="get" commandName="liveToolObj" >
+                <form:form action="/hmc/filter" method="post" commandName="liveToolObj" >
                     <div class="category-filter">
 
                         <!-- brands -->
