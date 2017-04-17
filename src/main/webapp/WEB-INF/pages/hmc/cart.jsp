@@ -91,16 +91,16 @@
                         <div class="page-header">
                             <h2 class="page-title">
                                 <spring:message code="cart.shoppingCart"/>
-                                <c:if test="${empty cartList}">
+                                <c:if test="${empty cartListLiveTool && empty cartListRobot}">
                                     <spring:message code="cart.isEmpty"/>
                                 </c:if>
                             </h2>
                         </div>
                     </div>
 
-                <c:if test="${!empty cartList}">
+                <c:if test="${!empty cartListLiveTool}">
 
-                    <c:forEach items="${cartList}" var="machine">
+                    <c:forEach items="${cartListLiveTool}" var="machine">
                         <div class="row no-margin cart-item">
                             <div class="col-xs-12 col-sm-2 no-margin">
                                 <a href="/hmc${machine.productId}" class="thumb-holder">
@@ -141,7 +141,54 @@
                         </div>
                         <!-- /.cart-item -->
                     </c:forEach>
+                </c:if>
 
+                <c:if test="${!empty cartListRobot}">
+
+                    <c:forEach items="${cartListRobot}" var="machine">
+                        <div class="row no-margin cart-item">
+                            <div class="col-xs-12 col-sm-2 no-margin">
+                                <a href="/hmc${machine.productId}" class="thumb-holder">
+                                    <img width="150" height="110" alt="${machine.model}"
+                                         class="attachment-shop_thumbnail wp-post-image"
+                                         src="../resources/images/blank.gif"
+                                         data-echo="../resources/images/products/${machine.photo1}">
+                                </a>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-4 ">
+                                <div class="title">
+                                    <a href="/hmc${machine.productId}">
+                                            ${machine.type}<br>${machine.model}
+                                    </a>
+                                </div>
+                                <div class="brand">${machine.manufacturer}</div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-3 no-margin">
+                                <div class="quantity">
+                                    <div class="le-quantity">
+                                        <a class="minus" onclick="minusFromCart('${machine.productId}')"></a>
+                                        <input name="quantity" readonly="readonly" type="text"
+                                               class="count${machine.productId}"/>
+                                        <a class="plus" onclick="plusToCart('${machine.productId}')"></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-3 no-margin">
+                                <div class="price"
+                                     <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
+                                    $${machine.price}
+                                </div>
+                                <a class="close-btn" onclick="removeFromCart('${machine.productId}');goToCart()"></a>
+                            </div>
+                        </div>
+                        <!-- /.cart-item -->
+                    </c:forEach>
+                </c:if>
+
+                <c:if test="${!empty cartListLiveTool || !empty cartListRobot}">
                     <div <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
                         <h2 class="border right"><spring:message code="cart.cartTotal"/></h2>
                         <div class="value pull-right">$<span class="cart-total"></span></div>

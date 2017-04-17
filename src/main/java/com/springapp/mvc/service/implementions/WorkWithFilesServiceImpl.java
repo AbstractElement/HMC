@@ -3,11 +3,8 @@ package com.springapp.mvc.service.implementions;
 //import com.springapp.mvc.dao.interfaces.CommonDao;
 import com.springapp.mvc.dao.interfaces.*;
 
-
-import com.springapp.mvc.domain.hmc.Hmc;
-
-
-import com.springapp.mvc.domain.robots.Robots;
+import com.springapp.mvc.domain.product.hmc.LiveTool;
+import com.springapp.mvc.domain.product.robots.Robots;
 import com.springapp.mvc.service.interfaces.WorkWithFilesService;
 import com.springapp.mvc.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +26,7 @@ import java.util.Date;
 public class WorkWithFilesServiceImpl implements WorkWithFilesService {
   
     @Autowired
-    private HmcDAO hmcDAO;
+    private LiveToolDAO liveToolDAO;
     
     @Autowired
     private BrandFilterDAO brandFilterDAO;
@@ -46,9 +43,9 @@ public class WorkWithFilesServiceImpl implements WorkWithFilesService {
     @Transactional
     public ResponseEntity<byte[]> getPDFOffer(String path, String products, String company, String director, boolean showPrice) throws Exception {
         String[] productsArr = products.split(";");
-        Hmc[] machines = new Hmc[productsArr.length];
+        LiveTool[] machines = new LiveTool[productsArr.length];
         for (int i = 0; i < machines.length; i++) {
-            machines[i] = hmcDAO.getMachine(productsArr[i].split(",")[0]);
+            machines[i] = liveToolDAO.getMachine(productsArr[i].split(",")[0]);
         }
 
         String pathPdf = GeneratePdfUtil.createPDF(path, products, machines, company, director, showPrice);
@@ -67,7 +64,7 @@ public class WorkWithFilesServiceImpl implements WorkWithFilesService {
 
     @Transactional
     public ResponseEntity<byte[]> getPDFOfferSingle(String path, String productId, String company, String director, boolean showPrice) throws Exception {
-        Hmc machine = hmcDAO.getMachine(productId);
+        LiveTool machine = liveToolDAO.getMachine(productId);
 
         String pathPdf = GeneratePdfUtil.createPDFSingle(path, machine, company, director, showPrice);
 
@@ -88,8 +85,8 @@ public class WorkWithFilesServiceImpl implements WorkWithFilesService {
         for (int i = 0; i < machines.length; i++) {
             try {
                 File uploadFile = UploadMultipartFileUtil.uploadFile(path, machines[i]);
-                Hmc machine = ParserExcelUtil.readHmc(uploadFile);
-                hmcDAO.addMachine(machine);
+                LiveTool machine = ParserExcelUtil.readLiveTool(uploadFile);
+                liveToolDAO.addMachine(machine);
                 uploadFile.delete();
                 System.out.println("Successfully uploaded machine: " + machines[i].getOriginalFilename());
             } catch (IOException e) {

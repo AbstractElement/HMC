@@ -4,7 +4,7 @@ import com.springapp.mvc.domain.filters.NamesTypeProducts;
 import com.springapp.mvc.domain.filters.LocationFilter;
 import com.springapp.mvc.domain.filters.hmcFilter.DriveTypeFilter;
 import com.springapp.mvc.domain.filters.hmcFilter.ToolHolderFilter;
-import com.springapp.mvc.domain.hmc.Hmc;
+import com.springapp.mvc.domain.product.hmc.LiveTool;
 import com.springapp.mvc.service.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+
 import java.util.List;
 import java.util.Map;
 
@@ -41,37 +42,37 @@ public class AdminLiveToolController {
     private ToolHolderService toolHolderService;
 
     @Autowired
-    private HmcService hmcService;
+    private LiveToolService liveToolService;
 
     @RequestMapping(value="/hmc", method = RequestMethod.GET)
     public void hmc(Map<String,Object> map) {
-        List<Hmc> machineList = hmcService.listMachine();
+        List<LiveTool> machineList = liveToolService.listMachine();
         map.put("machineList", machineList);
         AdminController.putPagesInfo(map, machineList.size(), 10);
     }
 
     @RequestMapping(value = "/hmc/edit", method = RequestMethod.POST)
-    public String editMachine(@ModelAttribute("machine") Hmc machine){
-        hmcService.editMachine(machine);
+    public String editMachine(@ModelAttribute("machine") LiveTool machine){
+        liveToolService.editMachine(machine);
 //        brandFilterService.addBrand(machine.getBrand());
         return "redirect:/admin/hmc";
     }
 
     @RequestMapping(value = "/hmc/renewFiltersLiveTool", method = RequestMethod.POST)
     public String renewLivaToolFilters(){
-        for (String location : hmcService.getLocationList()){
+        for (String location : liveToolService.getLocationList()){
             LocationFilter locationFilter = new LocationFilter();
             locationFilter.setCountryName(location);
             locationFilter.setTypeProduct(NamesTypeProducts.LIVE_TOOL);
             locationFilterService.addLocation(locationFilter);
         }
-        hmcService.getBrandsList().forEach(brandFilterService::addBrand);
-        for(String driveType : hmcService.getDriveTypeList()){
+        liveToolService.getBrandsList().forEach(brandFilterService::addBrand);
+        for(String driveType : liveToolService.getDriveTypeList()){
             DriveTypeFilter driveTypeFilter = new DriveTypeFilter();
             driveTypeFilter.setDriveType(driveType);
             driveTypeFilterService.addDriveType(driveTypeFilter);
         }
-        for(String toolHolder : hmcService.getToolHolderList()){
+        for(String toolHolder : liveToolService.getToolHolderList()){
             ToolHolderFilter toolHolderFilter = new ToolHolderFilter();
             toolHolderFilter.setToolHolder(toolHolder);
             toolHolderService.addToolHolder(toolHolderFilter);

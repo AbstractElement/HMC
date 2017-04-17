@@ -2,10 +2,10 @@ package com.springapp.mvc.util;
 
 //import com.springapp.mvc.domain.common.LanguageEntity;
 
-import com.springapp.mvc.domain.hmc.Hmc;
 
 //import com.springapp.mvc.domain.lathe.*;
-import com.springapp.mvc.domain.robots.Robots;
+import com.springapp.mvc.domain.product.hmc.LiveTool;
+import com.springapp.mvc.domain.product.robots.Robots;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
@@ -30,14 +30,14 @@ public class ParserExcelUtil {
         return workbook;
     }
 
-    public static Hmc readHmc(File file) throws IOException{
+    public static LiveTool readLiveTool(File file) throws IOException{
         FileInputStream fis = new FileInputStream(file);
         Workbook workbook = getWorkbook(fis,file.getPath());
         Sheet firstSheet = workbook.getSheetAt(0);
         Iterator<Row> rowIterator = firstSheet.iterator();
         DataFormatter df = new DataFormatter();
 
-        Hmc hmc = new Hmc();
+        LiveTool hmc = new LiveTool();
         hmc.setProductId(df.formatCellValue(rowIterator.next().getCell(1)).trim());
         hmc.setType(df.formatCellValue(rowIterator.next().getCell(1)).trim());
         Row tmp = rowIterator.next();

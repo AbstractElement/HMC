@@ -1,12 +1,10 @@
 package com.springapp.mvc.dao.implementions;
 
-import com.springapp.mvc.dao.interfaces.HmcDAO;
-import com.springapp.mvc.domain.hmc.Hmc;
-import org.eclipse.persistence.jpa.rs.util.list.QueryList;
+import com.springapp.mvc.dao.interfaces.LiveToolDAO;
+import com.springapp.mvc.domain.product.hmc.LiveTool;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -14,35 +12,35 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class HmcDAOImpl implements HmcDAO {
+public class LiveToolDAOImpl implements LiveToolDAO {
     @Autowired
     private SessionFactory sessionFactory;
 
     @SuppressWarnings("unchecked")
-    public List<Hmc> listMachine() {
-        return sessionFactory.getCurrentSession().createQuery("from Hmc where isSold = 'No'").list();
+    public List<LiveTool> listMachine() {
+        return sessionFactory.getCurrentSession().createQuery("from LiveTool where isSold = 'No'").list();
     }
 
     @SuppressWarnings("unchecked")
     public List<String[]> listMachineForSiteMap() {
-        Query query = sessionFactory.getCurrentSession().createQuery("select productId, type, model from Hmc where isSold = 'No'");
+        Query query = sessionFactory.getCurrentSession().createQuery("select productId, type, model from LiveTool where isSold = 'No'");
         return (List<String[]>) query.list();
     }
 
     @SuppressWarnings("unchecked")
-    public Hmc getMachine(String productId) {
-        Query query = sessionFactory.getCurrentSession().createQuery("from Hmc where productId='" + productId + "'");
-        return (Hmc) query.uniqueResult();
+    public LiveTool getMachine(String productId) {
+        Query query = sessionFactory.getCurrentSession().createQuery("from LiveTool where productId='" + productId + "'");
+        return (LiveTool) query.uniqueResult();
     }
 
     @SuppressWarnings("unchecked")
-    public void addMachine(Hmc machine) {
+    public void addMachine(LiveTool machine) {
         sessionFactory.getCurrentSession().saveOrUpdate(machine);
     }
 
     @SuppressWarnings("unchecked")
-    public List<Hmc> listFiltered(String[] brandArr, String[] countriesArr, String[] driveTypesArr, String[] toolHolderArr) {
-        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Hmc.class);
+    public List<LiveTool> listFiltered(String[] brandArr, String[] countriesArr, String[] driveTypesArr, String[] toolHolderArr) {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(LiveTool.class);
         if (brandArr != null) {
             criteria.add(Restrictions.in("brand", brandArr));
         }
@@ -74,18 +72,18 @@ public class HmcDAOImpl implements HmcDAO {
     }
 
     @SuppressWarnings("unchecked")
-    public void editMachine(Hmc machine) {
+    public void editMachine(LiveTool machine) {
         sessionFactory.getCurrentSession().update(machine);
     }
 
     @SuppressWarnings("unchecked")
-    public List<Hmc> randomListMachine() {
-        return sessionFactory.getCurrentSession().createQuery("from Hmc where isSold = 'No' order by rand()").setMaxResults(4).list();
+    public List<LiveTool> randomListMachine() {
+        return sessionFactory.getCurrentSession().createQuery("from LiveTool where isSold = 'No' order by rand()").setMaxResults(4).list();
     }
 
     @SuppressWarnings("unchecked")
-    public List<Hmc> newArrivalsList() {
-        Query query = sessionFactory.getCurrentSession().createQuery("from Hmc where isSold = 'No'");
+    public List<LiveTool> newArrivalsList() {
+        Query query = sessionFactory.getCurrentSession().createQuery("from LiveTool where isSold = 'No'");
 //        criteria.addOrder(Order.desc("productId")).setMaxResults(4);
             return query.list();
     }
@@ -93,24 +91,24 @@ public class HmcDAOImpl implements HmcDAO {
     @Override
     @SuppressWarnings("unchecked")
     public List<String> getLocationList() {
-        return sessionFactory.getCurrentSession().createQuery("select distinct producingCountry from Hmc ").list();
+        return sessionFactory.getCurrentSession().createQuery("select distinct producingCountry from LiveTool ").list();
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public List<String> getBrandsList() {
-        return sessionFactory.getCurrentSession().createQuery("select distinct brand from Hmc ").list();
+        return sessionFactory.getCurrentSession().createQuery("select distinct brand from LiveTool ").list();
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public List<String> getDriveTypeList() {
-        return sessionFactory.getCurrentSession().createQuery("select distinct driveType from Hmc ").list();
+        return sessionFactory.getCurrentSession().createQuery("select distinct driveType from LiveTool ").list();
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public List<String> getToolHolderList() {
-        return sessionFactory.getCurrentSession().createQuery("select distinct toolHolder from Hmc ").list();
+        return sessionFactory.getCurrentSession().createQuery("select distinct toolHolder from LiveTool ").list();
     }
 }

@@ -1,6 +1,6 @@
 package com.springapp.mvc.dao.interfaces;
 
-import com.springapp.mvc.domain.robots.Robots;
+import com.springapp.mvc.domain.product.robots.Robots;
 
 import java.util.List;
 

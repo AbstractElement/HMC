@@ -18,9 +18,6 @@ import java.util.Map;
 @RequestMapping("/admin")
 public class AdminController {
     @Autowired
-    private HmcService hmcService;
-
-    @Autowired
     private UserService userService;
 
     @Autowired

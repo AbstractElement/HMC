@@ -88,7 +88,7 @@
     <div class="container">
         <div class="col-xs-12 no-margin">
 
-            <c:if test="${!empty checkoutList}">
+            <c:if test="${!empty checkoutListLiveTool || !empty checkoutListRobots}">
                 <form:form method="post" action="checkout" id="form" commandName="order">
                     <div class="billing-address">
                         <h2 class="border h1"><spring:message code="checkout.billingAddress"/></h2>
@@ -142,7 +142,7 @@
 
                     <section id="your-order">
                         <h2 class="border h1"><spring:message code="checkout.yourOrder"/></h2>
-                        <c:forEach items="${checkoutList}" var="machine">
+                        <c:forEach items="${checkoutListLiveTool}" var="machine">
                             <div class="row no-margin order-item">
                                 <div class="col-xs-12 col-sm-1 no-margin">
                                     <a class="qty">
@@ -166,6 +166,29 @@
                             <!-- /.order-item -->
                         </c:forEach>
 
+                        <c:forEach items="${checkoutListRobots}" var="machine">
+                            <div class="row no-margin order-item">
+                                <div class="col-xs-12 col-sm-1 no-margin">
+                                    <a class="qty">
+                                        <span id="count${machine.productId}"></span> x
+                                    </a>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-9 ">
+                                    <div class="title">
+                                        <a href="/hmc${machine.productId}">
+                                                ${machine.type} ${machine.model}
+                                        </a>
+                                    </div>
+                                    <div class="brand">${machine.manufacturer}</div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-2 no-margin" <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
+                                    <div class="price">$${machine.price}</div>
+                                </div>
+                            </div>
+                            <!-- /.order-item -->
+                        </c:forEach>
                         <div class="row no-margin order-item" <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
                             <div class="col-xs-6 col-xs-offset-4 col-sm-3 col-sm-offset-7 no-margin">
                                 <spring:message code="checkout.orderTotal"/>

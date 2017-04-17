@@ -25,12 +25,6 @@ CREATE TABLE IF NOT EXISTS `hmc_example`.`machine_order` (
 ENGINE = InnoDB;
 
 
-INSERT INTO `sliders_filter` VALUES
-  (1, '3', '500', '100'),
-  (2, '4', '800', '600'),
-  (3, '3+2', '1000', '1300'),
-  (4, '5', NULL, NULL);
-
 insert into users value (1, '1111', '1111', '1111@11.11', 'ROLE_ADMIN');
 insert into users value (2, '22', '22', '1111@11.11', 'ROLE_ADMIN');
 

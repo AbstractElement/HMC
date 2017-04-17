@@ -1,7 +1,7 @@
 package com.springapp.mvc.dao.implementions;
 
 import com.springapp.mvc.dao.interfaces.OrderDAO;
-import com.springapp.mvc.domain.hmc.Order;
+import com.springapp.mvc.domain.product.hmc.Order;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

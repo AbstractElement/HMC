@@ -1,4 +1,4 @@
-package com.springapp.mvc.domain.robots;
+package com.springapp.mvc.domain.product.robots;
 
 import javax.persistence.*;
 import java.io.Serializable;

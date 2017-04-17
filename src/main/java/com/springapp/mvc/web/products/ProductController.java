@@ -1,6 +1,9 @@
 package com.springapp.mvc.web.products;
 
-import com.springapp.mvc.service.interfaces.HmcService;
+import com.springapp.mvc.domain.product.hmc.LiveTool;
+import com.springapp.mvc.domain.product.hmc.Order;
+import com.springapp.mvc.domain.product.robots.Robots;
+import com.springapp.mvc.service.interfaces.LiveToolService;
 import com.springapp.mvc.service.interfaces.RobotsService;
 import com.springapp.mvc.service.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +21,7 @@ import java.util.Map;
 @Controller
 public class ProductController {
     @Autowired
-    private HmcService hmcService;
+    private LiveToolService liveToolService;
 
     @Autowired
     private RobotsService robotsService;
@@ -27,8 +30,8 @@ public class ProductController {
     private UserService userService;
 
     void putMachinesForBlocks(Map<String, Object> map) {
-        map.put("randomMachineList", hmcService.randomListMachine());
-        map.put("newArrivalsList", hmcService.newArrivalsList());
+        map.put("randomMachineList", liveToolService.randomListMachine());
+        map.put("newArrivalsList", liveToolService.newArrivalsList());
     }
 
     void putPagesInfo(Map<String, Object> map, String perPage, int itemsNum) {
@@ -72,8 +75,53 @@ public class ProductController {
     @RequestMapping(value = "/hmc/compare", method = RequestMethod.GET)
     public void comparison(@RequestParam(required = false) String itemsId, Map<String, Object> map) {
         if (itemsId != null) {
-            map.put("comparisonList", hmcService.getMachinesList(itemsId.split(",")));
+            map.put("comparisonList", liveToolService.getMachinesList(itemsId.split(",")));
             map.put("comparisonListRobots", robotsService.getRobotsList(itemsId.split(",")));
+        }
+    }
+
+
+    @RequestMapping(value = "/hmc/wishList", method = RequestMethod.GET)
+    public void wishList(@RequestParam(required = false) String itemsId, Map<String, Object> map) {
+        if (itemsId != null) {
+            map.put("wishList", liveToolService.getMachinesList(itemsId.split(",")));
+        }
+    }
+
+    @RequestMapping(value = "/hmc/cart", method = RequestMethod.GET)
+    public void cart(@RequestParam(required = false) String itemsId, Map<String, Object> map) {
+        if (itemsId != null) {
+            map.put("cartListLiveTool", liveToolService.getMachinesList(itemsId.split(",")));
+            map.put("cartListRobot", robotsService.getRobotsList(itemsId.split(",")));
+        }
+    }
+
+    @RequestMapping(value = "/hmc/checkout", method = RequestMethod.GET)
+    public void checkout(@RequestParam(required = false) String itemsId, Map<String, Object> map) {
+        Order order = new Order();
+        if (itemsId != null) {
+            String[] items = itemsId.split(",");
+            String orderList = "";
+            for (String item : items){
+                LiveTool liveTool = liveToolService.getMachine(item);
+                if(liveTool != null) {
+                    orderList += liveTool.getModel() + ",";
+                    orderList += liveTool.getProductId() + ",";
+                    orderList += liveTool.getPrice() + ";";
+                }
+            }
+            for (String item : items){
+                Robots robot = robotsService.getRobot(item);
+                if(robot != null) {
+                    orderList += robot.getModel() + ",";
+                    orderList += robot.getProductId() + ",";
+                    orderList += robot.getPrice() + ";";
+                }
+            }
+            order.setOrderList(orderList);
+            map.put("order", order);
+            map.put("checkoutListLiveTool", liveToolService.getMachinesList(itemsId.split(",")));
+            map.put("checkoutListRobots", robotsService.getRobotsList(itemsId.split(",")));
         }
     }
 }

@@ -1,7 +1,7 @@
 package com.springapp.mvc.web.products;
 
 import com.springapp.mvc.domain.filters.robotFilters.MainRobotFilter;
-import com.springapp.mvc.domain.robots.Robots;
+import com.springapp.mvc.domain.product.robots.Robots;
 import com.springapp.mvc.service.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

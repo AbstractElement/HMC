@@ -1,8 +1,8 @@
 package com.springapp.mvc.service.implementions;
 
-import com.springapp.mvc.dao.interfaces.HmcDAO;
-import com.springapp.mvc.domain.hmc.Hmc;
-import com.springapp.mvc.service.interfaces.HmcService;
+import com.springapp.mvc.dao.interfaces.LiveToolDAO;
+import com.springapp.mvc.domain.product.hmc.LiveTool;
+import com.springapp.mvc.service.interfaces.LiveToolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,33 +11,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class HmcServiceImpl implements HmcService {
+public class LiveToolServiceImpl implements LiveToolService {
 
     @Autowired
-    private HmcDAO hmcDAO;
+    private LiveToolDAO liveToolDAO;
 
     @Transactional
-    public List<Hmc> listMachine() {
-        return hmcDAO.listMachine();
+    public List<LiveTool> listMachine() {
+        return liveToolDAO.listMachine();
     }
 
     @Transactional
     public List<String[]> listMachineForSiteMap(){
-        return hmcDAO.listMachineForSiteMap();
+        return liveToolDAO.listMachineForSiteMap();
     }
 
     @Transactional
-    public Hmc getMachine(String productId) {
-        return hmcDAO.getMachine(productId);
+    public LiveTool getMachine(String productId) {
+        return liveToolDAO.getMachine(productId);
     }
 
     @Transactional
-    public List<Hmc> listFiltered(String brands, String countries, String driveTypes, String toolHolders) {
+    public List<LiveTool> listFiltered(String brands, String countries, String driveTypes, String toolHolders) {
         String[] brandArr = (brands != null) ? brands.split(",") : null;
         String[] countriesArr = (countries != null) ? countries.split(",") : null;
         String[] driveTypesArr = (driveTypes != null) ? driveTypes.split(",") : null;
         String[] toolHoldersArr = (toolHolders != null) ? toolHolders.split(",") : null;
-        return hmcDAO.listFiltered(brandArr, countriesArr, driveTypesArr, toolHoldersArr);
+        return liveToolDAO.listFiltered(brandArr, countriesArr, driveTypesArr, toolHoldersArr);
     }
 
     private int[] getRangeArr(String range) {
@@ -45,10 +45,10 @@ public class HmcServiceImpl implements HmcService {
     }
 
     @Transactional
-    public List<Hmc> getMachinesList(String[] productIdArr) {
-        List<Hmc> list = new ArrayList<Hmc>();
+    public List<LiveTool> getMachinesList(String[] productIdArr) {
+        List<LiveTool> list = new ArrayList<LiveTool>();
         for (String productId : productIdArr) {
-            Hmc hmc = hmcDAO.getMachine(productId);
+            LiveTool hmc = liveToolDAO.getMachine(productId);
             if (hmc != null)
                 list.add(hmc);
         }
@@ -56,41 +56,41 @@ public class HmcServiceImpl implements HmcService {
     }
 
     @Transactional
-    public void editMachine(Hmc machine) {
-        hmcDAO.editMachine(machine);
+    public void editMachine(LiveTool machine) {
+        liveToolDAO.editMachine(machine);
     }
 
     @Transactional
-    public List<Hmc> randomListMachine() {
-        return hmcDAO.randomListMachine();
+    public List<LiveTool> randomListMachine() {
+        return liveToolDAO.randomListMachine();
     }
 
     @Transactional
-    public List<Hmc> newArrivalsList() {
-        return hmcDAO.newArrivalsList();
+    public List<LiveTool> newArrivalsList() {
+        return liveToolDAO.newArrivalsList();
     }
 
     @Override
     @Transactional
     public List<String> getLocationList() {
-        return hmcDAO.getLocationList();
+        return liveToolDAO.getLocationList();
     }
 
     @Override
     @Transactional
     public List<String> getBrandsList() {
-        return hmcDAO.getBrandsList();
+        return liveToolDAO.getBrandsList();
     }
 
     @Override
     @Transactional
     public List<String> getDriveTypeList() {
-        return hmcDAO.getDriveTypeList();
+        return liveToolDAO.getDriveTypeList();
     }
 
     @Override
     @Transactional
     public List<String> getToolHolderList() {
-        return hmcDAO.getToolHolderList();
+        return liveToolDAO.getToolHolderList();
     }
 }

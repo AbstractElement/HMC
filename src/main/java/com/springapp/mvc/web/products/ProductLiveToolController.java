@@ -2,8 +2,8 @@ package com.springapp.mvc.web.products;
 
 import com.springapp.mvc.domain.filters.hmcFilter.BrandFilter;
 import com.springapp.mvc.domain.filters.hmcFilter.MainLiveToolFilter;
-import com.springapp.mvc.domain.hmc.Hmc;
-import com.springapp.mvc.domain.hmc.Order;
+import com.springapp.mvc.domain.product.hmc.LiveTool;
+import com.springapp.mvc.domain.product.hmc.Order;
 import com.springapp.mvc.service.interfaces.*;
 import com.springapp.mvc.util.EmailUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ import java.util.Map;
 @Controller
 public class ProductLiveToolController {
     @Autowired
-    private HmcService hmcService;
+    private LiveToolService liveToolService;
 
     @Autowired
     private ProductController productController;
@@ -52,7 +52,7 @@ public class ProductLiveToolController {
 
     @RequestMapping(value = "/hmc", method = RequestMethod.GET)
     public void hmc(Map<String, Object> map) {
-        List<Hmc> machineList = hmcService.listMachine();
+        List<LiveTool> machineList = liveToolService.listMachine();
         map.put("mainFilter", new MainLiveToolFilter());
         map.put("machineList", machineList);
         map.put("machineBrands", brandFilterService.listBrand());
@@ -66,12 +66,12 @@ public class ProductLiveToolController {
     public String hmcFiltered(@RequestParam(value = "perPage", required = false) String perPage,
                               @ModelAttribute(value = "liveToolObj") MainLiveToolFilter mainLiveToolFilter,
                               Map<String, Object> map) {
-        List<Hmc> machineList;
+        List<LiveTool> machineList;
         if (mainLiveToolFilter.getBrand() == null && mainLiveToolFilter.getCountry() == null
                 && mainLiveToolFilter.getDriveType() == null && mainLiveToolFilter.getVDI() == null)
-            machineList = hmcService.listMachine();
+            machineList = liveToolService.listMachine();
         else
-            machineList = hmcService.listFiltered(mainLiveToolFilter.getBrand(), mainLiveToolFilter.getCountry(),
+            machineList = liveToolService.listFiltered(mainLiveToolFilter.getBrand(), mainLiveToolFilter.getCountry(),
                     mainLiveToolFilter.getDriveType(), mainLiveToolFilter.getVDI());
         List<BrandFilter> machineBrands = brandFilterService.listBrand();
         map.put("liveToolObj", mainLiveToolFilter);
@@ -86,7 +86,7 @@ public class ProductLiveToolController {
 
     @RequestMapping(value = "/hmc{productId}", method = RequestMethod.GET)
     public ModelAndView machineItem(@PathVariable("productId") String productId, Map<String, Object> map) {
-        Hmc machine = hmcService.getMachine(productId);
+        LiveTool machine = liveToolService.getMachine(productId);
         if (machine == null) {
             return new ModelAndView("error/error404");
         }
@@ -94,26 +94,10 @@ public class ProductLiveToolController {
         return new ModelAndView("hmc/machine", map);
     }
 
-
-
-    @RequestMapping(value = "/hmc/wishList", method = RequestMethod.GET)
-    public void wishList(@RequestParam(required = false) String itemsId, Map<String, Object> map) {
-        if (itemsId != null) {
-            map.put("wishList", hmcService.getMachinesList(itemsId.split(",")));
-        }
-    }
-
-    @RequestMapping(value = "/hmc/cart", method = RequestMethod.GET)
-    public void cart(@RequestParam(required = false) String itemsId, Map<String, Object> map) {
-        if (itemsId != null) {
-            map.put("cartList", hmcService.getMachinesList(itemsId.split(",")));
-        }
-    }
-
     @RequestMapping(value = "/hmc/proposal", method = RequestMethod.GET)
     public void proposal(@RequestParam(required = true) String itemsId, Map<String, Object> map) {
         if (itemsId != null) {
-            map.put("proposalList", hmcService.getMachinesList(itemsId.split(",")));
+            map.put("proposalList", liveToolService.getMachinesList(itemsId.split(",")));
         }
     }
 
@@ -129,7 +113,7 @@ public class ProductLiveToolController {
 
     @RequestMapping(value = "/hmc/proposalSingle", method = RequestMethod.GET)
     public void proposalSingle(@RequestParam(required = true) String productId, Map<String, Object> map) {
-        map.put("machine", hmcService.getMachine(productId));
+        map.put("machine", liveToolService.getMachine(productId));
     }
 
     @RequestMapping(value = "/hmc/proposalSingle", method = RequestMethod.POST)
@@ -142,23 +126,6 @@ public class ProductLiveToolController {
         return workWithFilesService.getPDFOfferSingle(path, productId, company, director, Boolean.getBoolean(showPrice));
     }
 
-    @RequestMapping(value = "/hmc/checkout", method = RequestMethod.GET)
-    public void checkout(@RequestParam(required = false) String itemsId, Map<String, Object> map) {
-        Order order = new Order();
-        if (itemsId != null) {
-            String[] items = itemsId.split(",");
-            String orderList = "";
-            for (String item : items){
-                Hmc hmc = hmcService.getMachine(item);
-                orderList += hmc.getModel() + ",";
-                orderList += hmc.getProductId() + ",";
-                orderList += hmc.getPrice() + ";";
-            }
-            order.setOrderList(orderList);
-            map.put("order", order);
-            map.put("checkoutList", hmcService.getMachinesList(itemsId.split(",")));
-        }
-    }
 
     @RequestMapping(value = "/hmc/checkout", method = RequestMethod.POST)
     public void checkoutPost(@ModelAttribute("order")Order order,

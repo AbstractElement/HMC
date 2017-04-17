@@ -1,6 +1,6 @@
 package com.springapp.mvc.dao.interfaces;
 
-import com.springapp.mvc.domain.hmc.Order;
+import com.springapp.mvc.domain.product.hmc.Order;
 
 /**
  * Created by Vladislav on 17.02.2017.

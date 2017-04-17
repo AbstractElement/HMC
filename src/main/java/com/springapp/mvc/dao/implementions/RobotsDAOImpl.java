@@ -1,7 +1,7 @@
 package com.springapp.mvc.dao.implementions;
 
 import com.springapp.mvc.dao.interfaces.RobotsDAO;
-import com.springapp.mvc.domain.robots.Robots;
+import com.springapp.mvc.domain.product.robots.Robots;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;

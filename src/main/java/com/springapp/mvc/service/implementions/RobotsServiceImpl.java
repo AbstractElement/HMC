@@ -1,13 +1,12 @@
 package com.springapp.mvc.service.implementions;
 
 import com.springapp.mvc.dao.interfaces.RobotsDAO;
-import com.springapp.mvc.domain.robots.Robots;
+import com.springapp.mvc.domain.product.robots.Robots;
 import com.springapp.mvc.service.interfaces.RobotsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 

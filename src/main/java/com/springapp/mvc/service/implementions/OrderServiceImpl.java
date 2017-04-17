@@ -1,7 +1,7 @@
 package com.springapp.mvc.service.implementions;
 
 import com.springapp.mvc.dao.interfaces.OrderDAO;
-import com.springapp.mvc.domain.hmc.Order;
+import com.springapp.mvc.domain.product.hmc.Order;
 import com.springapp.mvc.service.interfaces.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
