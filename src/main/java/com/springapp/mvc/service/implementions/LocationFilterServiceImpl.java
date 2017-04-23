@@ -1,6 +1,6 @@
 package com.springapp.mvc.service.implementions;
 
-import com.springapp.mvc.dao.interfaces.LocationFilterDAO;
+import com.springapp.mvc.dao.interfaces.filters.LocationFilterDAO;
 import com.springapp.mvc.domain.filters.LocationFilter;
 import com.springapp.mvc.service.interfaces.LocationFilterService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -65,7 +65,7 @@
                                 <%--<a onclick="goToHmc()"><spring:message code="common.hmc"/></a>--%>
                             <%--</li>--%>
                             <li class="breadcrumb-item gray">
-                                <a onclick="goToCart()"><spring:message code="cart.shoppingCart"/></a>
+                                <a href="/hmc/cart"><spring:message code="cart.shoppingCart"/></a>
                             </li>
                             <li class="breadcrumb-item current">
                                 <a onclick="window.location.reload(true);">
@@ -88,7 +88,7 @@
     <div class="container">
         <div class="col-xs-12 no-margin">
 
-            <c:if test="${!empty checkoutListLiveTool || !empty checkoutListRobots}">
+            <c:if test="${!empty sessionScope.basket}">
                 <form:form method="post" action="checkout" id="form" commandName="order">
                     <div class="billing-address">
                         <h2 class="border h1"><spring:message code="checkout.billingAddress"/></h2>
@@ -142,25 +142,25 @@
 
                     <section id="your-order">
                         <h2 class="border h1"><spring:message code="checkout.yourOrder"/></h2>
-                        <c:forEach items="${checkoutListLiveTool}" var="machine">
+                        <c:forEach items="${sessionScope.basket.items}" var="machine">
                             <div class="row no-margin order-item">
                                 <div class="col-xs-12 col-sm-1 no-margin">
                                     <a class="qty">
-                                        <span id="count${machine.productId}"></span> x
+                                        <span id="count${machine.product.productId}"></span> x
                                     </a>
                                 </div>
 
                                 <div class="col-xs-12 col-sm-9 ">
                                     <div class="title">
-                                        <a href="/hmc${machine.productId}">
-                                                ${machine.type} ${machine.model}
+                                        <a href="/hmc${machine.product.productId}">
+                                                ${machine.product.type} ${machine.product.model}
                                         </a>
                                     </div>
-                                    <div class="brand">${machine.brand}</div>
+                                    <div class="brand">${machine.product.brand}</div>
                                 </div>
 
                                 <div class="col-xs-12 col-sm-2 no-margin" <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
-                                    <div class="price">$${machine.price}</div>
+                                    <div class="price">$${machine.product.price}</div>
                                 </div>
                             </div>
                             <!-- /.order-item -->
@@ -195,7 +195,7 @@
                             </div>
 
                             <div class="col-xs-2 col-sm-2 col-sm-2 no-margin">
-                                <div class="value">$<span class="cart-total"></span></div>
+                                <div class="value">$${sessionScope.basket.total}</div>
                             </div>
                         </div>
 

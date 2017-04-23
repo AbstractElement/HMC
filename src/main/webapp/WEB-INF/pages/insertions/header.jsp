@@ -32,13 +32,13 @@
         <div class="col-xs-12 col-sm-12 col-md-4 top-cart-row no-margin">
             <div class="top-cart-row-container">
                 <div class="wishlist-compare-holder">
-                    <div class="wishlist">
-                        <a onclick="goToWishList()"><i class="fa fa-heart"></i> <spring:message code="common.wishList"/> <span
-                                id="wishList-value"></span> </a>
-                    </div>
+                    <%--<div class="wishlist">--%>
+                        <%--<a onclick="goToWishList()"><i class="fa fa-heart"></i> <spring:message code="common.wishList"/> <span--%>
+                                <%--id="wishList-value"></span> </a>--%>
+                    <%--</div>--%>
                     <div class="compare">
-                        <a onclick="goToComparison()"><i class="fa fa-exchange"></i> <spring:message code="common.comparison"/> <span
-                                id="compare-value"></span> </a>
+                        <a href="/compare"><i class="fa fa-exchange"></i> <spring:message code="common.comparison"/> <span
+                                id="compare-value">${sessionScope.compare.numberOfItems}</span> </a>
                     </div>
                 </div>
 
@@ -46,37 +46,36 @@
                 <div class="top-cart-holder dropdown animate-dropdown">
 
                     <div class="basket">
-
                         <a class="dropdown-toggle" data-toggle="dropdown">
                             <div class="basket-item-count">
-                                <span class="count" id="cart-count"></span>
+                                <span class="count" id="cart-count">${sessionScope.basket.numberOfItems}</span>
                                 <img src="../../resources/images/icon-cart.png"/>
                             </div>
 
                             <div class="total-price-basket">
                                 <span class="lbl"><spring:message code="common.cart"/></span>
                                 <span class="total-price" <c:if test='${pageContext.request.userPrincipal.name == null}'>style="display: none"</c:if>>
-                                    <span class="sign">$</span><span class="value cart-total">0</span>
+                                    <span class="sign">$</span><span class="value cart-total">${sessionScope.basket.total}</span>
                                 </span>
                             </div>
                         </a>
-
                         <ul class="dropdown-menu">
-                            <c:forEach var="i" begin="1" end="3">
-                            <li id="li${i}" class="hidden">
+                            <c:forEach var="item" items="${sessionScope.basket.items}">
+                            <li id="li${item.product.productId}">
                                 <div class="basket-item">
                                     <div class="row">
                                         <div class="col-xs-4 col-sm-4 no-margin text-center">
                                             <div class="thumb">
-                                                <img width="75" height="75" src="../../resources/images/blank.gif">
+                                                <img width="75" height="75" src="../../resources/images/products/${item.product.photo1}">
                                             </div>
                                         </div>
                                         <div class="col-xs-8 col-sm-8 no-margin">
-                                            <div class="title"></div>
-                                            <div class="price" <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>></div>
+                                            <div class="title">${item.product.model}</div>
+                                            <div class="price" <c:if test="${pageContext.request.userPrincipal.name == null}">
+                                                style="display: none"</c:if>>${item.product.price}</div>
                                         </div>
                                     </div>
-                                    <a class="close-btn" onclick="window.location.reload(true);"></a>
+                                    <a class="close-btn" href="/removeFromCart/${item.product.productId}"></a>
                                 </div>
                             </li>
                             </c:forEach>
@@ -84,11 +83,14 @@
                                 <div class="basket-item">
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-6">
-                                            <a class="le-button" onclick="goToCart()"><spring:message code="common.viewCart"/></a>
+                                            <a class="le-button" href="/hmc/cart">
+                                                <spring:message code="common.viewCart"/></a>
                                         </div>
                                         <div class="col-xs-12 col-sm-6">
-                                            <a onclick="goToCheckout()" class="checkout-btn le-button"><spring:message code="common.checkout"/></a>
-                                            <span class="checkout-btn-inverse le-button inverse" style="cursor: auto"><spring:message code="common.checkout"/></span>
+                                            <a href="/hmc/checkout" class="checkout-btn le-button">
+                                                <spring:message code="common.checkout"/></a>
+                                            <%--<span class="checkout-btn-inverse le-button inverse" style="cursor: auto">--%>
+                                                <%--<spring:message code="common.checkout"/></span>--%>
                                         </div>
                                     </div>
                                 </div>

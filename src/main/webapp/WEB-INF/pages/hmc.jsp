@@ -192,7 +192,7 @@
             </div>
 
             <div class="reset-filter">
-                <a onclick="resetFilter()"><spring:message code="hmc.resetFilter"/></a>
+                <a href="/hmc"><spring:message code="hmc.resetFilter"/></a>
             </div>
             <br><br>
         </div>
@@ -290,29 +290,28 @@
                                     <br>
                                 </div>
                                 <div class="hover-area">
-                                    <div class="add-cart-button" <c:if test="${pageContext.request.userPrincipal.name == null}">
-                                        style="display: none"</c:if>>
+                                    <div class="add-cart-button">
                                         <a class="cart${machine.productId} le-button"
-                                           onclick="addToCart('${machine.productId}')"><spring:message
+                                           href="/addToCart/${machine.productId}/hmc"><spring:message
                                                 code="common.addToCart"/></a>
-                                        <a class="cart${machine.productId} le-button in-cart hidden"
-                                           onclick="removeFromCart('${machine.productId}')"><spring:message
-                                                code="common.inCart"/></a>
+                                        <%--<a class="cart${machine.productId} le-button in-cart hidden"--%>
+                                           <%--onclick="removeFromCart('${machine.productId}')"><spring:message--%>
+                                                <%--code="common.inCart"/></a>--%>
                                     </div>
                                     <div class="wish-compare">
-                                    <span class="wishList${machine.productId} btn-add-to-wishlist"
-                                          onclick="addToWishList('${machine.productId}')"><spring:message
-                                            code="common.addToWishList"/></span>
-                                    <span class="wishList${machine.productId} btn-add-to-wishlist btn-green hidden"
-                                          onclick="removeFromWishList('${machine.productId}')"><spring:message
-                                            code="common.removeFromWishList"/></span>
-                                        <br>
+                                    <%--<span class="wishList${machine.productId} btn-add-to-wishlist"--%>
+                                          <%--onclick="addToWishList('${machine.productId}')"><spring:message--%>
+                                            <%--code="common.addToWishList"/></span>--%>
+                                    <%--<span class="wishList${machine.productId} btn-add-to-wishlist btn-green hidden"--%>
+                                          <%--onclick="removeFromWishList('${machine.productId}')"><spring:message--%>
+                                            <%--code="common.removeFromWishList"/></span>--%>
+                                        <%--<br>--%>
                                     <span class="compare${machine.productId} btn-add-to-compare"
-                                          onclick="addToComparison('${machine.productId}')"><spring:message
+                                          onclick="window.location.href = '/addToCompare/${machine.productId}/hmc'"><spring:message
                                             code="common.addToComparison"/></span>
-                                    <span class="compare${machine.productId} btn-add-to-compare btn-green hidden"
-                                          onclick="removeFromComparison('${machine.productId}')"><spring:message
-                                            code="common.removeFromComparison"/></span>
+                                    <%--<span class="compare${machine.productId} btn-add-to-compare btn-green hidden"--%>
+                                          <%--onclick="removeFromComparison('${machine.productId}')"><spring:message--%>
+                                            <%--code="common.removeFromComparison"/></span>--%>
                                     </div>
                                 </div>
                             </div>
@@ -371,29 +370,31 @@
                                          <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
                                         $<span class="price${machine.productId}">${machine.price}</span>
                                     </div>
+
                                     <div class="add-cart-button">
-                                        <a class="cart${machine.productId} le-button"
-                                           onclick="addToCart('${machine.productId}')"><spring:message
+                                        <a class="cart${machine.productId} le-button" type="submit"
+                                           href="/addToCart/${machine.productId}/hmc"><spring:message
                                                 code="common.addToCart"/></a>
-                                        <a class="cart${machine.productId} le-button in-cart hidden"
-                                           onclick="removeFromCart('${machine.productId}')"><spring:message
-                                                code="common.inCart"/></a>
+                                        <%--<a class="cart${machine.productId} le-button in-cart hidden"--%>
+                                           <%--onclick="removeFromCart('${machine.productId}')"><spring:message--%>
+                                                <%--code="common.inCart"/></a>--%>
                                     </div>
+
                                     <div class="wish-compare">
-                                    <span class="wishList${machine.productId} btn-add-to-wishlist"
-                                          onclick="addToWishList('${machine.productId}')"><spring:message
-                                            code="common.addToWishList"/></span>
-                                    <span class="wishList${machine.productId} btn-add-to-wishlist btn-green hidden"
-                                          onclick="removeFromWishList('${machine.productId}')"><spring:message
-                                            code="common.removeFromWishList"/></span>
-                                        <br>
+                                    <%--<span class="wishList${machine.productId} btn-add-to-wishlist"--%>
+                                          <%--onclick="addToWishList('${machine.productId}')"><spring:message--%>
+                                            <%--code="common.addToWishList"/></span>--%>
+                                    <%--<span class="wishList${machine.productId} btn-add-to-wishlist btn-green hidden"--%>
+                                          <%--onclick="removeFromWishList('${machine.productId}')"><spring:message--%>
+                                            <%--code="common.removeFromWishList"/></span>--%>
+                                        <%--<br>--%>
                                     <span class="compare${machine.productId} btn-add-to-compare" data-toggle="popover"
-                                          onclick="addToComparison('${machine.productId}')"><spring:message
+                                          onclick="window.location.href = '/addToCompare/${machine.productId}/hmc'"><spring:message
                                             code="common.addToComparison"/></span>
-                                    <span class="compare${machine.productId} btn-add-to-compare btn-green hidden"
-                                          data-toggle="popover"
-                                          onclick="removeFromComparison('${machine.productId}')"><spring:message
-                                            code="common.removeFromComparison"/></span>
+                                    <%--<span class="compare${machine.productId} btn-add-to-compare btn-green hidden"--%>
+                                          <%--data-toggle="popover"--%>
+                                          <%--onclick="removeFromComparison('${machine.productId}')"><spring:message--%>
+                                            <%--code="common.removeFromComparison"/></span>--%>
                                     </div>
                                 </div>
                             </div>

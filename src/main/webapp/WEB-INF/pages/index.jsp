@@ -92,12 +92,12 @@
         <div class="col-xs-12 col-sm-12 col-md-4 top-cart-row no-margin">
             <div class="top-cart-row-container">
                 <div class="wishlist-compare-holder">
-                    <div class="wishlist">
-                        <a onclick="goToWishList()"><i class="fa fa-heart"></i> <spring:message code="common.wishList"/> <span
-                                id="wishList-value"></span> </a>
-                    </div>
+                    <%--<div class="wishlist">--%>
+                        <%--<a onclick="goToWishList()"><i class="fa fa-heart"></i> <spring:message code="common.wishList"/> <span--%>
+                                <%--id="wishList-value"></span> </a>--%>
+                    <%--</div>--%>
                     <div class="compare">
-                        <a onclick="goToComparison()"><i class="fa fa-exchange"></i> <spring:message
+                        <a href="compare"><i class="fa fa-exchange"></i> <spring:message
                                 code="common.comparison"/> <span
                                 id="compare-value"></span> </a>
                     </div>
@@ -110,7 +110,7 @@
 
                         <a class="dropdown-toggle" data-toggle="dropdown">
                             <div class="basket-item-count">
-                                <span class="count" id="cart-count"></span>
+                                <span class="count" id="cart-count">${sessionScope.basket.numberOfItems}</span>
                                 <img src="resources/images/icon-cart.png"/>
                             </div>
 
@@ -118,72 +118,91 @@
                                 <span class="lbl"><spring:message code="common.cart"/></span>
                                 <span class="total-price"
                                       <c:if test='${pageContext.request.userPrincipal.name == null}'>style="display: none"</c:if>>
-                                    <span class="sign">$</span><span class="value cart-total">0</span>
+                                    <span class="sign">$</span><span class="value cart-total">${sessionScope.basket.total}</span>
                                 </span>
                             </div>
                         </a>
 
                         <ul class="dropdown-menu">
-                            <li id="li1" class="hidden">
-                                <div class="basket-item">
-                                    <div class="row">
-                                        <div class="col-xs-4 col-sm-4 no-margin text-center">
-                                            <div class="thumb">
-                                                <img width="75" height="75" src="resources/images/blank.gif">
+                            <%--<li id="li1">--%>
+                                <%--<div class="basket-item">--%>
+                                    <%--<div class="row">--%>
+                                        <%--<div class="col-xs-4 col-sm-4 no-margin text-center">--%>
+                                            <%--<div class="thumb">--%>
+                                                <%--<img width="75" height="75" src="resources/images/blank.gif">--%>
+                                            <%--</div>--%>
+                                        <%--</div>--%>
+                                        <%--<div class="col-xs-8 col-sm-8 no-margin">--%>
+                                            <%--<div class="title"></div>--%>
+                                            <%--<div class="price"--%>
+                                                 <%--<c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>></div>--%>
+                                        <%--</div>--%>
+                                    <%--</div>--%>
+                                    <%--<a class="close-btn" onclick="window.location.reload(true);"></a>--%>
+                                <%--</div>--%>
+                            <%--</li>--%>
+                            <%--<li id="li2" class="hidden">--%>
+                                <%--<div class="basket-item">--%>
+                                    <%--<div class="row">--%>
+                                        <%--<div class="col-xs-4 col-sm-4 no-margin text-center">--%>
+                                            <%--<div class="thumb">--%>
+                                                <%--<img width="75" height="75" src="resources/images/blank.gif">--%>
+                                            <%--</div>--%>
+                                        <%--</div>--%>
+                                        <%--<div class="col-xs-8 col-sm-8 no-margin">--%>
+                                            <%--<div class="title"></div>--%>
+                                            <%--<div class="price"--%>
+                                                 <%--<c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>></div>--%>
+                                        <%--</div>--%>
+                                    <%--</div>--%>
+                                    <%--<a class="close-btn" onclick="window.location.reload(true);"></a>--%>
+                                <%--</div>--%>
+                            <%--</li>--%>
+                            <%--<li id="li3" class="hidden">--%>
+                                <%--<div class="basket-item">--%>
+                                    <%--<div class="row">--%>
+                                        <%--<div class="col-xs-4 col-sm-4 no-margin text-center">--%>
+                                            <%--<div class="thumb">--%>
+                                                <%--<img width="75" height="75" src="resources/images/blank.gif">--%>
+                                            <%--</div>--%>
+                                        <%--</div>--%>
+                                        <%--<div class="col-xs-8 col-sm-8 no-margin">--%>
+                                            <%--<div class="title"></div>--%>
+                                            <%--<div class="price"--%>
+                                                 <%--<c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>></div>--%>
+                                        <%--</div>--%>
+                                    <%--</div>--%>
+                                    <%--<a class="close-btn" onclick="window.location.reload(true);"></a>--%>
+                                <%--</div>--%>
+                            <%--</li>--%>
+                                <c:forEach var="item" items="${sessionScope.basket.items}">
+                                    <li id="li${item.product.productId}">
+                                        <div class="basket-item">
+                                            <div class="row">
+                                                <div class="col-xs-4 col-sm-4 no-margin text-center">
+                                                    <div class="thumb">
+                                                        <img width="75" height="75" src="../../resources/images/products/${item.product.photo1}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-8 col-sm-8 no-margin">
+                                                    <div class="title">${item.product.model}</div>
+                                                    <div class="price" <c:if test="${pageContext.request.userPrincipal.name == null}">
+                                                        style="display: none"</c:if>>${item.product.price}</div>
+                                                </div>
                                             </div>
+                                            <a class="close-btn" href="/removeFromCart/${item.product.productId}"></a>
                                         </div>
-                                        <div class="col-xs-8 col-sm-8 no-margin">
-                                            <div class="title"></div>
-                                            <div class="price"
-                                                 <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>></div>
-                                        </div>
-                                    </div>
-                                    <a class="close-btn" onclick="window.location.reload(true);"></a>
-                                </div>
-                            </li>
-                            <li id="li2" class="hidden">
-                                <div class="basket-item">
-                                    <div class="row">
-                                        <div class="col-xs-4 col-sm-4 no-margin text-center">
-                                            <div class="thumb">
-                                                <img width="75" height="75" src="resources/images/blank.gif">
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-8 col-sm-8 no-margin">
-                                            <div class="title"></div>
-                                            <div class="price"
-                                                 <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>></div>
-                                        </div>
-                                    </div>
-                                    <a class="close-btn" onclick="window.location.reload(true);"></a>
-                                </div>
-                            </li>
-                            <li id="li3" class="hidden">
-                                <div class="basket-item">
-                                    <div class="row">
-                                        <div class="col-xs-4 col-sm-4 no-margin text-center">
-                                            <div class="thumb">
-                                                <img width="75" height="75" src="resources/images/blank.gif">
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-8 col-sm-8 no-margin">
-                                            <div class="title"></div>
-                                            <div class="price"
-                                                 <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>></div>
-                                        </div>
-                                    </div>
-                                    <a class="close-btn" onclick="window.location.reload(true);"></a>
-                                </div>
-                            </li>
+                                    </li>
+                                </c:forEach>
                             <li class="checkout">
                                 <div class="basket-item">
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-6">
-                                            <a class="le-button" onclick="goToCart()"><spring:message
+                                            <a class="le-button" href="/hmc/cart"><spring:message
                                                     code="common.viewCart"/></a>
                                         </div>
                                         <div class="col-xs-12 col-sm-6">
-                                            <a onclick="goToCheckout()" class="le-button"><spring:message
+                                            <a href="/hmc/checkout" class="le-button"><spring:message
                                                     code="common.checkout"/></a>
                                         </div>
                                     </div>
@@ -217,12 +236,12 @@
                 <nav class="yamm megamenu-horizontal" role="navigation">
                     <ul class="nav">
                         <li class="dropdown menu-item">
-                            <a onclick="goToHmc()">
+                            <a href="/hmc">
                                 <h1 class="h2 no-margin" style="font-size: 15px; line-height: 26px; letter-spacing: normal; text-transform: none;">
                                     <spring:message code="common.dh"/>
                                 </h1>
                             </a>
-                            <a onclick="goToRobots()" target="_blank"><spring:message code="common.robots"/></a>
+                            <a href="/robots" target="_blank"><spring:message code="common.robots"/></a>
                             <%--<a href="/lathe" target="_blank"><spring:message code="common.lathe"/></a>--%>
                         </li>
                     </ul>
@@ -290,36 +309,34 @@
                                         </div>
 
                                         <div class="hover-area">
-                                            <div class="add-cart-button"
-                                                 <c:if test="${pageContext.request.userPrincipal.name == null}">
-                                                     style="display: none"</c:if>>
+                                            <div class="add-cart-button">
                                                 <a class="cart${machine.productId} le-button"
-                                                   onclick="addToCart('${machine.productId}')">
+                                                   href="/addToCart/${machine.productId}/index">
                                                     <spring:message code="common.addToCart"/>
                                                 </a>
-                                                <a class="cart${machine.productId} le-button in-cart hidden"
-                                                   onclick="removeFromCart('${machine.productId}')">
-                                                    <spring:message code="common.inCart"/>
-                                                </a>
+                                                <%--<a class="cart${machine.productId} le-button in-cart hidden"--%>
+                                                   <%--onclick="window.location.href = '/addToCart/${machine.productId}/index'">--%>
+                                                    <%--<spring:message code="common.inCart"/>--%>
+                                                <%--</a>--%>
                                             </div>
                                             <div class="wish-compare">
-                            <span class="wishList${machine.productId} btn-add-to-wishlist"
-                                  onclick="addToWishList('${machine.productId}')">
-                                <spring:message code="common.addToWishList"/>
-                            </span>
-                            <span class="wishList${machine.productId} btn-add-to-wishlist btn-green hidden"
-                                  onclick="removeFromWishList('${machine.productId}')">
-                                <spring:message code="common.removeFromWishList"/>
-                            </span>
-                                                <br>
+                            <%--<span class="wishList${machine.productId} btn-add-to-wishlist"--%>
+                                  <%--onclick="addToWishList('${machine.productId}')">--%>
+                                <%--<spring:message code="common.addToWishList"/>--%>
+                            <%--</span>--%>
+                            <%--<span class="wishList${machine.productId} btn-add-to-wishlist btn-green hidden"--%>
+                                  <%--onclick="removeFromWishList('${machine.productId}')">--%>
+                                <%--<spring:message code="common.removeFromWishList"/>--%>
+                            <%--</span>--%>
+                                                <%--<br>--%>
                             <span class="compare${machine.productId} btn-add-to-compare"
-                                  onclick="addToComparison('${machine.productId}')">
+                                  onclick="window.location.href = '/addToCompare/${machine.productId}/index'">
                                 <spring:message code="common.addToComparison"/>
                             </span>
-                            <span class="compare${machine.productId} btn-add-to-compare btn-green hidden"
-                                  onclick="removeFromComparison('${machine.productId}')">
-                                <spring:message code="common.removeFromComparison"/>
-                            </span>
+                            <%--<span class="compare${machine.productId} btn-add-to-compare btn-green hidden"--%>
+                                  <%--onclick="removeFromComparison('${machine.productId}')">--%>
+                                <%--<spring:message code="common.removeFromComparison"/>--%>
+                            <%--</span>--%>
                                             </div>
                                         </div>
                                     </div>
@@ -363,32 +380,32 @@
                                         <div class="hover-area">
                                             <div class="add-cart-button">
                                                 <a class="cart${machine.productId} le-button"
-                                                   onclick="addToCart('${machine.productId}')">
+                                                   href="/addToCart/${machine.productId}/index">
                                                     <spring:message code="common.addToCart"/>
                                                 </a>
-                                                <a class="cart${machine.productId} le-button in-cart hidden"
-                                                   onclick="removeFromCart('${machine.productId}')">
-                                                    <spring:message code="common.inCart"/>
-                                                </a>
+                                                <%--<a class="cart${machine.productId} le-button in-cart hidden"--%>
+                                                   <%--onclick="removeFromCart('${machine.productId}')">--%>
+                                                    <%--<spring:message code="common.inCart"/>--%>
+                                                <%--</a>--%>
                                             </div>
                                             <div class="wish-compare">
-                            <span class="wishList${machine.productId} btn-add-to-wishlist"
-                                  onclick="addToWishList('${machine.productId}')">
-                                <spring:message code="common.addToWishList"/>
-                            </span>
-                            <span class="wishList${machine.productId} btn-add-to-wishlist btn-green hidden"
-                                  onclick="removeFromWishList('${machine.productId}')">
-                                <spring:message code="common.removeFromWishList"/>
-                            </span>
-                                                <br>
+                            <%--<span class="wishList${machine.productId} btn-add-to-wishlist"--%>
+                                  <%--onclick="addToWishList('${machine.productId}')">--%>
+                                <%--<spring:message code="common.addToWishList"/>--%>
+                            <%--</span>--%>
+                            <%--<span class="wishList${machine.productId} btn-add-to-wishlist btn-green hidden"--%>
+                                  <%--onclick="removeFromWishList('${machine.productId}')">--%>
+                                <%--<spring:message code="common.removeFromWishList"/>--%>
+                            <%--</span>--%>
+                                                <%--<br>--%>
                             <span class="compare${machine.productId} btn-add-to-compare"
-                                  onclick="addToComparison('${machine.productId}')">
+                                  onclick="window.location.href = '/addToCompare/${machine.productId}/index'">
                                 <spring:message code="common.addToComparison"/>
                             </span>
-                            <span class="compare${machine.productId} btn-add-to-compare btn-green hidden"
-                                  onclick="removeFromComparison('${machine.productId}')">
-                                <spring:message code="common.removeFromComparison"/>
-                            </span>
+                            <%--<span class="compare${machine.productId} btn-add-to-compare btn-green hidden"--%>
+                                  <%--onclick="removeFromComparison('${machine.productId}')">--%>
+                                <%--<spring:message code="common.removeFromComparison"/>--%>
+                            <%--</span>--%>
                                             </div>
                                         </div>
                                     </div>

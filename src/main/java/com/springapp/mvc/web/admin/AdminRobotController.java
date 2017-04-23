@@ -6,6 +6,10 @@ import com.springapp.mvc.domain.filters.LocationFilter;
 import com.springapp.mvc.domain.filters.robotFilters.ReachFilter;
 import com.springapp.mvc.domain.product.robots.Robots;
 import com.springapp.mvc.service.interfaces.*;
+import com.springapp.mvc.service.interfaces.robots.LoadFilterService;
+import com.springapp.mvc.service.interfaces.robots.ManufacturerFilterService;
+import com.springapp.mvc.service.interfaces.robots.ReachFilterService;
+import com.springapp.mvc.service.interfaces.robots.RobotsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -71,7 +75,7 @@ public class AdminRobotController {
     @RequestMapping(value = "/robot/edit", method = RequestMethod.POST)
     public String editRobot(@ModelAttribute("machine") Robots machine) {
         robotsService.editRobot(machine);
-        manufacturerFilterService.addManufacturer(machine.getManufacturer());
+        manufacturerFilterService.addManufacturer(machine.getBrand());
         return "redirect:/admin/robot";
     }
 

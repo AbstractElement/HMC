@@ -17,14 +17,14 @@
         <mapping class="com.springapp.mvc.domain.User"/>
         <mapping class="com.springapp.mvc.domain.product.robots.Robots"/>
         <mapping class="com.springapp.mvc.domain.product.hmc.Order"/>
-        <mapping class="com.springapp.mvc.domain.filters.hmcFilter.BrandFilter"/>
+        <mapping class="com.springapp.mvc.domain.filters.liveToolFilter.BrandFilter"/>
         <mapping class="com.springapp.mvc.domain.filters.robotFilters.ManufacturerFilter"/>
         <mapping class="com.springapp.mvc.domain.filters.LocationFilter"/>
         <mapping class="com.springapp.mvc.domain.filters.robotFilters.AxesFilter"/>
         <mapping class="com.springapp.mvc.domain.filters.robotFilters.LoadFilter"/>
         <mapping class="com.springapp.mvc.domain.filters.robotFilters.ReachFilter"/>
-        <mapping class="com.springapp.mvc.domain.filters.hmcFilter.DriveTypeFilter"/>
-        <mapping class="com.springapp.mvc.domain.filters.hmcFilter.ToolHolderFilter"/>
+        <mapping class="com.springapp.mvc.domain.filters.liveToolFilter.DriveTypeFilter"/>
+        <mapping class="com.springapp.mvc.domain.filters.liveToolFilter.ToolHolderFilter"/>
 
     </session-factory>
 </hibernate-configuration>

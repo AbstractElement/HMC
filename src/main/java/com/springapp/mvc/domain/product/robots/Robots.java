@@ -1,5 +1,7 @@
 package com.springapp.mvc.domain.product.robots;
 
+import com.springapp.mvc.util.cart.Product;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -8,7 +10,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "robot", catalog = "hmc_example")
-public class Robots implements Serializable{
+public class Robots implements Serializable, Product{
     @Id
     @Column(name = "product_id")
     private String productId;
@@ -20,7 +22,7 @@ public class Robots implements Serializable{
     private String model;
 
     @Column(name = "manufacturer")
-    private String manufacturer;
+    private String brand;
 
     @Column(name = "producing_year")
     private int year;
@@ -50,7 +52,7 @@ public class Robots implements Serializable{
     private int weight;
 
     @Column(name = "price")
-    private int price;
+    private double price;
 
     @Column(name = "photo1")
     private String photo1;
@@ -103,12 +105,12 @@ public class Robots implements Serializable{
         this.model = model;
     }
 
-    public String getManufacturer() {
-        return manufacturer;
+    public String getBrand() {
+        return brand;
     }
 
-    public void setManufacturer(String manufacturer) {
-        this.manufacturer = manufacturer;
+    public void setBrand(String manufacturer) {
+        this.brand = manufacturer;
     }
 
     public String getCondition() {
@@ -191,11 +193,11 @@ public class Robots implements Serializable{
         this.photo1 = photo1;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

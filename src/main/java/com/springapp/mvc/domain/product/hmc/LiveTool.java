@@ -1,11 +1,13 @@
     package com.springapp.mvc.domain.product.hmc;
 
+import com.springapp.mvc.util.cart.Product;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name="drive_heads", schema = "", catalog = "hmc_example")
-public class LiveTool implements Serializable{
+public class LiveTool implements Serializable, Product{
     
     @Id
     @Column(name = "productId")

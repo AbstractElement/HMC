@@ -40,9 +40,9 @@
                     <div class="widget">
                         <h3><spring:message code="footer.findItFast"/></h3>
                         <ul>
-                            <li><a onclick="goToCart()"><spring:message code="footer.myCart"/></a></li>
-                            <li><a onclick="goToWishList()"><spring:message code="footer.myWishList"/></a></li>
-                            <li><a onclick="goToComparison()"><spring:message code="footer.myComparison"/></a></li>
+                            <li><a href="/hmc/cart"><spring:message code="footer.myCart"/></a></li>
+                            <%--<li><a onclick="goToWishList()"><spring:message code="footer.myWishList"/></a></li>--%>
+                            <li><a href="/compare"><spring:message code="footer.myComparison"/></a></li>
                             <li><a href="/hmc/trackYourOrder"><spring:message code="footer.orderTracking"/></a></li>
                         </ul>
                     </div>
@@ -70,7 +70,7 @@
         <div class="container">
             <div class="col-xs-12 col-sm-6 no-margin">
                 <div class="copyright">
-                    &copy; <a onclick="goToHmc()">VMC & HMC</a> - <spring:message code="footer.allRightsReserved"/>
+                    &copy; <a href="/hmc">VMC & HMC</a> - <spring:message code="footer.allRightsReserved"/>
                 </div>
                 <!-- /.copyright -->
             </div>

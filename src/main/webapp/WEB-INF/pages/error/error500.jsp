@@ -39,7 +39,7 @@
 <body>
 
 <div class="wrapper">
-    <%@include file="../hmc/insertions/header.jsp" %>
+    <%@include file="../insertions/header.jsp" %>
         <br><br>
     <div class="container">
         <div class="row">
@@ -58,7 +58,7 @@
         </div>
     </div>
     <br><br><br>
-    <%@include file="../hmc/insertions/footer.jsp" %>
+    <%@include file="../insertions/footer.jsp" %>
 
     <!-- JavaScripts placed at the end of the document so the pages load faster -->
     <script src="../resources/js/jquery-1.10.2.min.js"></script>

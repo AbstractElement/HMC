@@ -109,8 +109,8 @@
                   </tr>
                   <tr>
                     <td colspan="3" width="25%">Manufacturer</td>
-                    <td colspan="3" width="25%"><form:input path="manufacturer" class="le-input form-control" name="brand"
-                                                       value="${machine.manufacturer}" type="text"/></td>
+                    <td colspan="3" width="25%"><form:input path="brand" class="le-input form-control" name="brand"
+                                                       value="${machine.brand}" type="text"/></td>
                     <td colspan="3" width="25%">Year</td>
                     <td colspan="3" width="25%"><form:input path="year" class="le-input form-control" name="producingCountry"
                                                        value="${machine.year}" type="text"/></td>

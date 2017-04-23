@@ -65,7 +65,7 @@
                 <a href="/"><spring:message code="common.home"/></a>
               </li>
               <li class="breadcrumb-item gray">
-                <a onclick="goToRobots()"><spring:message code="common.robots"/></a>
+                <a href="/robots"><spring:message code="common.robots"/></a>
               </li>
               <li class="breadcrumb-item current">
                 <a onclick="window.location.reload(true);">
@@ -160,24 +160,24 @@
           </div>
           <div class="brand">
             <big>
-              <span class="brand${machine.productId}">${machine.manufacturer}</span><br>
+              <span class="brand${machine.productId}">${machine.brand}</span><br>
               <spring:message code="machine.productId"/>: ${machine.productId}
             </big>
           </div>
 
           <div class="buttons-holder">
-                    <span class="wishList${machine.productId} btn-add-to-wishlist"
-                          onclick="addToWishList('${machine.productId}')"><spring:message
-                            code="common.addToWishList"/></span>
-                    <span class="wishList${machine.productId} btn-add-to-wishlist btn-green hidden"
-                          onclick="removeFromWishList('${machine.productId}')"><spring:message
-                            code="common.removeFromWishList"/></span>
+                    <%--<span class="wishList${machine.productId} btn-add-to-wishlist"--%>
+                          <%--onclick="addToWishList('${machine.productId}')"><spring:message--%>
+                            <%--code="common.addToWishList"/></span>--%>
+                    <%--<span class="wishList${machine.productId} btn-add-to-wishlist btn-green hidden"--%>
+                          <%--onclick="removeFromWishList('${machine.productId}')"><spring:message--%>
+                            <%--code="common.removeFromWishList"/></span>--%>
                     <span class="compare${machine.productId} btn-add-to-compare" data-toggle="popover"
-                          onclick="addToComparison('${machine.productId}')"><spring:message
+                          onclick="window.location.href = '/addToCompare/${machine.productId}/hmc${machine.productId}'"><spring:message
                             code="common.addToComparison"/></span>
-                    <span class="compare${machine.productId} btn-add-to-compare btn-green hidden" data-toggle="popover"
-                          onclick="removeFromComparison('${machine.productId}')"><spring:message
-                            code="common.removeFromComparison"/></span>
+                    <%--<span class="compare${machine.productId} btn-add-to-compare btn-green hidden" data-toggle="popover"--%>
+                          <%--onclick="removeFromComparison('${machine.productId}')"><spring:message--%>
+                            <%--code="common.removeFromComparison"/></span>--%>
           </div>
 
           <div class="excerpt">
@@ -189,12 +189,11 @@
             <div class="price-current">$<span class="price${machine.productId}">${machine.price}</span></div>
           </div>
 
-          <div class="qnt-holder" <c:if test="${pageContext.request.userPrincipal.name == null}">
-            style="display: none"</c:if>>
+          <div class="qnt-holder">
             <a class="cart${machine.productId} le-button huge"
-               onclick="addToCart('${machine.productId}')"><spring:message code="common.addToCart"/></a>
-            <a class="cart${machine.productId} le-button huge in-cart hidden"
-               onclick="removeFromCart('${machine.productId}')"><spring:message code="common.inCart"/></a>
+               href="/addToCart/${machine.productId}/hmc${machine.productId}"><spring:message code="common.addToCart"/></a>
+            <%--<a class="cart${machine.productId} le-button huge in-cart hidden"--%>
+               <%--onclick="removeFromCart('${machine.productId}')"><spring:message code="common.inCart"/></a>--%>
             &nbsp;&nbsp;
             <a class="le-button huge" href="/hmc/proposalSingle?productId=${machine.productId}"><spring:message
                     code="cart.getCommercialProposal"/> (PDF)</a>
@@ -261,7 +260,7 @@
               <li>
                 <label><spring:message code="robot.manufacturer"/></label>
 
-                <div class="value">${machine.manufacturer}</div>
+                <div class="value">${machine.brand}</div>
               </li>
               <li>
                 <label><spring:message code="robot.year"/></label>

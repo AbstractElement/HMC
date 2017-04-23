@@ -216,7 +216,7 @@
           </div>
 
           <div class="reset-filter">
-            <a onclick="resetFilterRobot()"><spring:message code="hmc.resetFilter"/></a>
+            <a href="/robots"><spring:message code="hmc.resetFilter"/></a>
           </div>
           <br><br>
         </div>
@@ -283,7 +283,7 @@
                 <c:if test="${!empty robotsList}">
                   <div class="row no-margin">
                     <c:forEach items="${robotsList}" var="robot" varStatus="loop">
-                      <div class="item${loop.index + 1} col-xs-12 col-sm-4 no-margin product-item-holder hover hidden">
+                      <div class="item${loop.index + 1} col-xs-12 col-sm-4 no-margin product-item-holder hover">
                         <div class="product-item">
                           <div class="image">
                             <img alt="${robot.type} - ${robot.productId}" src="../resources/images/blank.gif"
@@ -298,7 +298,7 @@
                               </a>
                             </div>
                             <div class="brand">
-                              <span class="brand${robot.productId}">${robot.manufacturer}</span>, ${robot.year}<br>
+                              <span class="brand${robot.productId}">${robot.brand}</span>, ${robot.year}<br>
                                 <spring:message code="machine.machineCondition"/>: ${robot.condition}<br>
                                 <spring:message code="machine.location"/>: ${robot.location}<br>
                                 <%--<spring:message code="machine.motion"/> X&timesY&timesZ: ${machine.xMotion}&times${machine.yMotion}&times${machine.zMotion}<spring:message code="machine.mm"/><br>--%>
@@ -313,29 +313,28 @@
                             <br>
                           </div>
                           <div class="hover-area">
-                            <div class="add-cart-button" <c:if test="${pageContext.request.userPrincipal.name == null}">
-                              style="display: none"</c:if>>
+                            <div class="add-cart-button">
                               <a class="cart${robot.productId} le-button"
-                                 onclick="addToCart('${robot.productId}')"><spring:message
+                                 onclick="window.location.href = '/addToCart/${robot.productId}/robots'"><spring:message
                                       code="common.addToCart"/></a>
-                              <a class="cart${robot.productId} le-button in-cart hidden"
-                                 onclick="removeFromCart('${robot.productId}')"><spring:message
-                                      code="common.inCart"/></a>
+                              <%--<a class="cart${robot.productId} le-button in-cart hidden"--%>
+                                 <%--onclick="removeFromCart('${robot.productId}')"><spring:message--%>
+                                      <%--code="common.inCart"/></a>--%>
                             </div>
                             <div class="wish-compare">
-                                  <span class="wishList${robot.productId} btn-add-to-wishlist"
-                                        onclick="addToWishList('${robot.productId}')"><spring:message
-                                          code="common.addToWishList"/></span>
-                                  <span class="wishList${robot.productId} btn-add-to-wishlist btn-green hidden"
-                                        onclick="removeFromWishList('${robot.productId}')"><spring:message
-                                          code="common.removeFromWishList"/></span>
-                              <br>
+                                  <%--<span class="wishList${robot.productId} btn-add-to-wishlist"--%>
+                                        <%--onclick="addToWishList('${robot.productId}')"><spring:message--%>
+                                          <%--code="common.addToWishList"/></span>--%>
+                                  <%--<span class="wishList${robot.productId} btn-add-to-wishlist btn-green hidden"--%>
+                                        <%--onclick="removeFromWishList('${robot.productId}')"><spring:message--%>
+                                          <%--code="common.removeFromWishList"/></span>--%>
+                              <%--<br>--%>
                                   <span class="compare${robot.productId} btn-add-to-compare"
-                                        onclick="addToComparison('${robot.productId}')"><spring:message
+                                        onclick="window.location.href = '/addToCompare/${robot.productId}/robots'"><spring:message
                                           code="common.addToComparison"/></span>
-                                  <span class="compare${robot.productId} btn-add-to-compare btn-green hidden"
-                                        onclick="removeFromComparison('${robot.productId}')"><spring:message
-                                          code="common.removeFromComparison"/></span>
+                                  <%--<span class="compare${robot.productId} btn-add-to-compare btn-green hidden"--%>
+                                        <%--onclick="removeFromComparison('${robot.productId}')"><spring:message--%>
+                                          <%--code="common.removeFromComparison"/></span>--%>
                             </div>
                           </div>
                         </div>
@@ -350,7 +349,7 @@
               <div class="products-list">
                 <c:if test="${!empty robotsList}">
                   <c:forEach items="${robotsList}" var="robot" varStatus="loop">
-                    <div class="item${loop.index + 1} product-item product-item-holder hidden">
+                    <div class="item${loop.index + 1} product-item product-item-holder">
                       <div class="row">
                         <div class="no-margin col-xs-12 col-sm-4 image-holder">
                           <div class="image">
@@ -397,27 +396,27 @@
                             </div>
                             <div class="add-cart-button">
                               <a class="cart${robot.productId} le-button"
-                                 onclick="addToCart('${robot.productId}')"><spring:message
+                                 onclick="window.location.href = '/addToCart/${robot.productId}/robots'"><spring:message
                                       code="common.addToCart"/></a>
-                              <a class="cart${robot.productId} le-button in-cart hidden"
-                                 onclick="removeFromCart('${robot.productId}')"><spring:message
-                                      code="common.inCart"/></a>
+                              <%--<a class="cart${robot.productId} le-button in-cart hidden"--%>
+                                 <%--onclick="removeFromCart('${robot.productId}')"><spring:message--%>
+                                      <%--code="common.inCart"/></a>--%>
                             </div>
                             <div class="wish-compare">
-                                  <span class="wishList${robot.productId} btn-add-to-wishlist"
-                                        onclick="addToWishList('${robot.productId}')"><spring:message
-                                          code="common.addToWishList"/></span>
-                                  <span class="wishList${robot.productId} btn-add-to-wishlist btn-green hidden"
-                                        onclick="removeFromWishList('${robot.productId}')"><spring:message
-                                          code="common.removeFromWishList"/></span>
+                                  <%--<span class="wishList${robot.productId} btn-add-to-wishlist"--%>
+                                        <%--onclick=""><spring:message--%>
+                                          <%--code="common.addToWishList"/></span>--%>
+                                  <%--<span class="wishList${robot.productId} btn-add-to-wishlist btn-green hidden"--%>
+                                        <%--onclick="removeFromWishList('${robot.productId}')"><spring:message--%>
+                                          <%--code="common.removeFromWishList"/></span>--%>
                               <br>
                                   <span class="compare${robot.productId} btn-add-to-compare" data-toggle="popover"
-                                        onclick="addToComparison('${robot.productId}')"><spring:message
+                                        onclick="window.location.href = '/addToCompare/${robot.productId}/robots'"><spring:message
                                           code="common.addToComparison"/></span>
-                                  <span class="compare${robot.productId} btn-add-to-compare btn-green hidden"
-                                        data-toggle="popover"
-                                        onclick="removeFromComparison('${robot.productId}')"><spring:message
-                                          code="common.removeFromComparison"/></span>
+                                  <%--<span class="compare${robot.productId} btn-add-to-compare btn-green hidden"--%>
+                                        <%--data-toggle="popover"--%>
+                                        <%--onclick="removeFromComparison('${robot.productId}')"><spring:message--%>
+                                          <%--code="common.removeFromComparison"/></span>--%>
                             </div>
                           </div>
                         </div>
@@ -502,57 +501,57 @@
 <script src="../../resources/js/scripts.js"></script>
 <script src="http://w.sharethis.com/button/buttons.js"></script>
 <script src="../../resources/js/comparison,wishlist,cart,common.jsp"></script>
-<script type="text/javascript">
-  var checkboxesNames = ['brand','model'];
+<%--<script type="text/javascript">--%>
+  <%--var checkboxesNames = ['brand','model'];--%>
 
-  var slidersNames = ['productionYear','price','xMotion','yMotion','zMotion','xTableSize','yTableSize'];
+  <%--var slidersNames = ['productionYear','price','xMotion','yMotion','zMotion','xTableSize','yTableSize'];--%>
 
-  var specificSlidersNames = ['productionYear','price'];
+  <%--var specificSlidersNames = ['productionYear','price'];--%>
 
-  // step for slider
-  var specificSliders = {
-    'productionYear' : 1,
-    'price' : 500
-  };
+  <%--// step for slider--%>
+  <%--var specificSliders = {--%>
+    <%--'productionYear' : 1,--%>
+    <%--'price' : 500--%>
+  <%--};--%>
 
-  var commonStep = 100;
-</script>
+  <%--var commonStep = 100;--%>
+<%--</script>--%>
 <script src="../../resources/js/filters.jsp"></script>
-<script type="text/javascript">
-  // global variables, will be used in file 'filters'
-  var slidersDefaultRange = {
-    'productionYear': ['${yearMinMax[0]}', '${yearMinMax[1]}'],
-    'price': ['${priceMinMax[0]}', '${priceMinMax[1]}'],
-    'xMotion': ['${xMotionMinMax[0]}', '${xMotionMinMax[1]}'],
-    'yMotion': ['${yMotionMinMax[0]}', '${yMotionMinMax[1]}'],
-    'zMotion': ['${zMotionMinMax[0]}', '${zMotionMinMax[1]}'],
-    'xTableSize': ['${xTableSizeMinMax[0]}', '${xTableSizeMinMax[1]}'],
-    'yTableSize': ['${yTableSizeMinMax[0]}', '${yTableSizeMinMax[1]}']
-  };
+<%--<script type="text/javascript">--%>
+  <%--// global variables, will be used in file 'filters'--%>
+  <%--var slidersDefaultRange = {--%>
+    <%--'productionYear': ['${yearMinMax[0]}', '${yearMinMax[1]}'],--%>
+    <%--'price': ['${priceMinMax[0]}', '${priceMinMax[1]}'],--%>
+    <%--'xMotion': ['${xMotionMinMax[0]}', '${xMotionMinMax[1]}'],--%>
+    <%--'yMotion': ['${yMotionMinMax[0]}', '${yMotionMinMax[1]}'],--%>
+    <%--'zMotion': ['${zMotionMinMax[0]}', '${zMotionMinMax[1]}'],--%>
+    <%--'xTableSize': ['${xTableSizeMinMax[0]}', '${xTableSizeMinMax[1]}'],--%>
+    <%--'yTableSize': ['${yTableSizeMinMax[0]}', '${yTableSizeMinMax[1]}']--%>
+  <%--};--%>
 
-  var itemsNum = '${itemsNum}';
+  <%--var itemsNum = '${itemsNum}';--%>
 
-  $(document).ready(function () {
-    if (sessionStorage.view == null || sessionStorage.view == "") {
-      sessionStorage.view = 'grid';
-    } else if (sessionStorage.view == 'list') {
-      $('.grid-list-button-item:nth-child(2) a').tab('show')
-    }
+  <%--$(document).ready(function () {--%>
+    <%--if (sessionStorage.view == null || sessionStorage.view == "") {--%>
+      <%--sessionStorage.view = 'grid';--%>
+    <%--} else if (sessionStorage.view == 'list') {--%>
+      <%--$('.grid-list-button-item:nth-child(2) a').tab('show')--%>
+    <%--}--%>
 
-    if (sessionStorage.page == null || sessionStorage.page == "") {
-      sessionStorage.page = '1';
-    }
+    <%--if (sessionStorage.page == null || sessionStorage.page == "") {--%>
+      <%--sessionStorage.page = '1';--%>
+    <%--}--%>
 
-    if (sessionStorage.perPageUrl == null || sessionStorage.perPageUrl == "") {
-      sessionStorage.perPageUrl = 'perPage=${itemsPerPage}';
-    }
+    <%--if (sessionStorage.perPageUrl == null || sessionStorage.perPageUrl == "") {--%>
+      <%--sessionStorage.perPageUrl = 'perPage=${itemsPerPage}';--%>
+    <%--}--%>
 
-    $('#selectPerPage').change(function () {
-      sessionStorage.perPageUrl = 'perPage=' + $(this).val().toString();
-      goToRobots();
-    });
-  });
-</script>
+    <%--$('#selectPerPage').change(function () {--%>
+      <%--sessionStorage.perPageUrl = 'perPage=' + $(this).val().toString();--%>
+      <%--goToRobots();--%>
+    <%--});--%>
+  <%--});--%>
+<%--//</script>--%>
 <script src="../../resources/js/pagination.jsp"></script>
 </body>
 </html>

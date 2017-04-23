@@ -63,7 +63,7 @@
                                 <%--<a onclick="goToHmc()"><spring:message code="common.dh"/></a>--%>
                             <%--</li>--%>
                             <li class="breadcrumb-item gray">
-                                <a onclick="goToCart()"><spring:message code="cart.shoppingCart"/></a>
+                                <a href="/hmc/cart"><spring:message code="cart.shoppingCart"/></a>
                             </li>
                             <li class="breadcrumb-item current">
                                 <a onclick="window.location.reload(true);">
@@ -93,7 +93,7 @@
             </div>
             <!-- /.section-page-title -->
 
-            <c:if test="${!empty proposalList}">
+            <c:if test="${!empty sessionScope.basket}">
 
                 <h3><spring:message code="proposal.commercialProposalFor"/>:</h3><br>
                 <form:form class="formBox" method="post" id="proposalForm">
@@ -130,21 +130,21 @@
                                 <spring:message code="proposal.total"/></td>
                         </tr>
                         <c:set var="total" value="0"/>
-                        <c:forEach items="${proposalList}" var="machine" varStatus="loop">
+                        <c:forEach items="${sessionScope.basket.items}" var="machine" varStatus="loop">
                             <tr>
                                 <td>${loop.index + 1}</td>
-                                <td>${machine.type}</td>
-                                <td>${machine.model}</td>
+                                <td>${machine.product.type}</td>
+                                <td>${machine.product.model}</td>
                                 <td <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
-                                    $${machine.price}</td>
-                                <td id="count${machine.productId}"></td>
+                                    $${machine.product.price}</td>
+                                <td id="count${machine.product.productId}">${machine.quantity}</td>
                                 <td <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
-                                    $<span id="total${machine.productId}"></span></td>
+                                    $<span id="total${machine.product.productId}">${machine.product.price}</span></td>
                             </tr>
                         </c:forEach>
                         <tr <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
                             <td align="right" colspan="5"><spring:message code="proposal.orderTotal"/></td>
-                            <td>$<span id="order-total"></span></td>
+                            <td>$<span id="order-total">${sessionScope.basket.total}</span></td>
                         </tr>
                     </table>
                 </div>

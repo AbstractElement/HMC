@@ -91,42 +91,42 @@
                         <div class="page-header">
                             <h2 class="page-title">
                                 <spring:message code="cart.shoppingCart"/>
-                                <c:if test="${empty cartListLiveTool && empty cartListRobot}">
+                                <c:if test="${empty sessionScope.basket}">
                                     <spring:message code="cart.isEmpty"/>
                                 </c:if>
                             </h2>
                         </div>
                     </div>
 
-                <c:if test="${!empty cartListLiveTool}">
+                <c:if test="${!empty sessionScope.basket}">
 
-                    <c:forEach items="${cartListLiveTool}" var="machine">
+                    <c:forEach items="${sessionScope.basket.items}" var="machine">
                         <div class="row no-margin cart-item">
                             <div class="col-xs-12 col-sm-2 no-margin">
-                                <a href="/hmc${machine.productId}" class="thumb-holder">
-                                    <img width="150" height="110" alt="${machine.model}"
+                                <a href="/hmc${machine.product.productId}" class="thumb-holder">
+                                    <img width="150" height="110" alt="${machine.product.model}"
                                          class="attachment-shop_thumbnail wp-post-image"
                                          src="../resources/images/blank.gif"
-                                         data-echo="../resources/images/products/${machine.photo1}">
+                                         data-echo="../resources/images/products/${machine.product.photo1}">
                                 </a>
                             </div>
 
                             <div class="col-xs-12 col-sm-4 ">
                                 <div class="title">
-                                    <a href="/hmc${machine.productId}">
-                                            ${machine.type}<br>${machine.model}
+                                    <a href="/hmc${machine.product.productId}">
+                                            ${machine.product.type}<br>${machine.product.model}
                                     </a>
                                 </div>
-                                <div class="brand">${machine.brand}</div>
+                                <div class="brand">${machine.product.brand}</div>
                             </div>
 
                             <div class="col-xs-12 col-sm-3 no-margin">
                                 <div class="quantity">
                                     <div class="le-quantity">
-                                        <a class="minus" onclick="minusFromCart('${machine.productId}')"></a>
+                                        <a class="minus" onclick="window.location.href = '/decrementQuantity/${machine.product.productId}'"></a>
                                         <input name="quantity" readonly="readonly" type="text"
-                                               class="count${machine.productId}"/>
-                                        <a class="plus" onclick="plusToCart('${machine.productId}')"></a>
+                                               class="count${machine.product.productId}" value="${machine.quantity}"/>
+                                        <a class="plus" onclick="window.location.href = '/incrementQuantity/${machine.product.productId}'"></a>
                                     </div>
                                 </div>
                             </div>
@@ -134,9 +134,9 @@
                             <div class="col-xs-12 col-sm-3 no-margin">
                                 <div class="price"
                                      <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
-                                    $${machine.price}
+                                    $${machine.product.price}
                                 </div>
-                                <a class="close-btn" onclick="removeFromCart('${machine.productId}');goToCart()"></a>
+                                <a class="close-btn" onclick="window.location.href = '/removeFromCart/${machine.product.productId}'"></a>
                             </div>
                         </div>
                         <!-- /.cart-item -->
@@ -188,19 +188,19 @@
                     </c:forEach>
                 </c:if>
 
-                <c:if test="${!empty cartListLiveTool || !empty cartListRobot}">
+                <c:if test="${!empty sessionScope.basket || !empty cartListRobot}">
                     <div <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
                         <h2 class="border right"><spring:message code="cart.cartTotal"/></h2>
-                        <div class="value pull-right">$<span class="cart-total"></span></div>
+                        <div class="value pull-right">$<span class="cart-total">${sessionScope.basket.total}</span></div>
                     </div>
 
                     <br><br>
 
-                    <a class="le-button huge" onclick="goToProposal()"><spring:message
+                    <a class="le-button huge" href="/hmc/proposal"><spring:message
                             code="cart.getCommercialProposal"/> (PDF)</a>&nbsp;&nbsp;&nbsp;
-                    <a class="le-button huge" onclick="goToCheckout()"><spring:message
+                    <a class="le-button huge" href="/hmc/checkout"><spring:message
                             code="common.checkout"/></a><br><br>
-                    <a class="simple-link block" onclick="goToHmc()"><spring:message code="cart.continueShopping"/></a>
+                    <a class="simple-link block" href="/hmc"><spring:message code="cart.continueShopping"/></a>
 
                 </c:if>
             </div>

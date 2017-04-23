@@ -82,7 +82,7 @@ public class ParserExcelUtil {
         robot.setProductId(df.formatCellValue(rowIterator.next().getCell(1)).trim());
         robot.setType(df.formatCellValue(rowIterator.next().getCell(1)).trim());
         robot.setModel(df.formatCellValue(rowIterator.next().getCell(1)));
-        robot.setManufacturer(df.formatCellValue(rowIterator.next().getCell(1)).trim());
+        robot.setBrand(df.formatCellValue(rowIterator.next().getCell(1)).trim());
         robot.setYear(Integer.parseInt(df.formatCellValue(rowIterator.next().getCell(1))));
         robot.setCondition(df.formatCellValue(rowIterator.next().getCell(1)).trim());
         robot.setLocation(df.formatCellValue(rowIterator.next().getCell(1)).trim());

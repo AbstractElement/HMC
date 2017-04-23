@@ -3,6 +3,9 @@ package com.springapp.mvc.service.implementions;
 //import com.springapp.mvc.dao.interfaces.CommonDao;
 import com.springapp.mvc.dao.interfaces.*;
 
+import com.springapp.mvc.dao.interfaces.filters.BrandFilterDAO;
+import com.springapp.mvc.dao.interfaces.filters.LocationFilterDAO;
+import com.springapp.mvc.dao.interfaces.filters.ManufacturerFilterDAO;
 import com.springapp.mvc.domain.product.hmc.LiveTool;
 import com.springapp.mvc.domain.product.robots.Robots;
 import com.springapp.mvc.service.interfaces.WorkWithFilesService;
@@ -102,7 +105,7 @@ public class WorkWithFilesServiceImpl implements WorkWithFilesService {
                 File uploadFile = UploadMultipartFileUtil.uploadFile(path, machines[i]);
                 Robots robots = ParserExcelUtil.readRobot(uploadFile);
                 robotsDAO.addRobot(robots);
-                manufacturerFilterDAO.addManufacturer(robots.getManufacturer());
+                manufacturerFilterDAO.addManufacturer(robots.getBrand());
                 uploadFile.delete();
                 System.out.println("Successfully uploaded machine: " + machines[i].getOriginalFilename());
             } catch (IOException e) {
