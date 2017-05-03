@@ -1,7 +1,7 @@
 package com.springapp.mvc.service.implementions.liveToolImpl;
 
 import com.springapp.mvc.dao.interfaces.LiveToolDAO;
-import com.springapp.mvc.domain.product.hmc.LiveTool;
+import com.springapp.mvc.domain.product.hmc.LiveToolEntity;
 import com.springapp.mvc.service.interfaces.liveTool.LiveToolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ public class LiveToolServiceImpl implements LiveToolService {
     private LiveToolDAO liveToolDAO;
 
     @Transactional
-    public List<LiveTool> listMachine() {
+    public List<LiveToolEntity> listMachine() {
         return liveToolDAO.listMachine();
     }
 
@@ -27,17 +27,15 @@ public class LiveToolServiceImpl implements LiveToolService {
     }
 
     @Transactional
-    public LiveTool getMachine(String productId) {
+    public LiveToolEntity getMachine(String productId) {
         return liveToolDAO.getMachine(productId);
     }
 
     @Transactional
-    public List<LiveTool> listFiltered(String brands, String countries, String driveTypes, String toolHolders) {
-        String[] brandArr = (brands != null) ? brands.split(",") : null;
-        String[] countriesArr = (countries != null) ? countries.split(",") : null;
-        String[] driveTypesArr = (driveTypes != null) ? driveTypes.split(",") : null;
-        String[] toolHoldersArr = (toolHolders != null) ? toolHolders.split(",") : null;
-        return liveToolDAO.listFiltered(brandArr, countriesArr, driveTypesArr, toolHoldersArr);
+    public List<LiveToolEntity> listFiltered(String models, String d) {
+        String[] modelArr = (models != null) ? models.split(",") : null;
+        String[] dArr = (d != null) ? d.split(",") : null;
+        return liveToolDAO.listFiltered(modelArr, dArr);
     }
 
     private int[] getRangeArr(String range) {
@@ -45,10 +43,10 @@ public class LiveToolServiceImpl implements LiveToolService {
     }
 
     @Transactional
-    public List<LiveTool> getMachinesList(String[] productIdArr) {
-        List<LiveTool> list = new ArrayList<LiveTool>();
+    public List<LiveToolEntity> getMachinesList(String[] productIdArr) {
+        List<LiveToolEntity> list = new ArrayList<LiveToolEntity>();
         for (String productId : productIdArr) {
-            LiveTool hmc = liveToolDAO.getMachine(productId);
+            LiveToolEntity hmc = liveToolDAO.getMachine(productId);
             if (hmc != null)
                 list.add(hmc);
         }
@@ -56,41 +54,41 @@ public class LiveToolServiceImpl implements LiveToolService {
     }
 
     @Transactional
-    public void editMachine(LiveTool machine) {
+    public void editMachine(LiveToolEntity machine) {
         liveToolDAO.editMachine(machine);
     }
 
     @Transactional
-    public List<LiveTool> randomListMachine() {
+    public List<LiveToolEntity> randomListMachine() {
         return liveToolDAO.randomListMachine();
     }
 
     @Transactional
-    public List<LiveTool> newArrivalsList() {
+    public List<LiveToolEntity> newArrivalsList() {
         return liveToolDAO.newArrivalsList();
     }
 
     @Override
     @Transactional
-    public List<String> getLocationList() {
-        return liveToolDAO.getLocationList();
+    public List<String> getModels() {
+        return liveToolDAO.getModels();
     }
 
     @Override
     @Transactional
-    public List<String> getBrandsList() {
-        return liveToolDAO.getBrandsList();
+    public List<Integer> getD() {
+        return liveToolDAO.getD();
     }
-
-    @Override
-    @Transactional
-    public List<String> getDriveTypeList() {
-        return liveToolDAO.getDriveTypeList();
-    }
-
-    @Override
-    @Transactional
-    public List<String> getToolHolderList() {
-        return liveToolDAO.getToolHolderList();
-    }
+//
+//    @Override
+//    @Transactional
+//    public List<String> getDriveTypeList() {
+//        return liveToolDAO.getDriveTypeList();
+//    }
+//
+//    @Override
+//    @Transactional
+//    public List<String> getToolHolderList() {
+//        return liveToolDAO.getToolHolderList();
+//    }
 }

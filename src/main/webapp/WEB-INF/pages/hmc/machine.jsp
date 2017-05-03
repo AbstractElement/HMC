@@ -192,7 +192,7 @@
                 </div>
                 <div class="brand">
                     <big>
-                        <span class="brand${machine.productId}">${machine.brand}</span><br>
+                        <span class="brand${machine.productId}">${machine.manufacturer}</span><br>
                         <spring:message code="machine.productId"/>: ${machine.productId}
                     </big>
                 </div>
@@ -216,10 +216,10 @@
                     <p>${machine.description}</p>
                 </div>
 
-                <div class="prices"
-                     <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
-                    <div class="price-current">$<span class="price${machine.productId}">${machine.price}</span></div>
-                </div>
+                <%--<div class="prices"--%>
+                     <%--<c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>--%>
+                    <%--<div class="price-current">$<span class="price${machine.productId}">${machine.price}</span></div>--%>
+                <%--</div>--%>
 
                 <div class="qnt-holder">
                     <a class="cart${machine.productId} le-button huge"
@@ -294,29 +294,19 @@
                             <div class="value">${machine.model}</div>
                         </li>
                         <li>
-                            <label><spring:message code="machine.brand"/></label>
+                            <label><spring:message code="live_tool.manufacturer"/></label>
 
-                            <div class="value">${machine.brand}</div>
+                            <div class="value">${machine.manufacturer}</div>
                         </li>
-                        <li>
-                            <label><spring:message code="machine.producingCountry"/></label>
+                        <%--<li>--%>
+                            <%--<label><spring:message code="machine.producingCountry"/></label>--%>
 
-                            <div class="value">${machine.producingCountry}</div>
-                        </li>
+                            <%--<div class="value">${machine.producingCountry}</div>--%>
+                        <%--</li>--%>
                         <li>
-                            <label><spring:message code="drive_head.instrumentType"/></label>
+                            <label>D</label>
 
-                            <div class="value">${machine.instrumentTypeEn}</div>
-                        </li>
-                        <li>
-                            <label><spring:message code="drive_head.landingDiameter"/></label>
-
-                            <div class="value">${machine.landingDiameter}</div>
-                        </li>
-                        <li>
-                            <label><spring:message code="drive_head.driveType"/></label>
-
-                            <div class="value">${machine.driveType}</div>
+                            <div class="value">${machine.d}</div>
                         </li>
                         <li>
                             <label><spring:message code="drive_head.toolHolder"/></label>
@@ -328,30 +318,58 @@
                             <div class="value">${machine.clampingRange}</div>
                         </li>
                         <li>
-                            <label><spring:message code="drive_head.n1_n2"/></label>
-                            <div class="value">${machine.n1_n2}</div>
+                            <label>S</label>
+                            <div class="value">${machine.s}</div>
                         </li>
                         <li>
-                            <label><spring:message code="drive_head.torqueMax"/>, Nm</label>
-                            <div class="value">${machine.torqueMax}</div>
+                            <label><spring:message code="live_tool.speedMax"/></label>
+                            <div class="value">${machine.speedMax}</div>
                         </li>
                         <li>
-                            <label><spring:message code="drive_head.lengthWorkingPart"/></label>
-                            <div class="value">${machine.lengthWorkingPart}</div>
+                            <label>i</label>
+                            <div class="value">${machine.i}</div>
                         </li>
                         <li>
-                            <label><spring:message code="drive_head.displacement"/></label>
+                            <label>A</label>
 
-                            <div class="value">${machine.displacement}</div>
+                            <div class="value">${machine.a}</div>
                         </li>
                         <li>
-                            <label><spring:message code="drive_head.internalSupply"/></label>
-                                <div class="value">${machine.internalSupply}</div>
+                            <label>B</label>
+                                <div class="value">${machine.b}</div>
                         </li>
                         <li>
-                            <label><spring:message code="drive_head.weight"/></label>
-                            <div class="value">${machine.weight}</div>
+                            <label>C</label>
+                            <div class="value">${machine.c}</div>
                         </li>
+                        <li>
+                            <label>E</label>
+                            <div class="value">${machine.e}</div>
+                        </li>
+                        <li>
+                            <label>M</label>
+                            <div class="value">${machine.m}</div>
+                        </li>
+                        <li>
+                            <label><spring:message code="live_tool.code"/></label>
+                            <div class="value">${machine.codeNo}</div>
+                        </li>
+                        <li>
+                            <label><spring:message code="live_tool.order"/></label>
+                            <div class="value">${machine.orderNo}</div>
+                        </li>
+                        <li>
+                            <label><spring:message code="live_tool.coolantSupply"/></label>
+                            <div class="value">${machine.coolantSupply}</div>
+                        </li>
+                        <li>
+                            <label><spring:message code="live_tool.din"/></label>
+                            <div class="value">${machine.din}</div>
+                        </li>
+                        <%--<li>--%>
+                            <%--<label><spring:message code="drive_head.weight"/></label>--%>
+                            <%--<div class="value">${machine.weight}</div>--%>
+                        <%--</li>--%>
                         <%--<li>--%>
                             <%--<label><spring:message code="machine.toolCount"/>, <spring:message--%>
                                     <%--code="machine.pcs"/></label>--%>

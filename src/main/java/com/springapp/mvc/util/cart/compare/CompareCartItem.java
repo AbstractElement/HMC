@@ -2,9 +2,6 @@ package com.springapp.mvc.util.cart.compare;
 
 import com.springapp.mvc.util.cart.Product;
 
-/**
- * Created by Vladislav on 20.04.2017.
- */
 public class CompareCartItem {
     private Product product;
 

@@ -4,7 +4,7 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.springapp.mvc.domain.product.hmc.LiveTool;
+import com.springapp.mvc.domain.product.hmc.LiveToolEntity;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -80,68 +80,68 @@ public class GeneratePdfUtil {
         document.add(paragraph);
     }
 
-    private static PdfPTable getOrderTable(String products, LiveTool[] machines) throws DocumentException {
-        PdfPTable orderTable = new PdfPTable(6);
-        orderTable.setWidthPercentage(100);
-        orderTable.setSpacingBefore(20f);
-        orderTable.setSpacingAfter(10f);
-        orderTable.setWidths(new float[]{0.8f, 5f, 5f, 3f, 2.5f, 3f});
+//    private static PdfPTable getOrderTable(String products, LiveToolEntity[] machines) throws DocumentException {
+//        PdfPTable orderTable = new PdfPTable(6);
+//        orderTable.setWidthPercentage(100);
+//        orderTable.setSpacingBefore(20f);
+//        orderTable.setSpacingAfter(10f);
+//        orderTable.setWidths(new float[]{0.8f, 5f, 5f, 3f, 2.5f, 3f});
+//
+//        Font fontForHead = new Font(Font.FontFamily.TIMES_ROMAN,13,Font.BOLD);
+//        Font fontForBody = new Font(Font.FontFamily.TIMES_ROMAN,12);
+//
+//        PdfPCell[] orderCells = new PdfPCell[6];
+//        orderCells[0] = new PdfPCell(new Paragraph());
+//        orderCells[1] = new PdfPCell(new Paragraph("Machine",fontForHead));
+//        orderCells[2] = new PdfPCell(new Paragraph("Model",fontForHead));
+//        orderCells[3] = new PdfPCell(new Paragraph("Price",fontForHead));
+//        orderCells[4] = new PdfPCell(new Paragraph("Quantity",fontForHead));
+//        orderCells[5] = new PdfPCell(new Paragraph("Total",fontForHead));
+//        for(PdfPCell cell : orderCells) {
+//            cell.setBackgroundColor(new BaseColor(238,238,238));
+//            cell.setBorderColor(new BaseColor(22, 22, 22));
+//            cell.setBorderWidth(1);
+//            orderTable.addCell(cell);
+//        }
+//
+//        String[] productsArr = products.split(";");
+//        int orderTotal = 0;
+//        for (int i = 0; i < machines.length; i++) {
+//            orderCells[0] = new PdfPCell(new Paragraph(String.valueOf(i + 1),fontForBody));
+//            orderCells[0].setHorizontalAlignment(Element.ALIGN_CENTER);
+//            orderCells[1] = new PdfPCell(new Paragraph(machines[i].getType(),fontForBody));
+//            orderCells[2] = new PdfPCell(new Paragraph(machines[i].getModel(),fontForBody));
+////            double price = machines[i].getPrice();
+//            orderCells[3] = new PdfPCell(new Paragraph("$" + price,fontForBody));
+//            String num = productsArr[i].split(",")[1];
+//            orderCells[4] = new PdfPCell(new Paragraph(num,fontForBody));
+//            orderCells[4].setHorizontalAlignment(Element.ALIGN_CENTER);
+//            double total = price * Double.parseDouble(num);
+//            orderTotal += total;
+//            orderCells[5] = new PdfPCell(new Paragraph("$" + String.valueOf(total) + ".00",fontForBody));
+//            for(PdfPCell cell : orderCells) {
+//                cell.setBackgroundColor(new BaseColor(238,238,238));
+//                cell.setBorderColor(new BaseColor(22,22,22));
+//                cell.setBorderWidth(1);
+//                orderTable.addCell(cell);
+//            }
+//        }
+//
+//        orderCells[0] = new PdfPCell(new Paragraph("Order total",fontForBody));
+//        orderCells[0].setColspan(5);
+//        orderCells[0].setHorizontalAlignment(Element.ALIGN_RIGHT);
+//        orderCells[1] = new PdfPCell(new Paragraph("$" + String.valueOf(orderTotal) + ".00",fontForBody));
+//        for (int i = 0; i < 2; i++) {
+//            orderCells[i].setBackgroundColor(new BaseColor(238,238,238));
+//            orderCells[i].setBorderColor(new BaseColor(22, 22, 22));
+//            orderCells[i].setBorderWidth(1);
+//            orderTable.addCell(orderCells[i]);
+//        }
+//
+//        return orderTable;
+//    }
 
-        Font fontForHead = new Font(Font.FontFamily.TIMES_ROMAN,13,Font.BOLD);
-        Font fontForBody = new Font(Font.FontFamily.TIMES_ROMAN,12);
-
-        PdfPCell[] orderCells = new PdfPCell[6];
-        orderCells[0] = new PdfPCell(new Paragraph());
-        orderCells[1] = new PdfPCell(new Paragraph("Machine",fontForHead));
-        orderCells[2] = new PdfPCell(new Paragraph("Model",fontForHead));
-        orderCells[3] = new PdfPCell(new Paragraph("Price",fontForHead));
-        orderCells[4] = new PdfPCell(new Paragraph("Quantity",fontForHead));
-        orderCells[5] = new PdfPCell(new Paragraph("Total",fontForHead));
-        for(PdfPCell cell : orderCells) {
-            cell.setBackgroundColor(new BaseColor(238,238,238));
-            cell.setBorderColor(new BaseColor(22, 22, 22));
-            cell.setBorderWidth(1);
-            orderTable.addCell(cell);
-        }
-
-        String[] productsArr = products.split(";");
-        int orderTotal = 0;
-        for (int i = 0; i < machines.length; i++) {
-            orderCells[0] = new PdfPCell(new Paragraph(String.valueOf(i + 1),fontForBody));
-            orderCells[0].setHorizontalAlignment(Element.ALIGN_CENTER);
-            orderCells[1] = new PdfPCell(new Paragraph(machines[i].getType(),fontForBody));
-            orderCells[2] = new PdfPCell(new Paragraph(machines[i].getModel(),fontForBody));
-            double price = machines[i].getPrice();
-            orderCells[3] = new PdfPCell(new Paragraph("$" + price,fontForBody));
-            String num = productsArr[i].split(",")[1];
-            orderCells[4] = new PdfPCell(new Paragraph(num,fontForBody));
-            orderCells[4].setHorizontalAlignment(Element.ALIGN_CENTER);
-            double total = price * Double.parseDouble(num);
-            orderTotal += total;
-            orderCells[5] = new PdfPCell(new Paragraph("$" + String.valueOf(total) + ".00",fontForBody));
-            for(PdfPCell cell : orderCells) {
-                cell.setBackgroundColor(new BaseColor(238,238,238));
-                cell.setBorderColor(new BaseColor(22,22,22));
-                cell.setBorderWidth(1);
-                orderTable.addCell(cell);
-            }
-        }
-
-        orderCells[0] = new PdfPCell(new Paragraph("Order total",fontForBody));
-        orderCells[0].setColspan(5);
-        orderCells[0].setHorizontalAlignment(Element.ALIGN_RIGHT);
-        orderCells[1] = new PdfPCell(new Paragraph("$" + String.valueOf(orderTotal) + ".00",fontForBody));
-        for (int i = 0; i < 2; i++) {
-            orderCells[i].setBackgroundColor(new BaseColor(238,238,238));
-            orderCells[i].setBorderColor(new BaseColor(22, 22, 22));
-            orderCells[i].setBorderWidth(1);
-            orderTable.addCell(orderCells[i]);
-        }
-
-        return orderTable;
-    }
-
-    private static PdfPTable getOrderTableWithoutPrices(String products, LiveTool[] machines) throws DocumentException {
+    private static PdfPTable getOrderTableWithoutPrices(String products, LiveToolEntity[] machines) throws DocumentException {
         PdfPTable orderTable = new PdfPTable(4);
         orderTable.setWidthPercentage(100);
         orderTable.setSpacingBefore(20f);
@@ -184,7 +184,7 @@ public class GeneratePdfUtil {
     }
 
 
-    private static PdfPTable getItemTable(String path, LiveTool machine, boolean showPrice) throws DocumentException, IOException {
+    private static PdfPTable getItemTable(String path, LiveToolEntity machine, boolean showPrice) throws DocumentException, IOException {
         PdfPTable itemTable = new PdfPTable(4);
         itemTable.setWidthPercentage(100);
         itemTable.setSpacingBefore(20f);
@@ -208,9 +208,10 @@ public class GeneratePdfUtil {
         itemCells[0].setPadding(1);
         itemCells[1] = new PdfPCell();
         itemCells[1].addElement(new Paragraph(machine.getModel(), fontBold));
-        itemCells[1].addElement(new Paragraph(machine.getType() + "\n" + machine.getBrand() + ", "
-                + machine.getProducingCountry() + ", " + machine.getInstrumentTypeEn() + "\nDrive type: "
-                + machine.getDriveType() + "\nTool Holder: " + machine.getToolHolder()
+        itemCells[1].addElement(new Paragraph(machine.getType() + "\n" + machine.getManufacturer() + ", " +
+//                + machine.getProducingCountry() + ", " + machine.getInstrumentTypeEn() + "\nDrive type: "
+//                + machine.getDriveType() +
+                "\nTool Holder: " + machine.getToolHolder()
                 + "\nDescription:\n" + machine.getDescription().replace("<br>",""), font));
         itemCells[1].setColspan(2);
         itemCells[1].setRowspan(2);
@@ -240,8 +241,8 @@ public class GeneratePdfUtil {
             itemTable.addCell(itemCells[i]);
         }
 
-        itemCells[0] = new PdfPCell(new Paragraph("Landing diamemter", font));
-        itemCells[1] = new PdfPCell(new Paragraph(machine.getLandingDiameter(), font));
+        itemCells[0] = new PdfPCell(new Paragraph("D", font));
+        itemCells[1] = new PdfPCell(new Paragraph(String.valueOf(machine.getD()), font));
         itemCells[2] = new PdfPCell(new Paragraph("Clamping range, mm", font));
         itemCells[3] = new PdfPCell(new Paragraph(machine.getClampingRange(), font));
         for (int i = 0; i < 4; i++) {
@@ -250,62 +251,62 @@ public class GeneratePdfUtil {
             itemTable.addCell(itemCells[i]);
         }
 
-        itemCells[0] = new PdfPCell(new Paragraph("n1/n2", font));
-        itemCells[1] = new PdfPCell(new Paragraph(machine.getN1_n2(), font));
-        itemCells[2] = new PdfPCell(new Paragraph("Torque Max, Nm", font));
-        itemCells[3] = new PdfPCell(new Paragraph(machine.getTorqueMax(), font));
+        itemCells[0] = new PdfPCell(new Paragraph("S", font));
+        itemCells[1] = new PdfPCell(new Paragraph(String.valueOf(machine.getS()), font));
+        itemCells[2] = new PdfPCell(new Paragraph("Speed Max", font));
+        itemCells[3] = new PdfPCell(new Paragraph(String.valueOf(machine.getSpeedMax()), font));
         for (int i = 0; i < 4; i++) {
             itemCells[i].setBorderColor(new BaseColor(22, 22, 22));
             itemTable.addCell(itemCells[i]);
         }
 
-        itemCells[0] = new PdfPCell(new Paragraph("Length working part", font));
-        itemCells[1] = new PdfPCell(new Paragraph(String.valueOf(machine.getLengthWorkingPart()), font));
-        itemCells[2] = new PdfPCell(new Paragraph("Displacement", font));
-        itemCells[3] = new PdfPCell(new Paragraph(String.valueOf(machine.getDisplacement()), font));
+        itemCells[0] = new PdfPCell(new Paragraph("i", font));
+        itemCells[1] = new PdfPCell(new Paragraph(String.valueOf(machine.getI()), font));
+        itemCells[2] = new PdfPCell(new Paragraph("A", font));
+        itemCells[3] = new PdfPCell(new Paragraph(String.valueOf(machine.getA()), font));
         for (int i = 0; i < 4; i++) {
             itemCells[i].setBackgroundColor(new BaseColor(238, 238, 238));
             itemCells[i].setBorderColor(new BaseColor(22, 22, 22));
             itemTable.addCell(itemCells[i]);
         }
 
-        itemCells[0] = new PdfPCell(new Paragraph("Internal supply SOZH", font));
-        itemCells[1] = new PdfPCell(new Paragraph(machine.getInternalSupply(), font));
-        itemCells[2] = new PdfPCell(new Paragraph("Weight", font));
-        itemCells[3] = new PdfPCell(new Paragraph(String.valueOf(machine.getWeight()), font));
+        itemCells[0] = new PdfPCell(new Paragraph("B", font));
+        itemCells[1] = new PdfPCell(new Paragraph(String.valueOf(machine.getB()), font));
+        itemCells[2] = new PdfPCell(new Paragraph("C", font));
+        itemCells[3] = new PdfPCell(new Paragraph(String.valueOf(machine.getC()), font));
         for (int i = 0; i < 4; i++) {
             itemCells[i].setBorderColor(new BaseColor(22, 22, 22));
             itemTable.addCell(itemCells[i]);
         }
-//
-//        itemCells[0] = new PdfPCell(new Paragraph("Tool replacement time, sec", font));
-//        itemCells[1] = new PdfPCell(new Paragraph(machine.getToolReplacementTime(), font));
-//        itemCells[2] = new PdfPCell(new Paragraph("Max tool diameter, mm", font));
-//        itemCells[3] = new PdfPCell(new Paragraph(String.valueOf(machine.getMaxToolDiameter()), font));
-//        for (int i = 0; i < 4; i++) {
-//            itemCells[i].setBackgroundColor(new BaseColor(238, 238, 238));
-//            itemCells[i].setBorderColor(new BaseColor(22, 22, 22));
-//            itemTable.addCell(itemCells[i]);
-//        }
-//
-//        itemCells[0] = new PdfPCell(new Paragraph("Chip replacement time, sec", font));
-//        itemCells[1] = new PdfPCell(new Paragraph(machine.getChipReplacementTime(), font));
-//        itemCells[2] = new PdfPCell(new Paragraph("Max tool weight, kg", font));
-//        itemCells[3] = new PdfPCell(new Paragraph(String.valueOf(machine.getMaxToolWeight()), font));
-//        for (int i = 0; i < 4; i++) {
-//            itemCells[i].setBorderColor(new BaseColor(22, 22, 22));
-//            itemTable.addCell(itemCells[i]);
-//        }
-//
-//        itemCells[0] = new PdfPCell(new Paragraph("Spindle runtime, h", font));
-//        itemCells[1] = new PdfPCell(new Paragraph(String.valueOf(machine.getSpindleRuntime()), font));
-//        itemCells[2] = new PdfPCell(new Paragraph("Machine launching, h", font));
-//        itemCells[3] = new PdfPCell(new Paragraph(String.valueOf(machine.getMachineLaunching()), font));
-//        for (int i = 0; i < 4; i++) {
-//            itemCells[i].setBackgroundColor(new BaseColor(238, 238, 238));
-//            itemCells[i].setBorderColor(new BaseColor(22, 22, 22));
-//            itemTable.addCell(itemCells[i]);
-//        }
+
+        itemCells[0] = new PdfPCell(new Paragraph("E", font));
+        itemCells[1] = new PdfPCell(new Paragraph(String.valueOf(machine.getE()), font));
+        itemCells[2] = new PdfPCell(new Paragraph("M", font));
+        itemCells[3] = new PdfPCell(new Paragraph(String.valueOf(machine.getM()), font));
+        for (int i = 0; i < 4; i++) {
+            itemCells[i].setBackgroundColor(new BaseColor(238, 238, 238));
+            itemCells[i].setBorderColor(new BaseColor(22, 22, 22));
+            itemTable.addCell(itemCells[i]);
+        }
+
+        itemCells[0] = new PdfPCell(new Paragraph("DIN", font));
+        itemCells[1] = new PdfPCell(new Paragraph(machine.getDin(), font));
+        itemCells[2] = new PdfPCell(new Paragraph("Coolant Supply", font));
+        itemCells[3] = new PdfPCell(new Paragraph(String.valueOf(machine.getCoolantSupply()), font));
+        for (int i = 0; i < 4; i++) {
+            itemCells[i].setBorderColor(new BaseColor(22, 22, 22));
+            itemTable.addCell(itemCells[i]);
+        }
+
+        itemCells[0] = new PdfPCell(new Paragraph("Code No.", font));
+        itemCells[1] = new PdfPCell(new Paragraph(machine.getCodeNo(), font));
+        itemCells[2] = new PdfPCell(new Paragraph("Order No.", font));
+        itemCells[3] = new PdfPCell(new Paragraph(String.valueOf(machine.getOrderNo()), font));
+        for (int i = 0; i < 4; i++) {
+            itemCells[i].setBackgroundColor(new BaseColor(238, 238, 238));
+            itemCells[i].setBorderColor(new BaseColor(22, 22, 22));
+            itemTable.addCell(itemCells[i]);
+        }
 //
 //        itemCells[0] = new PdfPCell(new Paragraph("Position/reposition precision, mm", font));
 //        itemCells[1] = new PdfPCell(new Paragraph(machine.getPositionRepositionPrecision(), font));
@@ -315,20 +316,21 @@ public class GeneratePdfUtil {
 //            itemCells[i].setBorderColor(new BaseColor(22, 22, 22));
 //            itemTable.addCell(itemCells[i]);
 //        }
-
-        if(showPrice) {
-            itemCells[1] = new PdfPCell(new Paragraph(""));
-            itemCells[1].setColspan(2);
-            itemCells[2] = new PdfPCell(new Paragraph("Price", font));
-            itemCells[3] = new PdfPCell(new Paragraph("$" + machine.getPrice(), font));
-            for (int i = 1; i < 4; i++) {
-                itemCells[i].setBackgroundColor(new BaseColor(238, 238, 238));
-                itemCells[i].setBorderColor(new BaseColor(22, 22, 22));
-                itemTable.addCell(itemCells[i]);
-            }
-        }
+//
+//        if(showPrice) {
+//            itemCells[1] = new PdfPCell(new Paragraph(""));
+//            itemCells[1].setColspan(2);
+//            itemCells[2] = new PdfPCell(new Paragraph("Price", font));
+////            itemCells[3] = new PdfPCell(new Paragraph("$" + machine.getPrice(), font));
+//            for (int i = 1; i < 4; i++) {
+//                itemCells[i].setBackgroundColor(new BaseColor(238, 238, 238));
+//                itemCells[i].setBorderColor(new BaseColor(22, 22, 22));
+//                itemTable.addCell(itemCells[i]);
+//            }
+//        }
 
         return itemTable;
+//        return null;
     }
 
     private static Paragraph getFooterParagraph() {
@@ -352,7 +354,7 @@ public class GeneratePdfUtil {
         return paragraph;
     }
 
-    public static String createPDF(String path, String products, LiveTool[] machines, String company, String director, boolean showPrice) throws Exception {
+    public static String createPDF(String path, String products, LiveToolEntity[] machines, String company, String director, boolean showPrice) throws Exception {
         Document document = new Document(PageSize.A4,50,50,50,50);
         String pathPdf = path + "/offer.pdf";
         PdfWriter.getInstance(document, new FileOutputStream(pathPdf));
@@ -363,9 +365,9 @@ public class GeneratePdfUtil {
         if(!showPrice){
             document.add(getOrderTableWithoutPrices(products, machines));
         } else {
-            document.add(getOrderTable(products, machines));
+//            document.add(getOrderTable(products, machines));
         }
-        for(LiveTool machine : machines) {
+        for(LiveToolEntity machine : machines) {
             document.add(getItemTable(path, machine, showPrice));
         }
         document.add(getFooterParagraph());
@@ -374,7 +376,7 @@ public class GeneratePdfUtil {
         return pathPdf;
     }
 
-    public static String createPDFSingle(String path, LiveTool machine, String company, String director, boolean showPrice) throws Exception {
+    public static String createPDFSingle(String path, LiveToolEntity machine, String company, String director, boolean showPrice) throws Exception {
         Document document = new Document(PageSize.A4,50,50,50,50);
         String pathPdf = path + "/offer-single.pdf";
         PdfWriter.getInstance(document, new FileOutputStream(pathPdf));

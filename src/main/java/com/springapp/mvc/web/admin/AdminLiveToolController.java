@@ -1,15 +1,12 @@
 package com.springapp.mvc.web.admin;
 
-import com.springapp.mvc.domain.filters.NamesTypeProducts;
-import com.springapp.mvc.domain.filters.LocationFilter;
-import com.springapp.mvc.domain.filters.liveToolFilter.DriveTypeFilter;
-import com.springapp.mvc.domain.filters.liveToolFilter.ToolHolderFilter;
-import com.springapp.mvc.domain.product.hmc.LiveTool;
+import com.springapp.mvc.domain.filters.liveToolFilter.FilterDEntity;
+import com.springapp.mvc.domain.filters.liveToolFilter.FilterModelEntity;
+import com.springapp.mvc.domain.product.hmc.LiveToolEntity;
 import com.springapp.mvc.service.interfaces.*;
-import com.springapp.mvc.service.interfaces.liveTool.BrandFilterService;
-import com.springapp.mvc.service.interfaces.liveTool.DriveTypeFilterService;
+import com.springapp.mvc.service.interfaces.liveTool.DFilterService;
 import com.springapp.mvc.service.interfaces.liveTool.LiveToolService;
-import com.springapp.mvc.service.interfaces.liveTool.ToolHolderService;
+import com.springapp.mvc.service.interfaces.liveTool.ModelsFilterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,9 +20,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by Vladislav on 25.03.2017.
- */
 @Controller
 @RequestMapping("/admin")
 public class AdminLiveToolController {
@@ -34,52 +28,39 @@ public class AdminLiveToolController {
     private WorkWithFilesService workWithFilesService;
 
     @Autowired
-    private BrandFilterService brandFilterService;
+    private ModelsFilterService modelsFilterService;
 
     @Autowired
-    private LocationFilterService locationFilterService;
-
-    @Autowired
-    private DriveTypeFilterService driveTypeFilterService;
-
-    @Autowired
-    private ToolHolderService toolHolderService;
+    private DFilterService dFilterService;
 
     @Autowired
     private LiveToolService liveToolService;
 
     @RequestMapping(value="/hmc", method = RequestMethod.GET)
     public void hmc(Map<String,Object> map) {
-        List<LiveTool> machineList = liveToolService.listMachine();
+        List<LiveToolEntity> machineList = liveToolService.listMachine();
         map.put("machineList", machineList);
         AdminController.putPagesInfo(map, machineList.size(), 10);
     }
 
     @RequestMapping(value = "/hmc/edit", method = RequestMethod.POST)
-    public String editMachine(@ModelAttribute("machine") LiveTool machine){
+    public String editMachine(@ModelAttribute("machine") LiveToolEntity machine){
         liveToolService.editMachine(machine);
 //        brandFilterService.addBrand(machine.getBrand());
         return "redirect:/admin/hmc";
     }
-
+//
     @RequestMapping(value = "/hmc/renewFiltersLiveTool", method = RequestMethod.POST)
     public String renewLivaToolFilters(){
-        for (String location : liveToolService.getLocationList()){
-            LocationFilter locationFilter = new LocationFilter();
-            locationFilter.setCountryName(location);
-            locationFilter.setTypeProduct(NamesTypeProducts.LIVE_TOOL);
-            locationFilterService.addLocation(locationFilter);
+        for (String model : liveToolService.getModels()){
+            FilterModelEntity filterModelEntity = new FilterModelEntity();
+            filterModelEntity.setModel(model);
+            modelsFilterService.addModel(filterModelEntity);
         }
-        liveToolService.getBrandsList().forEach(brandFilterService::addBrand);
-        for(String driveType : liveToolService.getDriveTypeList()){
-            DriveTypeFilter driveTypeFilter = new DriveTypeFilter();
-            driveTypeFilter.setDriveType(driveType);
-            driveTypeFilterService.addDriveType(driveTypeFilter);
-        }
-        for(String toolHolder : liveToolService.getToolHolderList()){
-            ToolHolderFilter toolHolderFilter = new ToolHolderFilter();
-            toolHolderFilter.setToolHolder(toolHolder);
-            toolHolderService.addToolHolder(toolHolderFilter);
+        for(int d : liveToolService.getD()){
+            FilterDEntity driveTypeFilter = new FilterDEntity();
+            driveTypeFilter.setValue(d);
+            dFilterService.addD(driveTypeFilter);
         }
         return "redirect:/admin/hmc";
     }

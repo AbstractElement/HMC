@@ -125,60 +125,69 @@
                                                        value="${machine.model}" type="text"/></td>
                 </tr>
                 <tr>
-                    <td colspan="3" width="25%">Instrument Type (EN)</td>
-                    <td colspan="3" width="25%"><input class="le-input form-control" name="instrumentTypeEn"
-                                                       value="${machine.instrumentTypeEn}" type="text"/></td>
-                    <td colspan="3" width="25%">Instrument Type (RU)</td>
-                    <td colspan="3" width="25%"><input class="le-input form-control" name="instrumentTypeRu"
-                                                       value="${machine.instrumentTypeRu}" type="text"/></td>
-                </tr>
-                <tr>
-                    <td colspan="3" width="25%">Brand</td>
-                    <td colspan="3" width="25%"><input class="le-input form-control" name="brand"
-                                                       value="${machine.brand}" type="text"/></td>
-                    <td colspan="3" width="25%">Producing country</td>
-                    <td colspan="3" width="25%"><input class="le-input form-control" name="producingCountry"
-                                                       value="${machine.producingCountry}" type="text"/></td>
-                </tr>
-                <tr>
-                    <td colspan="3" width="25%">Landing Diameter</td>
-                    <td colspan="3" width="25%"><input class="le-input form-control" name="landingDiameter"
-                                                       value="${machine.landingDiameter}" type="text"/></td>
-                    <td colspan="3" width="25%">Drive Type</td>
-                    <td colspan="3" width="25%"><input class="le-input form-control" name="driveType"
-                                                       value="${machine.driveType}" type="text"/></td>
+                    <td colspan="3" width="25%">Manufacturer</td>
+                    <td colspan="3" width="25%"><input class="le-input form-control" name="manufacturer"
+                                                       value="${machine.manufacturer}" type="text"/></td>
+                    <td colspan="3" width="25%">D</td>
+                    <td colspan="3" width="25%"><input class="le-input form-control" name="d"
+                                                       value="${machine.d}" type="text"/></td>
                 </tr>
                 <tr>
                     <td colspan="3" width="25%">Tool Holder</td>
                     <td colspan="3" width="25%"><input class="le-input form-control" name="toolHolder"
                                                        value="${machine.toolHolder}" type="text"/></td>
-                    <td colspan="3" width="25%">Clamping Range (mm)</td>
+                    <td colspan="3" width="25%">Clamping Range</td>
                     <td colspan="3" width="25%"><input class="le-input form-control" name="clampingRange"
                                                        value="${machine.clampingRange}" type="text"/></td>
                 </tr>
                 <tr>
-                    <td colspan="3" width="25%">n1/n2</td>
-                    <td colspan="3" width="25%"><input class="le-input form-control" name="n1_n2"
-                                                       value="${machine.n1_n2}" type="text"/></td>
-                    <td colspan="3" width="25%">Torque Max (Nm)</td>
-                    <td colspan="3" width="25%"><input class="le-input form-control" name="torqueMax"
-                                                       value="${machine.torqueMax}" type="text"/></td>
+                    <td colspan="3" width="25%">Speed Max</td>
+                    <td colspan="3" width="25%"><input class="le-input form-control" name="speedMax"
+                                                       value="${machine.speedMax}" type="text"/></td>
+                    <td colspan="3" width="25%">S</td>
+                    <td colspan="3" width="25%"><input class="le-input form-control" name="s"
+                                                       value="${machine.s}" type="text"/></td>
                 </tr>
                 <tr>
-                    <td colspan="3" width="25%">Length Working Part</td>
-                    <td colspan="3" width="25%"><input class="le-input form-control" name="lengthWorkingPart"
-                                                       value="${machine.lengthWorkingPart}" type="text"/></td>
-                    <td colspan="3" width="25%">Displacement</td>
-                    <td colspan="3" width="25%"><input class="le-input form-control" name="displacement"
-                                                       value="${machine.displacement}" type="text"/></td>
+                    <td colspan="3" width="25%">i</td>
+                    <td colspan="3" width="25%"><input class="le-input form-control" name="i"
+                                                       value="${machine.i}" type="text"/></td>
+                    <td colspan="3" width="25%">A</td>
+                    <td colspan="3" width="25%"><input class="le-input form-control" name="a"
+                                                       value="${machine.a}" type="text"/></td>
                 </tr>
                 <tr>
-                    <td colspan="3" width="25%">Internal Supply "SOZH"</td>
-                    <td colspan="3" width="25%"><input class="le-input form-control" name="internalSupply"
-                                                       value="${machine.internalSupply}" type="text"/></td>
-                    <td colspan="3" width="25%">Weight</td>
-                    <td colspan="3" width="25%"><input class="le-input form-control" name="weight"
-                                                       value="${machine.weight}" type="number"/></td>
+                    <td colspan="3" width="25%">B</td>
+                    <td colspan="3" width="25%"><input class="le-input form-control" name="b"
+                                                       value="${machine.b}" type="text"/></td>
+                    <td colspan="3" width="25%">C</td>
+                    <td colspan="3" width="25%"><input class="le-input form-control" name="c"
+                                                       value="${machine.c}" type="text"/></td>
+                </tr>
+                <tr>
+                    <td colspan="3" width="25%">M</td>
+                    <td colspan="3" width="25%"><input class="le-input form-control" name="m"
+                                                       value="${machine.m}" type="text"/></td>
+                    <td colspan="3" width="25%">E</td>
+                    <td colspan="3" width="25%"><input class="le-input form-control" name="e"
+                                                       value="${machine.e}" type="text"/></td>
+
+                </tr>
+                <tr>
+                    <td colspan="3" width="25%">Order No.</td>
+                    <td colspan="3" width="25%"><input class="le-input form-control" name="orderNo"
+                                                       value="${machine.orderNo}" type="text"/></td>
+                    <td colspan="3" width="25%">Code No.</td>
+                    <td colspan="3" width="25%"><input class="le-input form-control" name="codeNo"
+                                                       value="${machine.codeNo}" type="text"/></td>
+                </tr>
+                <tr>
+                    <td colspan="3" width="25%">DIN</td>
+                    <td colspan="3" width="25%"><input class="le-input form-control" name="din"
+                                                       value="${machine.din}" type="text"/></td>
+                    <td colspan="3" width="25%">Coolant Sypply</td>
+                    <td colspan="3" width="25%"><input class="le-input form-control" name="coolantSupply"
+                                                       value="${machine.coolantSupply}" type="text"/></td>
                 </tr>
                 <%--<tr>--%>
                     <%--<td colspan="3" width="25%">Y table size, mm</td>--%>
@@ -269,9 +278,9 @@
                                                        <%--value="${machine.video3}" type="text"/></td>--%>
                 <%--</tr>--%>
                 <tr>
-                    <td colspan="3" width="25%">Price</td>
-                    <td colspan="3" width="25%"><input class="le-input form-control" name="price"
-                                                       value="${machine.price}" type="number"/></td>
+                    <%--<td colspan="3" width="25%">Price</td>--%>
+                    <%--<td colspan="3" width="25%"><input class="le-input form-control" name="price"--%>
+                                                       <%--value="${machine.price}" type="number"/></td>--%>
                     <td colspan="3" width="25%">Is sold</td>
                     <td colspan="3" width="25%"><input class="le-input form-control" name="isSold"
                                                        value="${machine.isSold}" type="text"/></td>

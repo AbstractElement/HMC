@@ -114,13 +114,13 @@
                                 <img src="resources/images/icon-cart.png"/>
                             </div>
 
-                            <div class="total-price-basket">
-                                <span class="lbl"><spring:message code="common.cart"/></span>
-                                <span class="total-price"
-                                      <c:if test='${pageContext.request.userPrincipal.name == null}'>style="display: none"</c:if>>
-                                    <span class="sign">$</span><span class="value cart-total">${sessionScope.basket.total}</span>
-                                </span>
-                            </div>
+                            <%--<div class="total-price-basket">--%>
+                                <%--<span class="lbl"><spring:message code="common.cart"/></span>--%>
+                                <%--<span class="total-price"--%>
+                                      <%--<c:if test='${pageContext.request.userPrincipal.name == null}'>style="display: none"</c:if>>--%>
+                                    <%--<span class="sign">$</span><span class="value cart-total">${sessionScope.basket.total}</span>--%>
+                                <%--</span>--%>
+                            <%--</div>--%>
                         </a>
 
                         <ul class="dropdown-menu">
@@ -186,8 +186,8 @@
                                                 </div>
                                                 <div class="col-xs-8 col-sm-8 no-margin">
                                                     <div class="title">${item.product.model}</div>
-                                                    <div class="price" <c:if test="${pageContext.request.userPrincipal.name == null}">
-                                                        style="display: none"</c:if>>${item.product.price}</div>
+                                                    <%--<div class="price" <c:if test="${pageContext.request.userPrincipal.name == null}">--%>
+                                                        <%--style="display: none"</c:if>>${item.product.price}</div>--%>
                                                 </div>
                                             </div>
                                             <a class="close-btn" href="/removeFromCart/${item.product.productId}"></a>
@@ -295,18 +295,20 @@
                                                 </a>
                                             </div>
                                             <div class="brand">
-                                                <span class="brand${machine.productId}">${machine.brand}</span>, ${machine.producingCountry}<br>
-                                                <spring:message code="drive_head.instrumentType"/>: ${machine.instrumentTypeEn}<br>
+                                                <span class="brand${machine.productId}">${machine.manufacturer}</span>
+                                                <%--, ${machine.producingCountry}--%>
+                                                <br>
+                                                <spring:message code="live_tool.model"/>: ${machine.model}<br>
                                                 <%--<spring:message code="machine.location"/>: ${machine.machineLocationEn}<br>--%>
                                             </div>
                                         </div>
-                                        <div class="prices"
-                                             <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
-                                            <div class="price-current pull-right">
-                                                $<span class="price${machine.productId}">${machine.price}</span>
-                                            </div>
-                                            <br>
-                                        </div>
+                                        <%--<div class="prices"--%>
+                                             <%--<c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>--%>
+                                            <%--<div class="price-current pull-right">--%>
+                                                <%--$<span class="price${machine.productId}">${machine.price}</span>--%>
+                                            <%--</div>--%>
+                                            <%--<br>--%>
+                                        <%--</div>--%>
 
                                         <div class="hover-area">
                                             <div class="add-cart-button">
@@ -364,18 +366,20 @@
                                                 </a>
                                             </div>
                                             <div class="brand">
-                                                <span class="brand${machine.productId}">${machine.brand}</span>,  ${machine.producingCountry}<br>
-                                                <spring:message code="drive_head.instrumentType"/>: ${machine.instrumentTypeEn}<br>
+                                                <span class="brand${machine.productId}">${machine.manufacturer}</span>
+                                                <%--,  ${machine.producingCountry}--%>
+                                                <br>
+                                                <spring:message code="live_tool.model"/>: ${machine.model}<br>
                                                 <%--<spring:message code="machine.location"/>: ${machine.machineLocationEn}<br>--%>
                                             </div>
                                         </div>
-                                        <div class="prices"
-                                             <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
-                                            <div class="price-current pull-right">
-                                                $<span class="price${machine.productId}">${machine.price}</span>
-                                            </div>
-                                            <br>
-                                        </div>
+                                        <%--<div class="prices"--%>
+                                             <%--<c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>--%>
+                                            <%--<div class="price-current pull-right">--%>
+                                                <%--$<span class="price${machine.productId}">${machine.price}</span>--%>
+                                            <%--</div>--%>
+                                            <%--<br>--%>
+                                        <%--</div>--%>
 
                                         <div class="hover-area">
                                             <div class="add-cart-button">

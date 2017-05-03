@@ -8,5 +8,5 @@ public interface Product {
     public String getModel();
     public String getType();
     public String getPhoto1();
-    public double getPrice();
+//    public double getPrice();
 }

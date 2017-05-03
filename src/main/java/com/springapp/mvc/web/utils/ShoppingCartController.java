@@ -1,6 +1,6 @@
 package com.springapp.mvc.web.utils;
 
-import com.springapp.mvc.domain.product.hmc.LiveTool;
+import com.springapp.mvc.domain.product.hmc.LiveToolEntity;
 import com.springapp.mvc.service.interfaces.liveTool.LiveToolService;
 import com.springapp.mvc.service.interfaces.robots.RobotsService;
 import com.springapp.mvc.util.cart.Product;
@@ -44,14 +44,14 @@ public class ShoppingCartController {
                             HttpSession session,
                             Map<String,Object> map) {
         Product product;
-        LiveTool liveTool = liveToolService.getMachine(id);
+        LiveToolEntity liveTool = liveToolService.getMachine(id);
         if(liveTool == null)
             product = robotsService.getRobot(id);
         else
             product = liveTool;
         com.springapp.mvc.util.cart.shopping.ShoppingCart shoppingCart = (com.springapp.mvc.util.cart.shopping.ShoppingCart)session.getAttribute("basket");
         shoppingCart.addItem(product);
-        shoppingCart.calculateTotal();
+//        shoppingCart.calculateTotal();
 //        session.setAttribute("basket", shoppingCart);
         map.put("basket", shoppingCart);
         productController.putMachinesForBlocks(map);
@@ -69,7 +69,7 @@ public class ShoppingCartController {
                 item.incrementQuantity();
                 break;
             }
-        shoppingCart.calculateTotal();
+//        shoppingCart.calculateTotal();
         return "redirect:/hmc/cart";
     }
 
@@ -82,7 +82,7 @@ public class ShoppingCartController {
                 item.decrementQuantity();
                 break;
             }
-        shoppingCart.calculateTotal();
+//        shoppingCart.calculateTotal();
         return "redirect:/hmc/cart";
     }
 
@@ -95,7 +95,7 @@ public class ShoppingCartController {
                 shoppingCart.getItems().remove(item);
                 break;
             }
-        shoppingCart.calculateTotal();
+//        shoppingCart.calculateTotal();
         return "redirect:/hmc/cart";
     }
 }

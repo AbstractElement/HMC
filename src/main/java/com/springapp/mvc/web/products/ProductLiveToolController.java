@@ -1,13 +1,12 @@
 package com.springapp.mvc.web.products;
 
-import com.springapp.mvc.domain.filters.liveToolFilter.BrandFilter;
 import com.springapp.mvc.domain.filters.liveToolFilter.MainLiveToolFilter;
-import com.springapp.mvc.domain.product.hmc.LiveTool;
+import com.springapp.mvc.domain.product.hmc.LiveToolEntity;
 import com.springapp.mvc.domain.product.hmc.Order;
 import com.springapp.mvc.service.interfaces.*;
-import com.springapp.mvc.service.interfaces.liveTool.BrandFilterService;
-import com.springapp.mvc.service.interfaces.liveTool.DriveTypeFilterService;
+import com.springapp.mvc.service.interfaces.liveTool.DFilterService;
 import com.springapp.mvc.service.interfaces.liveTool.LiveToolService;
+import com.springapp.mvc.service.interfaces.liveTool.ModelsFilterService;
 import com.springapp.mvc.service.interfaces.liveTool.ToolHolderService;
 import com.springapp.mvc.util.EmailUtil;
 import com.springapp.mvc.util.cart.shopping.ShoppingCart;
@@ -35,28 +34,28 @@ public class ProductLiveToolController {
 
     @Autowired
     private ProductController productController;
+//
+//    @Autowired
+//    private LocationFilterService locationFilterService;
 
     @Autowired
-    private LocationFilterService locationFilterService;
+    private ModelsFilterService modelsFilterService;
 
     @Autowired
-    private BrandFilterService brandFilterService;
-
-    @Autowired
-    private DriveTypeFilterService driveTypeFilterService;
-
-    @Autowired
-    private ToolHolderService toolHolderService;
+    private DFilterService dFilterService;
+//
+//    @Autowired
+//    private ToolHolderService toolHolderService;
 
     @RequestMapping(value = "/hmc", method = RequestMethod.GET)
     public void hmc(Map<String, Object> map) {
-        List<LiveTool> machineList = liveToolService.listMachine();
+        List<LiveToolEntity> machineList = liveToolService.listMachine();
         map.put("mainFilter", new MainLiveToolFilter());
         map.put("machineList", machineList);
-        map.put("machineBrands", brandFilterService.listBrand());
-        map.put("machineProducingCountry", locationFilterService.listLiveToolLocation());
-        map.put("machineDriveType", driveTypeFilterService.driveTypeList());
-        map.put("machineToolHolder", toolHolderService.toolHolderList());
+        map.put("machineModels", modelsFilterService.listModels());
+        map.put("machineD", dFilterService.listD());
+//        map.put("machineDriveType", driveTypeFilterService.driveTypeList());
+//        map.put("machineToolHolder", toolHolderService.toolHolderList());
         productController.putPagesInfo(map, null, machineList.size());
     }
 
@@ -64,27 +63,26 @@ public class ProductLiveToolController {
     public String hmcFiltered(@RequestParam(value = "perPage", required = false) String perPage,
                               @ModelAttribute(value = "liveToolObj") MainLiveToolFilter mainLiveToolFilter,
                               Map<String, Object> map) {
-        List<LiveTool> machineList;
-        if (mainLiveToolFilter.getBrand() == null && mainLiveToolFilter.getCountry() == null
-                && mainLiveToolFilter.getDriveType() == null && mainLiveToolFilter.getVDI() == null)
+        List<LiveToolEntity> machineList;
+        if (mainLiveToolFilter.getD() == null && mainLiveToolFilter.getModel() == null)
             machineList = liveToolService.listMachine();
         else
-            machineList = liveToolService.listFiltered(mainLiveToolFilter.getBrand(), mainLiveToolFilter.getCountry(),
-                    mainLiveToolFilter.getDriveType(), mainLiveToolFilter.getVDI());
-        List<BrandFilter> machineBrands = brandFilterService.listBrand();
+            machineList = liveToolService.listFiltered(mainLiveToolFilter.getModel(), mainLiveToolFilter.getD());
+//        List<BrandFilter> machineBrands = brandFilterService.listBrand();
         map.put("liveToolObj", mainLiveToolFilter);
-        map.put("machineBrands", machineBrands);
+        map.put("machineD", dFilterService.listD());
+        map.put("machineModels", modelsFilterService.listModels());
         map.put("machineList", machineList);
-        map.put("machineProducingCountry", locationFilterService.listLiveToolLocation());
-        map.put("machineDriveType", driveTypeFilterService.driveTypeList());
-        map.put("machineToolHolder", toolHolderService.toolHolderList());
+//        map.put("machineProducingCountry", locationFilterService.listLiveToolLocation());
+//        map.put("machineDriveType", driveTypeFilterService.driveTypeList());
+//        map.put("machineToolHolder", toolHolderService.toolHolderList());
         productController.putPagesInfo(map, perPage, machineList.size());
         return "/hmc";
     }
 
     @RequestMapping(value = "/hmc{productId}", method = RequestMethod.GET)
     public ModelAndView machineItem(@PathVariable("productId") String productId, Map<String, Object> map) {
-        LiveTool machine = liveToolService.getMachine(productId);
+        LiveToolEntity machine = liveToolService.getMachine(productId);
         if (machine == null) {
             return new ModelAndView("error/error404");
         }

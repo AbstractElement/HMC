@@ -6,9 +6,6 @@ import com.springapp.mvc.util.cart.shopping.ShoppingCartItem;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Vladislav on 20.04.2017.
- */
 public class CompareCart {
     List<CompareCartItem> items;
     int numberOfItems = 0;

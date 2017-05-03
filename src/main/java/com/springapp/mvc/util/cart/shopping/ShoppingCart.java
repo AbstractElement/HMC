@@ -76,28 +76,28 @@ return items;
         }
         return numberOfItems;
     }
+//
+//
+//
+//    public synchronized double getSubtotal() {
+//        double amount = 0;
+//        for (ShoppingCartItem scItem : items) {
+//            Product product = (Product) scItem.getProduct();
+//            //amount += (scItem.getQuantity() * hmc.getCost()).doubleValue());
+//            amount += (scItem.getQuantity() * product.getPrice());
+//        }
+//    return amount;
+//    }
 
-
-
-    public synchronized double getSubtotal() {
-        double amount = 0;
-        for (ShoppingCartItem scItem : items) {
-            Product product = (Product) scItem.getProduct();
-            //amount += (scItem.getQuantity() * hmc.getCost()).doubleValue());
-            amount += (scItem.getQuantity() * product.getPrice());
-        }
-    return amount;
-    }
-
-
-    public synchronized void calculateTotal() {
-        double amount = 0;
-        // cast surcharge as double
-//        double s = Double.parseDouble(surcharge);
-        amount = this.getSubtotal();
-//        amount += s;
-        total = amount;
-    }
+//
+//    public synchronized void calculateTotal() {
+//        double amount = 0;
+//        // cast surcharge as double
+////        double s = Double.parseDouble(surcharge);
+//        amount = this.getSubtotal();
+////        amount += s;
+//        total = amount;
+//    }
 
     public synchronized double getTotal() {
 return total;

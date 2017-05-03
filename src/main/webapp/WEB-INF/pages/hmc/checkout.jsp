@@ -156,12 +156,12 @@
                                                 ${machine.product.type} ${machine.product.model}
                                         </a>
                                     </div>
-                                    <div class="brand">${machine.product.brand}</div>
+                                    <div class="brand">${machine.product.manufacturer}</div>
                                 </div>
 
-                                <div class="col-xs-12 col-sm-2 no-margin" <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
-                                    <div class="price">$${machine.product.price}</div>
-                                </div>
+                                <%--<div class="col-xs-12 col-sm-2 no-margin" <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>--%>
+                                    <%--<div class="price">$${machine.product.price}</div>--%>
+                                <%--</div>--%>
                             </div>
                             <!-- /.order-item -->
                         </c:forEach>
@@ -183,21 +183,21 @@
                                     <div class="brand">${machine.manufacturer}</div>
                                 </div>
 
-                                <div class="col-xs-12 col-sm-2 no-margin" <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
-                                    <div class="price">$${machine.price}</div>
-                                </div>
+                                <%--<div class="col-xs-12 col-sm-2 no-margin" <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>--%>
+                                    <%--<div class="price">$${machine.price}</div>--%>
+                                <%--</div>--%>
                             </div>
                             <!-- /.order-item -->
                         </c:forEach>
-                        <div class="row no-margin order-item" <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
-                            <div class="col-xs-6 col-xs-offset-4 col-sm-3 col-sm-offset-7 no-margin">
-                                <spring:message code="checkout.orderTotal"/>
-                            </div>
+                        <%--<div class="row no-margin order-item" <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>--%>
+                            <%--<div class="col-xs-6 col-xs-offset-4 col-sm-3 col-sm-offset-7 no-margin">--%>
+                                <%--<spring:message code="checkout.orderTotal"/>--%>
+                            <%--</div>--%>
 
-                            <div class="col-xs-2 col-sm-2 col-sm-2 no-margin">
-                                <div class="value">$${sessionScope.basket.total}</div>
-                            </div>
-                        </div>
+                            <%--&lt;%&ndash;<div class="col-xs-2 col-sm-2 col-sm-2 no-margin">&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<div class="value">$${sessionScope.basket.total}</div>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+                        <%--</div>--%>
 
                     </section>
                     <!-- /#your-order -->

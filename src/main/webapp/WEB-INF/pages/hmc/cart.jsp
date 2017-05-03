@@ -117,7 +117,7 @@
                                             ${machine.product.type}<br>${machine.product.model}
                                     </a>
                                 </div>
-                                <div class="brand">${machine.product.brand}</div>
+                                <div class="brand">${machine.product.manufacturer}</div>
                             </div>
 
                             <div class="col-xs-12 col-sm-3 no-margin">
@@ -132,10 +132,10 @@
                             </div>
 
                             <div class="col-xs-12 col-sm-3 no-margin">
-                                <div class="price"
-                                     <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
-                                    $${machine.product.price}
-                                </div>
+                                <%--<div class="price"--%>
+                                     <%--<c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>--%>
+                                    <%--$${machine.product.price}--%>
+                                <%--</div>--%>
                                 <a class="close-btn" onclick="window.location.href = '/removeFromCart/${machine.product.productId}'"></a>
                             </div>
                         </div>
@@ -177,10 +177,10 @@
                             </div>
 
                             <div class="col-xs-12 col-sm-3 no-margin">
-                                <div class="price"
-                                     <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
-                                    $${machine.price}
-                                </div>
+                                <%--<div class="price"--%>
+                                     <%--<c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>--%>
+                                    <%--$${machine.price}--%>
+                                <%--</div>--%>
                                 <a class="close-btn" onclick="removeFromCart('${machine.productId}');goToCart()"></a>
                             </div>
                         </div>
@@ -189,10 +189,10 @@
                 </c:if>
 
                 <c:if test="${!empty sessionScope.basket || !empty cartListRobot}">
-                    <div <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
-                        <h2 class="border right"><spring:message code="cart.cartTotal"/></h2>
-                        <div class="value pull-right">$<span class="cart-total">${sessionScope.basket.total}</span></div>
-                    </div>
+                    <%--<div <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>--%>
+                        <%--<h2 class="border right"><spring:message code="cart.cartTotal"/></h2>--%>
+                        <%--<div class="value pull-right">$<span class="cart-total">${sessionScope.basket.total}</span></div>--%>
+                    <%--</div>--%>
 
                     <br><br>
 

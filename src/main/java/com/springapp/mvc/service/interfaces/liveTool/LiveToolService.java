@@ -1,20 +1,20 @@
 package com.springapp.mvc.service.interfaces.liveTool;
 
-import com.springapp.mvc.domain.product.hmc.LiveTool;
+import com.springapp.mvc.domain.product.hmc.LiveToolEntity;
 
 import java.util.List;
 
 public interface LiveToolService {
-    public List<LiveTool> listMachine();
+    public List<LiveToolEntity> listMachine();
     public List<String[]> listMachineForSiteMap();
-    public LiveTool getMachine(String productId);
-    public List<LiveTool> getMachinesList(String[] productIdArr);
-    public List<LiveTool> listFiltered(String brands, String model, String priceFrom, String priceTo);
-    public void editMachine(LiveTool machine);
-    public List<LiveTool> randomListMachine();
-    public List<LiveTool> newArrivalsList();
-    public List<String> getLocationList();
-    public List<String> getBrandsList();
-    public List<String> getDriveTypeList();
-    public List<String> getToolHolderList();
+    public LiveToolEntity getMachine(String productId);
+    public List<LiveToolEntity> getMachinesList(String[] productIdArr);
+    public List<LiveToolEntity> listFiltered(String models, String d);
+    public void editMachine(LiveToolEntity machine);
+    public List<LiveToolEntity> randomListMachine();
+    public List<LiveToolEntity> newArrivalsList();
+    public List<String> getModels();
+    public List<Integer> getD();
+//    public List<String> getDriveTypeList();
+//    public List<String> getToolHolderList();
 }

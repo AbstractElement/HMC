@@ -13,18 +13,20 @@
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <!--<property name="hibernate.hbm2ddl.auto">validate</property>-->
 
-        <mapping class="com.springapp.mvc.domain.product.hmc.LiveTool"/>
+        <mapping class="com.springapp.mvc.domain.product.hmc.LiveToolEntity"/>
         <mapping class="com.springapp.mvc.domain.User"/>
         <mapping class="com.springapp.mvc.domain.product.robots.Robots"/>
         <mapping class="com.springapp.mvc.domain.product.hmc.Order"/>
-        <mapping class="com.springapp.mvc.domain.filters.liveToolFilter.BrandFilter"/>
+        <!--<mapping class="com.springapp.mvc.domain.filters.liveToolFilter.BrandFilter"/>-->
         <mapping class="com.springapp.mvc.domain.filters.robotFilters.ManufacturerFilter"/>
         <mapping class="com.springapp.mvc.domain.filters.LocationFilter"/>
         <mapping class="com.springapp.mvc.domain.filters.robotFilters.AxesFilter"/>
         <mapping class="com.springapp.mvc.domain.filters.robotFilters.LoadFilter"/>
         <mapping class="com.springapp.mvc.domain.filters.robotFilters.ReachFilter"/>
-        <mapping class="com.springapp.mvc.domain.filters.liveToolFilter.DriveTypeFilter"/>
+        <!--<mapping class="com.springapp.mvc.domain.filters.liveToolFilter.DriveTypeFilter"/>-->
         <mapping class="com.springapp.mvc.domain.filters.liveToolFilter.ToolHolderFilter"/>
+        <mapping class="com.springapp.mvc.domain.filters.liveToolFilter.FilterDEntity"/>
+        <mapping class="com.springapp.mvc.domain.filters.liveToolFilter.FilterModelEntity"/>
 
     </session-factory>
 </hibernate-configuration>

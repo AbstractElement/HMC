@@ -44,13 +44,13 @@ public class ShoppingCartItem {
     public void decrementQuantity() {
     quantity--;
     }
-
-
-    public double getTotal() {
-        double amount = 0;
-        //amount = (this.getQuantity() * product.getPrice().doubleValue());
-        amount = (this.getQuantity() *  product.getPrice());
-        return amount;
-    }
+//
+//
+//    public double getTotal() {
+//        double amount = 0;
+//        //amount = (this.getQuantity() * product.getPrice().doubleValue());
+//        amount = (this.getQuantity() *  product.getPrice());
+//        return amount;
+//    }
 
 }

@@ -98,72 +98,72 @@
                 <form:form action="/hmc/filter" method="post" commandName="liveToolObj" >
                     <div class="category-filter">
 
-                        <!-- brands -->
-                        <h2>Brand</h2>
-                        <c:if test="${!empty machineBrands}">
+                        <%--<!-- model -->--%>
+                        <h2>Model</h2>
+                        <c:if test="${!empty machineModels}">
                             <ul>
-                                <c:forEach items="${machineBrands}" var="brands">
+                                <c:forEach items="${machineModels}" var="model">
                                     <li>
-                                        <input class="le-checkbox" name="brand" type="checkbox" value="${brands.brand}"
-                                               <c:forEach items="${liveToolObj.brand}" var="liveToolBrand">
-                                                   <c:if test="${brands.brand == liveToolBrand}">checked</c:if>
+                                        <input class="le-checkbox" name="model" type="checkbox" value="${model.model}"
+                                               <c:forEach items="${liveToolObj.model}" var="liveToolModel">
+                                                   <c:if test="${model.model == liveToolModel}">checked</c:if>
                                                </c:forEach>/>
-                                        <label>${brands.brand}</label>
+                                        <label>${model.model}</label>
                                     </li>
                                 </c:forEach>
                             </ul>
                         </c:if>
                         <hr>
 
-                        <h2>Producing Country</h2>
-                        <c:if test="${!empty machineProducingCountry}">
+                        <h2>D</h2>
+                        <c:if test="${!empty machineD}">
                             <ul>
-                                <c:forEach items="${machineProducingCountry}" var="country">
+                                <c:forEach items="${machineD}" var="d">
                                     <li>
-                                        <input class="le-checkbox" name="country" type="checkbox" value="${country.countryName}"
-                                                <c:forEach items="${liveToolObj.country}" var="liveToolCountry">
-                                                    <c:if test="${country.countryName == liveToolCountry}">checked</c:if>
+                                        <input class="le-checkbox" name="d" type="checkbox" value="${d.value}"
+                                                <c:forEach items="${liveToolObj.d}" var="liveToolD">
+                                                    <c:if test="${d.value == liveToolD}">checked</c:if>
                                                 </c:forEach>/>
-                                        <label>${country.countryName}</label>
+                                        <label>${d.value}</label>
                                     </li>
                                 </c:forEach>
                             </ul>
                         </c:if>
                         <hr>
 
-                        <h2>Drive Type</h2>
-                        <c:if test="${!empty machineDriveType}">
-                            <ul>
-                                <c:forEach items="${machineDriveType}" var="driveType">
-                                    <li>
-                                        <input class="le-checkbox" name="driveType" type="checkbox" value="${driveType.driveType}"
-                                                <c:forEach items="${liveToolObj.driveType}" var="liveToolDriveType">
-                                                    <c:if test="${driveType.driveType == liveToolDriveType}">checked</c:if>
-                                                </c:forEach>/>
-                                        <label>${driveType.driveType}</label>
-                                    </li>
-                                </c:forEach>
-                            </ul>
-                        </c:if>
-                        <hr>
+                        <%--<h2>Drive Type</h2>--%>
+                        <%--<c:if test="${!empty machineDriveType}">--%>
+                            <%--<ul>--%>
+                                <%--<c:forEach items="${machineDriveType}" var="driveType">--%>
+                                    <%--<li>--%>
+                                        <%--<input class="le-checkbox" name="driveType" type="checkbox" value="${driveType.driveType}"--%>
+                                                <%--<c:forEach items="${liveToolObj.driveType}" var="liveToolDriveType">--%>
+                                                    <%--<c:if test="${driveType.driveType == liveToolDriveType}">checked</c:if>--%>
+                                                <%--</c:forEach>/>--%>
+                                        <%--<label>${driveType.driveType}</label>--%>
+                                    <%--</li>--%>
+                                <%--</c:forEach>--%>
+                            <%--</ul>--%>
+                        <%--</c:if>--%>
+                        <%--<hr>--%>
 
-                        <h2>VDI</h2>
-                        <c:if test="${!empty machineToolHolder}">
-                            <ul>
-                                <c:forEach items="${machineToolHolder}" var="toolHolder">
-                                    <li>
-                                        <input class="le-checkbox" name="VDI" type="checkbox" value="${toolHolder.toolHolder}"
-                                                <c:forEach items="${liveToolObj.VDI}" var="liveToolVDI">
-                                                    <c:if test="${toolHolder.toolHolder == liveToolVDI}">checked</c:if>
-                                                </c:forEach>/>
-                                        <label>${toolHolder.toolHolder}</label>
-                                    </li>
-                                </c:forEach>
-                            </ul>
-                        </c:if>
-                        <hr>
+                        <%--<h2>VDI</h2>--%>
+                        <%--<c:if test="${!empty machineToolHolder}">--%>
+                            <%--<ul>--%>
+                                <%--<c:forEach items="${machineToolHolder}" var="toolHolder">--%>
+                                    <%--<li>--%>
+                                        <%--<input class="le-checkbox" name="VDI" type="checkbox" value="${toolHolder.toolHolder}"--%>
+                                                <%--<c:forEach items="${liveToolObj.VDI}" var="liveToolVDI">--%>
+                                                    <%--<c:if test="${toolHolder.toolHolder == liveToolVDI}">checked</c:if>--%>
+                                                <%--</c:forEach>/>--%>
+                                        <%--<label>${toolHolder.toolHolder}</label>--%>
+                                    <%--</li>--%>
+                                <%--</c:forEach>--%>
+                            <%--</ul>--%>
+                        <%--</c:if>--%>
+                        <%--<hr>--%>
 
-                        <%--<!--model-->--%>
+                        <!--model-->
                         <%--<h2>Model</h2>--%>
                         <%--<ul>--%>
                             <%--<c:forEach items="${machineList}" var="machine">--%>
@@ -275,20 +275,20 @@
                                         </a>
                                     </div>
                                     <div class="brand">
-                                        <span class="brand${machine.productId}">${machine.brand}</span>, ${machine.producingCountry}<br>
+                                        <span class="brand${machine.productId}">${machine.manufacturer}</span><br>
                                         <%--<spring:message code="machine.machineCondition"/>: ${machine.machineConditionEn}<br>--%>
                                         <%--<spring:message code="machine.location"/>: ${machine.machineLocationEn}<br>--%>
                                         <%--<spring:message code="machine.motion"/> X&timesY&timesZ: ${machine.xMotion}&times${machine.yMotion}&times${machine.zMotion}<spring:message code="machine.mm"/><br>--%>
                                         <%--<spring:message code="machine.tableSize"/> X&timesY: ${machine.xTableSize}&times${machine.yTableSize}<spring:message code="machine.mm"/>--%>
                                     </div>
                                 </div>
-                                    <div class="prices" <c:if test="${pageContext.request.userPrincipal.name == null}">
-                                        style="display: none"</c:if>>
-                                         <div class="price-current pull-right">$<span
-                                                class="price${machine.productId}">${machine.price}</span>
-                                         </div>
-                                    <br>
-                                </div>
+                                    <%--<div class="prices" <c:if test="${pageContext.request.userPrincipal.name == null}">--%>
+                                        <%--style="display: none"</c:if>>--%>
+                                         <%--<div class="price-current pull-right">$<span--%>
+                                                <%--class="price${machine.productId}">${machine.price}</span>--%>
+                                         <%--</div>--%>
+                                    <%--<br>--%>
+                                <%--</div>--%>
                                 <div class="hover-area">
                                     <div class="add-cart-button">
                                         <a class="cart${machine.productId} le-button"
@@ -345,9 +345,9 @@
                                         </a>
                                     </div>
                                     <div class="brand">
-                                        <span class="brand${machine.productId}">${machine.brand}</span>, ${machine.producingCountry}<br>
+                                        <span class="brand${machine.productId}">${machine.manufacturer}</span><br>
                                     </div>
-                                    <div class="excerpt">
+                                    <%--<div class="excerpt">--%>
                                         <%--<p>--%>
                                             <%--<spring:message--%>
                                                     <%--code="machine.machineCondition"/>: ${machine.machineConditionEn}<br>--%>
@@ -360,16 +360,16 @@
                                             <%--X&timesY: ${machine.xTableSize}&times${machine.yTableSize}--%>
                                             <%--<spring:message code="machine.mm"/>--%>
                                         <%--</p>--%>
-                                    </div>
+                                    <%--</div>--%>
                                 </div>
                             </div>
                             <!-- /.body-holder -->
                             <div class="no-margin col-xs-12 col-sm-3 price-area">
                                 <div class="right-clmn">
-                                    <div class="price-current"
-                                         <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
-                                        $<span class="price${machine.productId}">${machine.price}</span>
-                                    </div>
+                                    <%--<div class="price-current"--%>
+                                         <%--<c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>--%>
+                                        <%--$<span class="price${machine.productId}">${machine.price}</span>--%>
+                                    <%--</div>--%>
 
                                     <div class="add-cart-button">
                                         <a class="cart${machine.productId} le-button" type="submit"

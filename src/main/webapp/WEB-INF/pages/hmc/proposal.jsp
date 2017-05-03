@@ -123,11 +123,11 @@
                             <td>№</td>
                             <td><spring:message code="machine.type"/></td>
                             <td><spring:message code="machine.model"/></td>
-                            <td <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
-                                <spring:message code="machine.price"/></td>
+                            <%--<td <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>--%>
+                                <%--<spring:message code="machine.price"/></td>--%>
                             <td><spring:message code="proposal.quantity"/></td>
-                            <td <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
-                                <spring:message code="proposal.total"/></td>
+                            <%--<td <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>--%>
+                                <%--<spring:message code="proposal.total"/></td>--%>
                         </tr>
                         <c:set var="total" value="0"/>
                         <c:forEach items="${sessionScope.basket.items}" var="machine" varStatus="loop">
@@ -135,17 +135,17 @@
                                 <td>${loop.index + 1}</td>
                                 <td>${machine.product.type}</td>
                                 <td>${machine.product.model}</td>
-                                <td <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
-                                    $${machine.product.price}</td>
+                                <%--<td <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>--%>
+                                    <%--$${machine.product.price}</td>--%>
                                 <td id="count${machine.product.productId}">${machine.quantity}</td>
-                                <td <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
-                                    $<span id="total${machine.product.productId}">${machine.product.price}</span></td>
+                                <%--<td <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>--%>
+                                    <%--$<span id="total${machine.product.productId}">${machine.product.price}</span></td>--%>
                             </tr>
                         </c:forEach>
-                        <tr <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>
-                            <td align="right" colspan="5"><spring:message code="proposal.orderTotal"/></td>
-                            <td>$<span id="order-total">${sessionScope.basket.total}</span></td>
-                        </tr>
+                        <%--<tr <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>--%>
+                            <%--<td align="right" colspan="5"><spring:message code="proposal.orderTotal"/></td>--%>
+                            <%--<td>$<span id="order-total">${sessionScope.basket.total}</span></td>--%>
+                        <%--</tr>--%>
                     </table>
                 </div>
 

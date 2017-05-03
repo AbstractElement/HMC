@@ -54,9 +54,9 @@
 
                             <div class="total-price-basket">
                                 <span class="lbl"><spring:message code="common.cart"/></span>
-                                <span class="total-price" <c:if test='${pageContext.request.userPrincipal.name == null}'>style="display: none"</c:if>>
-                                    <span class="sign">$</span><span class="value cart-total">${sessionScope.basket.total}</span>
-                                </span>
+                                <%--<span class="total-price" <c:if test='${pageContext.request.userPrincipal.name == null}'>style="display: none"</c:if>>--%>
+                                    <%--<span class="sign">$</span><span class="value cart-total">${sessionScope.basket.total}</span>--%>
+                                <%--</span>--%>
                             </div>
                         </a>
                         <ul class="dropdown-menu">
@@ -71,8 +71,8 @@
                                         </div>
                                         <div class="col-xs-8 col-sm-8 no-margin">
                                             <div class="title">${item.product.model}</div>
-                                            <div class="price" <c:if test="${pageContext.request.userPrincipal.name == null}">
-                                                style="display: none"</c:if>>${item.product.price}</div>
+                                            <%--<div class="price" <c:if test="${pageContext.request.userPrincipal.name == null}">--%>
+                                                <%--style="display: none"</c:if>>${item.product.price}</div>--%>
                                         </div>
                                     </div>
                                     <a class="close-btn" href="/removeFromCart/${item.product.productId}"></a>

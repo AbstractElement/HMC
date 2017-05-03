@@ -1,6 +1,7 @@
 package com.springapp.mvc.web.products;
 
-import com.springapp.mvc.domain.product.hmc.LiveTool;
+//import com.springapp.mvc.domain.product.hmc.LiveTool;
+import com.springapp.mvc.domain.product.hmc.LiveToolEntity;
 import com.springapp.mvc.domain.product.hmc.Order;
 import com.springapp.mvc.domain.product.robots.Robots;
 import com.springapp.mvc.service.interfaces.OrderService;
@@ -81,7 +82,6 @@ public class ProductController {
     @RequestMapping(value = "/hmc/authentication", method = RequestMethod.GET)
     public void authentication(@RequestParam(value = "error", required = false) String error,
                                @RequestParam(value = "logout", required = false) String logout,
-                               HttpSession session,
                                Map<String, Object> map) {
         if (error != null)
             map.put("error", "Invalid username or password!");
@@ -116,20 +116,23 @@ public class ProductController {
         String orderList = "";
         ShoppingCart shoppingCart = (ShoppingCart)session.getAttribute("basket");
         for (ShoppingCartItem item : shoppingCart.getItems()){
-            LiveTool liveTool = liveToolService.getMachine(item.getProduct().getProductId());
-            if(liveTool != null) {
-                orderList += liveTool.getModel() + ",";
-                orderList += liveTool.getProductId() + ",";
-                orderList += liveTool.getPrice() + ";";
-            }
-            else {
-                Robots robot = robotsService.getRobot(item.getProduct().getProductId());
-                if (robot != null) {
-                    orderList += robot.getModel() + ",";
-                    orderList += robot.getProductId() + ",";
-                    orderList += robot.getPrice() + ";";
-                }
-            }
+//            LiveToolEntity liveTool = liveToolService.getMachine(item.getProduct().getProductId());
+            orderList += item.getProduct().getModel() + ",";
+            orderList += item.getProduct().getProductId() + ";";
+            orderList += item.getQuantity() + ";";
+//            if(liveTool != null) {
+//                orderList += liveTool.getModel() + ",";
+//                orderList += liveTool.getProductId() + ";";
+////                orderList += liveTool.getPrice() + ";";
+//            }
+//            else {
+//                Robots robot = robotsService.getRobot(item.getProduct().getProductId());
+//                if (robot != null) {
+//                    orderList += robot.getModel() + ",";
+//                    orderList += robot.getProductId() + ",";
+//                    orderList += robot.getPrice() + ";";
+//                }
+//            }
         }
         order.setOrderList(orderList);
         map.put("order", order);

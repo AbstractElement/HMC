@@ -16,7 +16,7 @@
                 <td style="border:1px solid #59b210; padding:6px">№</td>
                 <td style="border:1px solid #59b210; padding:6px">Machine</td>
                 <td style="border:1px solid #59b210; padding:6px">Machine ID</td>
-                <td style="border:1px solid #59b210; padding:6px">Price</td>
+                <td style="border:1px solid #59b210; padding:6px">Quantity</td>
 ##                <td style="border:1px solid #59b210; padding:6px">Quantity</td>
             </tr>
             #set( $count = 1 )

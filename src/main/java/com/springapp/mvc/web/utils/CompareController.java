@@ -1,6 +1,6 @@
 package com.springapp.mvc.web.utils;
 
-import com.springapp.mvc.domain.product.hmc.LiveTool;
+import com.springapp.mvc.domain.product.hmc.LiveToolEntity;
 import com.springapp.mvc.service.interfaces.liveTool.LiveToolService;
 import com.springapp.mvc.service.interfaces.robots.RobotsService;
 import com.springapp.mvc.util.cart.Product;
@@ -50,7 +50,7 @@ public class CompareController {
                                HttpSession session,
                                Map<String,Object> map) {
         Product product;
-        LiveTool liveTool = liveToolService.getMachine(id);
+        LiveToolEntity liveTool = liveToolService.getMachine(id);
         if(liveTool == null)
             product = robotsService.getRobot(id);
         else

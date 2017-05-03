@@ -1,10 +1,6 @@
 package com.springapp.mvc.util;
 
-//import com.springapp.mvc.domain.common.LanguageEntity;
-
-
-//import com.springapp.mvc.domain.lathe.*;
-import com.springapp.mvc.domain.product.hmc.LiveTool;
+import com.springapp.mvc.domain.product.hmc.LiveToolEntity;
 import com.springapp.mvc.domain.product.robots.Robots;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.DataFormatter;
@@ -30,37 +26,36 @@ public class ParserExcelUtil {
         return workbook;
     }
 
-    public static LiveTool readLiveTool(File file) throws IOException{
+    public static LiveToolEntity readLiveTool(File file) throws IOException{
         FileInputStream fis = new FileInputStream(file);
         Workbook workbook = getWorkbook(fis,file.getPath());
         Sheet firstSheet = workbook.getSheetAt(0);
         Iterator<Row> rowIterator = firstSheet.iterator();
         DataFormatter df = new DataFormatter();
 
-        LiveTool hmc = new LiveTool();
+        LiveToolEntity hmc = new LiveToolEntity();
         hmc.setProductId(df.formatCellValue(rowIterator.next().getCell(1)).trim());
         hmc.setType(df.formatCellValue(rowIterator.next().getCell(1)).trim());
-        Row tmp = rowIterator.next();
-        hmc.setInstrumentTypeEn(df.formatCellValue(tmp.getCell(1)));
-        hmc.setInstrumentTypeRu(df.formatCellValue(tmp.getCell(2)).trim());
+        hmc.setManufacturer(df.formatCellValue(rowIterator.next().getCell(1)));
         hmc.setModel(df.formatCellValue(rowIterator.next().getCell(1)));
-        hmc.setBrand(df.formatCellValue(rowIterator.next().getCell(1)).trim());
-        hmc.setProducingCountry(df.formatCellValue(rowIterator.next().getCell(1)));
-        hmc.setLandingDiameter(df.formatCellValue(rowIterator.next().getCell(1)).trim());
-        hmc.setDriveType(df.formatCellValue(rowIterator.next().getCell(1)).trim());
+        hmc.setD(Integer.parseInt(df.formatCellValue(rowIterator.next().getCell(1))));
         hmc.setToolHolder(df.formatCellValue(rowIterator.next().getCell(1)));
-        hmc.setClampingRange(df.formatCellValue(rowIterator.next().getCell(1)));
-        hmc.setN1_n2(df.formatCellValue(rowIterator.next().getCell(1)));
-        hmc.setTorqueMax(df.formatCellValue(rowIterator.next().getCell(1)).trim());
-        hmc.setLengthWorkingPart(df.formatCellValue(rowIterator.next().getCell(1)).trim());
-        hmc.setDisplacement(df.formatCellValue(rowIterator.next().getCell(1)));
-        hmc.setInternalSupply(df.formatCellValue(rowIterator.next().getCell(1)));
-        hmc.setWeight(Integer.parseInt(df.formatCellValue(rowIterator.next().getCell(1))));
+        hmc.setClampingRange(df.formatCellValue(rowIterator.next().getCell(1)).trim());
+        hmc.setS(Double.parseDouble(df.formatCellValue(rowIterator.next().getCell(1)).trim()));
+        hmc.setSpeedMax(Integer.parseInt(df.formatCellValue(rowIterator.next().getCell(1))));
+        hmc.setI(df.formatCellValue(rowIterator.next().getCell(1)).trim());
+        hmc.setA(Double.parseDouble(df.formatCellValue(rowIterator.next().getCell(1)).trim()));
+        hmc.setB(Double.parseDouble(df.formatCellValue(rowIterator.next().getCell(1))));
+        hmc.setC(Double.parseDouble(df.formatCellValue(rowIterator.next().getCell(1))));
+        hmc.setE(Double.parseDouble(df.formatCellValue(rowIterator.next().getCell(1))));
+        hmc.setM(Double.parseDouble(df.formatCellValue(rowIterator.next().getCell(1))));
+        hmc.setCodeNo(df.formatCellValue(rowIterator.next().getCell(1)));
+        hmc.setOrderNo(df.formatCellValue(rowIterator.next().getCell(1)));
+        hmc.setCoolantSupply(df.formatCellValue(rowIterator.next().getCell(1)));
+        hmc.setDin(df.formatCellValue(rowIterator.next().getCell(1)));
         hmc.setPhoto1(df.formatCellValue(rowIterator.next().getCell(1)));
         hmc.setPhoto2(df.formatCellValue(rowIterator.next().getCell(1)));
         hmc.setPhoto3(df.formatCellValue(rowIterator.next().getCell(1)));
-        hmc.setDrawing(df.formatCellValue(rowIterator.next().getCell(1)));
-        hmc.setPrice(Double.parseDouble(df.formatCellValue(rowIterator.next().getCell(1))));
         hmc.setDescription(df.formatCellValue(rowIterator.next().getCell(1)));
         hmc.setIsSold("No");
 //        if(hmc.getIsSold().equals("")) {
