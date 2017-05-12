@@ -118,7 +118,7 @@ public class ProductController {
         for (ShoppingCartItem item : shoppingCart.getItems()){
 //            LiveToolEntity liveTool = liveToolService.getMachine(item.getProduct().getProductId());
             orderList += item.getProduct().getModel() + ",";
-            orderList += item.getProduct().getProductId() + ";";
+            orderList += item.getProduct().getProductId() + ",";
             orderList += item.getQuantity() + ";";
 //            if(liveTool != null) {
 //                orderList += liveTool.getModel() + ",";
@@ -139,8 +139,9 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/hmc/checkout", method = RequestMethod.POST)
-    public void checkoutPost(@ModelAttribute("order")Order order,
-                             Map<String, Object> map) {
+    public String checkoutPost(@ModelAttribute("order")Order order,
+                             Map<String, Object> map,
+                             HttpSession session) {
         map.put("from", "vladis19tr@gmail.com");
         map.put("to", "vladis19tr@gmail.com");
         map.put("subject", "New proposal");
@@ -151,6 +152,9 @@ public class ProductController {
         emailUtil.sendEmail("machine-order-admin.vm", map);
         map.put("to", order.getEmail());
         emailUtil.sendEmail("machine-order-customer.vm", map);
+        ShoppingCart shoppingCart = (ShoppingCart)session.getAttribute("basket");
+        shoppingCart.clear();
+        return "redirect:/hmc/cart";
     }
 
 //    @RequestMapping(value = "/hmc/trackYourOrder", method = RequestMethod.GET)

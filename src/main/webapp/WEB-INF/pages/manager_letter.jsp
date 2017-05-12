@@ -50,12 +50,12 @@
 <div class="wrapper">
 <!-- ============================================================= TOP NAVIGATION ============================================================= -->
 <div class="wrapper">
-    <%@include file="../insertions/header.jsp" %>
+    <%@include file="insertions/header.jsp" %>
     <div id="top-mega-nav">
         <div class="container">
             <nav>
                 <ul class="inline">
-                    <%@include file="../insertions/shopByDepartment.jsp" %>
+                    <%@include file="insertions/shopByDepartment.jsp" %>
                     <li class="breadcrumb-nav-holder">
                         <ul>
                             <li class="breadcrumb-item gray">
@@ -65,12 +65,7 @@
                                 <%--<a onclick="goToHmc()"><spring:message code="common.hmc"/></a>--%>
                             <%--</li>--%>
                             <li class="breadcrumb-item gray">
-                                <a href="/hmc/cart"><spring:message code="cart.shoppingCart"/></a>
-                            </li>
-                            <li class="breadcrumb-item current">
-                                <a onclick="window.location.reload(true);">
-                                    <h1 class="h2 department-h1"><spring:message code="checkout.checkoutProcess"/></h1>
-                                </a>
+                                <a href="/managerplace">Work With Letter</a>
                             </li>
                         </ul>
                     </li>
@@ -86,110 +81,93 @@
 
 <section id="checkout-page">
     <div class="container">
+        <div id="upload">
+            <form:form class="formBox" method="post" action="/managerplace/upload"
+                       enctype="multipart/form-data">
+
+                <fieldset>
+                    <div class="clearfix file">
+                        <div class="con">
+                            <input type="file" accept=".xls,.xlsx" name="textFile" class="upload-file"
+                                   id="textFile" required/>
+                        </div>
+                    </div>
+                    <div class="btn-submit"><!-- Submit form -->
+                        <input type="submit" value="Add / update" class="button"/>
+                    </div>
+                </fieldset>
+
+            </form:form>
+        </div>
+
         <div class="col-xs-12 no-margin">
-
-            <c:if test="${!empty sessionScope.basket}">
-                <form:form method="post" action="checkout" id="form" commandName="order">
-                    <form:input type="hidden" path="orderId"/>
+                <form:form method="post" id="form" commandName="letter">
                     <div class="billing-address">
-                        <h2 class="border h1"><spring:message code="checkout.billingAddress"/></h2>
-
-                        <div class="row field-row">
-                            <div class="col-xs-12 col-sm-6">
-                                <label><spring:message code="checkout.firstName"/>*</label>
-                                <form:input path="firstName" class="le-input" required="true"  name="firstName" type="text"/><br>
-                            </div>
-                            <div class="col-xs-12 col-sm-6">
-                                <label><spring:message code="checkout.lastName"/>*</label>
-                                <form:input path="lastName" class="le-input" required="true" name="lastName" type="text"/><br>
-                            </div>
-                        </div>
-                        <!-- /.field-row -->
-
-                        <div class="row field-row">
-                            <div class="col-xs-12">
-                                <label><spring:message code="checkout.companyName"/></label>
-                                <form:input path="company" class="le-input" name="company" type="text"/><br>
-                            </div>
-                        </div>
-                        <!-- /.field-row -->
-
-                        <div class="row field-row">
-                            <div class="col-xs-12">
-                                <label><spring:message code="checkout.address"/>*</label>
-                                <form:input path="address" class="le-input" name="address" required="true" type="text"/><br>
-                            </div>
-                        </div>
-                        <!-- /.field-row -->
-
+                        <h2 class="border h1">Letter</h2>
                         <div class="row field-row">
                             <div class="col-xs-12 col-sm-4">
-                                <label><spring:message code="checkout.postcode"/>*</label>
-                                <form:input path="postcode" class="le-input" name="postcode" required="true" type="number"/><br>
+                                <label>Type of letter</label>
+                                <form:input path="typeOfLetter" class="le-input" required="true" type="text"/><br>
                             </div>
                             <div class="col-xs-12 col-sm-4">
-                                <label id="label-email"><spring:message code="checkout.email"/>*<span style='color:crimson' class="hidden"> <spring:message code="checkout.invalidEmail"/></span></label>
+                                <label>Position of the contact</label>
+                                <form:input path="position" class="le-input" type="text"/><br>
+                            </div>
+                            <div class="col-xs-12 col-sm-4">
+                                <label>Website</label>
+                                <form:input path="website" class="le-input" type="text"/><br>
+                            </div>
+                        </div>
+                        <!-- /.field-row -->
+
+                        <div class="row field-row">
+                            <div class="col-xs-4">
+                                <label>Company</label>
+                                <form:input path="company" class="le-input" required="true" type="text"/><br>
+                            </div>
+                            <div class="col-xs-12 col-sm-4">
+                                <label>Contact name</label>
+                                <form:input path="contactName" class="le-input" type="text"/><br>
+                            </div>
+                            <div class="col-xs-12 col-sm-4">
+                                <label id="label-email">Email<span style='color:crimson' class="hidden"> <spring:message code="checkout.invalidEmail"/></span></label>
                                 <form:input path="email" class="le-input" required="true" name="email" type="email"/>
                             </div>
+                        </div>
+                        <!-- /.field-row -->
+
+                        <div class="row field-row">
+                            <div class="col-xs-12 col-sm-6">
+                                <label>Address</label>
+                                <form:input path="address" class="le-input" required="true" type="text"/>
+                            </div>
+                        </div>
+
+                        <div class="row field-row">
+                            <div class="col-xs-12 col-sm-4">
+                                <label>Manager</label>
+                                <form:input path="manager" class="le-input" required="true" type="text"/><br>
+                            </div>
+                            <div class="col-xs-12 col-sm-4">
+                                <label id="label-email">Email Manager</label>
+                                <form:input path="emailManager" class="le-input" required="true" type="text"/>
+                            </div>
 
                             <div class="col-xs-12 col-sm-4">
-                                <label><spring:message code="checkout.phoneNumber"/>*</label>
-                                <form:input path="phone" class="le-input" name="phone" required="true" type="text"/>
+                                <label>Phone Manager</label>
+                                <form:input path="phoneManager" class="le-input" type="text"/>
+                            </div>
+                        </div>
+
+                        <div class="row field-row">
+                            <div class="col-xs-12 col-sm-4">
+                                <label>Description</label>
+                                <form:input path="description" class="le-input" required="true" type="text"/><br>
                             </div>
                         </div>
                         <!-- /.field-row -->
                     </div>
                     <!-- /.billing-address -->
-
-                    <section id="your-order">
-                        <h2 class="border h1"><spring:message code="checkout.yourOrder"/></h2>
-                        <c:forEach items="${sessionScope.basket.items}" var="machine">
-                            <div class="row no-margin order-item">
-                                <div class="col-xs-12 col-sm-1 no-margin">
-                                    <a class="qty">
-                                        <span id="count${machine.product.productId}"></span> x
-                                    </a>
-                                </div>
-
-                                <div class="col-xs-12 col-sm-9 ">
-                                    <div class="title">
-                                        <a href="/hmc${machine.product.productId}">
-                                                ${machine.product.type} ${machine.product.model}
-                                        </a>
-                                    </div>
-                                    <div class="brand">${machine.product.manufacturer}</div>
-                                </div>
-
-                                <%--<div class="col-xs-12 col-sm-2 no-margin" <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>--%>
-                                    <%--<div class="price">$${machine.product.price}</div>--%>
-                                <%--</div>--%>
-                            </div>
-                            <!-- /.order-item -->
-                        </c:forEach>
-
-                        <c:forEach items="${checkoutListRobots}" var="machine">
-                            <div class="row no-margin order-item">
-                                <div class="col-xs-12 col-sm-1 no-margin">
-                                    <a class="qty">
-                                        <span id="count${machine.productId}"></span> x
-                                    </a>
-                                </div>
-
-                                <div class="col-xs-12 col-sm-9 ">
-                                    <div class="title">
-                                        <a href="/hmc${machine.productId}">
-                                                ${machine.type} ${machine.model}
-                                        </a>
-                                    </div>
-                                    <div class="brand">${machine.manufacturer}</div>
-                                </div>
-
-                                <%--<div class="col-xs-12 col-sm-2 no-margin" <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>--%>
-                                    <%--<div class="price">$${machine.price}</div>--%>
-                                <%--</div>--%>
-                            </div>
-                            <!-- /.order-item -->
-                        </c:forEach>
                         <%--<div class="row no-margin order-item" <c:if test="${pageContext.request.userPrincipal.name == null}">style="display: none"</c:if>>--%>
                             <%--<div class="col-xs-6 col-xs-offset-4 col-sm-3 col-sm-offset-7 no-margin">--%>
                                 <%--<spring:message code="checkout.orderTotal"/>--%>
@@ -200,18 +178,18 @@
                             <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
                         <%--</div>--%>
 
-                    </section>
-                    <!-- /#your-order -->
-
-                    <form:input type="hidden" name="orderList" path="orderList"/>
-                    <form:input type="hidden" class="total-field" name="total" path="total"/>
-
                     <div class="place-order-button">
-                        <button class="le-button huge" type="submit"><spring:message code="checkout.placeOrder"/></button>
+                        <label>Step 1</label>
+                        <input formaction = "/managerplace/getPDF" class="le-button huge"
+                               type="submit" value="Create PDF"/>
+                    </div>
+                    <div class="place-order-button">
+                        <label>Step 2</label>
+                        <input formaction = "/managerplace/send" class="le-button huge"
+                               type="submit" value="Send message"/>
                     </div>
                     <!-- /.place-order-button -->
                 </form:form>
-            </c:if>
 
         </div>
         <!-- /.col -->
@@ -222,7 +200,7 @@
 <!-- ========================================= CONTENT : END ========================================= -->
 <!-- ============================================================= FOOTER ============================================================= -->
 <!-- ================================================= FOOTER ========================================== -->
-<%@include file="../insertions/footer.jsp" %>
+<%@include file="insertions/footer.jsp" %>
 <!-- ============================================================= FOOTER : END ============================================================= -->
 
 <script src="../resources/js/jquery-1.10.2.min.js"></script>

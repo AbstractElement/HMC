@@ -2,6 +2,8 @@ package com.springapp.mvc.util;
 
 import org.apache.velocity.app.VelocityEngine;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 
 import javax.mail.internet.MimeMessage;
+import java.io.File;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -38,17 +41,18 @@ public class EmailUtil {
                 String subject = (String) model.get(SUBJECT);
 
                 List<String> bccList = (List<String>) model.get(BCC_LIST);
-                MimeMessageHelper message = new MimeMessageHelper(mimeMessage, "UTF-8");
+                MimeMessageHelper message = new MimeMessageHelper(mimeMessage, true, "UTF-8");
                 message.setFrom(from);
                 message.setTo(to);
                 message.setSubject(subject);
                 message.setSentDate(new Date());
+//                message.addInline("myLogo", new ClassPathResource("../../resources/images/logo_retina.png"));
+                message.addAttachment("Chocolate.pdf", new ClassPathResource("../../resources/letter.pdf"));
                 if (bccList != null) {
                     for (String bcc : bccList) {
                         message.addBcc(bcc);
                     }
                 }
-
                 String text = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, templateName, "UTF-8", model);
                 message.setText(text,true);
             }

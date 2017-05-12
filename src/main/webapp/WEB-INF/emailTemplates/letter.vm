@@ -1,0 +1,74 @@
+<body bgcolor="#FFFFFF" padding="15px">
+<div>
+    <table>
+        <tr>
+            <td>
+                <h1 style="font-size: 23px">
+                    Chocolate for your corporate identity.<br>
+                    +375 (29) 255-88-88<br>
+                    www.chocoart.by<br>
+                </h1>
+            </td>
+##            <td>
+##                <img style="width: 300px" src='cid:myLogo'>
+##            </td>
+        </tr>
+    </table>
+
+    <hr size="1" color="#59b210"><br>
+
+    <h3 style="font-size: 17px; font-weight:normal;">
+        For:<br>
+        #if($letter.contactName!='')
+            $letter.contactName<br>
+            $letter.position<br>
+            $letter.company<br>
+        #end
+        #if($letter.contactName=='')
+            Marketing department of $letter.company<br>
+        #end
+        <br>
+        $letter.address<br>
+        $letter.website<br>
+        <br>
+        <hr size="1" color="#59b210"><br>
+
+        #if($letter.contactName!='')
+            Dear $letter.contactName<br>
+        #end
+        #if($letter.contactName=='')
+            Dear chief of marketing department.<br>
+        #end
+        My name is Vladislav. I am from Belarus.<br>
+        <br>
+        I've browsed your website and noticed some information about your company:<br>
+        $letter.description<br>
+
+        It means you want to increase realization of yours products and communicate with your customers. <br>
+        And sometimes you meet with customers and drink tea or coffee with candy or chocolate. <br>
+        And very good if this chocolate would looks like your company stile.<br>
+        <br>
+        In this regard, I would like to offer you very tasty and very beautiful chocolate made in Belarus.<br>
+        <br>
+        I am a representative of chocolate factory “Belga-Prom”. We are producer of chocolate.<br>
+        We located in Minsk, Belarus.<br>
+        We could make interesting design of chocolate special for your company (with your company style).<br>
+        <br>
+        "Make life sweet again!"<br>
+        <br>
+        I hope you are interested our proposal.<br>
+        <br>
+        Please message me,<br>
+        And I give you more information about our tasty chocolate. :)<br>
+        <br>
+        Have a good day!<br>
+        <br>
+        Best regards, $letter.manager<br>
+        $letter.emailManager<br>
+        #if($letter.phoneManager=='')
+            $letter.phoneManager<br>
+        #end
+
+    </h3>
+</div>
+</body>

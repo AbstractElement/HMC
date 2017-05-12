@@ -4,6 +4,7 @@ package com.springapp.mvc.service.implementions;
 import com.springapp.mvc.dao.interfaces.*;
 import com.springapp.mvc.dao.interfaces.filters.LocationFilterDAO;
 import com.springapp.mvc.dao.interfaces.filters.ManufacturerFilterDAO;
+import com.springapp.mvc.domain.product.Letter;
 import com.springapp.mvc.domain.product.hmc.LiveToolEntity;
 import com.springapp.mvc.domain.product.robots.Robots;
 import com.springapp.mvc.service.interfaces.WorkWithFilesService;
@@ -64,6 +65,22 @@ public class WorkWithFilesServiceImpl implements WorkWithFilesService {
     }
 
     @Transactional
+    public ResponseEntity<byte[]> getPDFLetter(String path, Letter letter) throws Exception {
+        String pathPdf = GeneratePdfUtil.createPDFLetter(path, letter);
+
+        File file = new File(pathPdf);
+        byte[] contents = new byte[(int) file.length()];
+        new FileInputStream(file).read(contents);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.parseMediaType("application/pdf"));
+        String filename = "VMC-HMC-offer.pdf";
+        headers.setContentDispositionFormData(filename, filename);
+        headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+        return new ResponseEntity<byte[]>(contents, headers, HttpStatus.OK);
+    }
+
+    @Transactional
     public ResponseEntity<byte[]> getPDFOfferSingle(String path, String productId, String company, String director, boolean showPrice) throws Exception {
         LiveToolEntity machine = liveToolDAO.getMachine(productId);
 
@@ -110,6 +127,20 @@ public class WorkWithFilesServiceImpl implements WorkWithFilesService {
                 System.out.println("Failed to upload machine file: " + e.getMessage());
 
             }
+        }
+    }
+
+    @Transactional
+    public Letter uploadInformationLetter(String path, MultipartFile letter) {
+        try {
+            File uploadFile = UploadMultipartFileUtil.uploadFile(path, letter);
+            Letter readLetter = ParserExcelUtil.readLetter(uploadFile);
+            uploadFile.delete();
+            System.out.println("Successfully uploaded machine: " + letter.getOriginalFilename());
+            return readLetter;
+        } catch (IOException e) {
+            System.out.println("Failed to upload machine file: " + e.getMessage());
+            return null;
         }
     }
 

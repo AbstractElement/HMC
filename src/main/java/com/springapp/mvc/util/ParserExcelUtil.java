@@ -1,5 +1,6 @@
 package com.springapp.mvc.util;
 
+import com.springapp.mvc.domain.product.Letter;
 import com.springapp.mvc.domain.product.hmc.LiveToolEntity;
 import com.springapp.mvc.domain.product.robots.Robots;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -103,7 +104,29 @@ public class ParserExcelUtil {
         fis.close();
         return robot;
     }
-    
+
+    public static Letter readLetter(File file) throws IOException{
+        FileInputStream fis = new FileInputStream(file);
+        Workbook workbook = getWorkbook(fis,file.getPath());
+        Sheet firstSheet = workbook.getSheetAt(0);
+        Iterator<Row> rowIterator = firstSheet.iterator();
+        DataFormatter df = new DataFormatter();
+
+        Letter letter = new Letter();
+        letter.setTypeOfLetter(df.formatCellValue(rowIterator.next().getCell(1)).trim());
+        letter.setWebsite(df.formatCellValue(rowIterator.next().getCell(1)).trim());
+        letter.setCompany(df.formatCellValue(rowIterator.next().getCell(1)).trim());
+        letter.setPosition(df.formatCellValue(rowIterator.next().getCell(1)).trim());
+        letter.setContactName(df.formatCellValue(rowIterator.next().getCell(1)).trim());
+        letter.setAddress(df.formatCellValue(rowIterator.next().getCell(1)).trim());
+        letter.setEmail(df.formatCellValue(rowIterator.next().getCell(1)).trim());
+        letter.setDescription(df.formatCellValue(rowIterator.next().getCell(1)).trim());
+        letter.setManager(df.formatCellValue(rowIterator.next().getCell(1)).trim());
+        letter.setEmailManager(df.formatCellValue(rowIterator.next().getCell(1)).trim());
+        letter.setPhoneManager(df.formatCellValue(rowIterator.next().getCell(1)).trim());
+        fis.close();
+        return letter;
+    }
 
 
 }

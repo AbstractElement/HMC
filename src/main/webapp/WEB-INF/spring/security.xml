@@ -26,6 +26,21 @@ http://www.springframework.org/schema/security/spring-security-4.0.xsd">
         <csrf/>
     </http>
 
+    <http auto-config="true" use-expressions="true" pattern="/managerplace">
+        <intercept-url pattern="/managerplace/*" access="hasRole('ROLE_MANAGER')"/>
+        <form-login
+                login-page="/hmc/authentication"
+                authentication-failure-url="/hmc/authentication?error=true"
+                login-processing-url="/hmc/j_spring_security_check"
+                default-target-url="/hmc/"
+                username-parameter="username"
+                password-parameter="password"/>
+        <logout
+                logout-url="/hmc/j_spring_security_logout"
+                logout-success-url="/"/>
+        <csrf/>
+    </http>
+
     <http auto-config="true" use-expressions="true" pattern="/admin/*">
         <intercept-url pattern="/admin" access="permitAll"/>
         <intercept-url pattern="/admin/" access="permitAll"/>

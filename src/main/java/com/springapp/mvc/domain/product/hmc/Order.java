@@ -4,17 +4,13 @@ package com.springapp.mvc.domain.product.hmc;
 import javax.persistence.*;
 import java.util.Date;
 
-/**
- * Created by Vladislav on 14.02.2017.
- */
-
 @Entity
 @Table(name="machine_order", schema = "", catalog = "hmc_example")
 public class Order {
     @Id
     @Column(name = "orderId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int orderId;
+    private int orderId = 0;
 
     @Column(name = "firstName")
     private String firstName;

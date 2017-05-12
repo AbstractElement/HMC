@@ -93,7 +93,7 @@
                                 <td>
                                     <form:form method="post" class="form-inline">
                                         <select  class="form-control" name="userRole">
-                                            <c:set var="roles">ROLE_USER;ROLE_ADMIN;ROLE_DILLER;ROLE_VMC;ROLE_HMC</c:set>
+                                            <c:set var="roles">ROLE_USER;ROLE_ADMIN;ROLE_DILLER;ROLE_MANAGER</c:set>
                                             <c:forTokens items="${roles}" delims=";" var="role">
                                                 <option value="${role}" <c:if test="${user.role == role}">selected</c:if> >${role}</option>
                                             </c:forTokens>
